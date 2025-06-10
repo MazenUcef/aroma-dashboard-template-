@@ -35,6 +35,7 @@ const DashboardLayout = () => {
                         </Dropdown>
                     </div>
                 </header>
+               
                 <Outlet />
             </div>
         </div>

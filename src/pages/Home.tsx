@@ -1,3 +1,4 @@
+
 import ColumnChart from "../components/ColumnChart"
 import CustomerActivityFeed from "../components/CustomerActivityFeed"
 import LowStockComp from "../components/LowStockComp"
@@ -53,4 +54,4 @@ const Home = () => {
     )
 }
 
-export default Home
+export default Home;
