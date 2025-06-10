@@ -1,11 +1,11 @@
-import NotificationBell from "./Components/NotificationBell";
+import { RouterProvider } from 'react-router-dom'
+import AppRoutes from './routes/AppRoutes'
+
 
 const App = () => {
   return (
-    <div>
-      <NotificationBell />
-    </div>
-  );
-};
+    <RouterProvider router={AppRoutes} />
+  )
+}
 
 export default App;
