@@ -1,4 +1,5 @@
 import ColumnChart from "../components/ColumnChart"
+import CustomerActivityFeed from "../components/CustomerActivityFeed"
 import RecentOrdersTable from "../components/RecentOrdersTable"
 
 
@@ -18,6 +19,7 @@ const Home = () => {
                     showReportLink={true}
                 />
                 <RecentOrdersTable />
+                <CustomerActivityFeed/>
             </div>
         </div>
     )
