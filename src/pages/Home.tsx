@@ -1,12 +1,37 @@
 import ColumnChart from "../components/ColumnChart"
 import CustomerActivityFeed from "../components/CustomerActivityFeed"
+import LowStockComp from "../components/LowStockComp"
 import RecentOrdersTable from "../components/RecentOrdersTable"
-
+import coffeBean from '../assets/images/coffe-beans.png'
+import coffeCups from '../assets/images/coffe-cups.png'
+import caramel from '../assets/images/caramel.png'
 
 const Home = () => {
+    const lowStockList = [
+        {
+            image: coffeBean, // Replace with actual image URLs
+            name: "Arabica Coffee Beans",
+            count: 3
+        },
+        {
+            image: coffeCups,
+            name: "Vanilla Syrup",
+            count: 5
+        },
+        {
+            image: caramel,
+            name: "To-Go Cups (Large)",
+            count: 1
+        },
+        {
+            image: caramel,
+            name: "To-Go Cups (Large)",
+            count: 4
+        }
+    ];
+
     return (
         <div>
-            <div>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam iste voluptate ut aliquid quis, numquam odit enim ipsum aut voluptas alias nemo exercitationem eaque eum necessitatibus, sapiente accusamus laborum saepe!</div>
             <div className="p-4">
                 <ColumnChart
                     title="Performance"
@@ -19,7 +44,10 @@ const Home = () => {
                     showReportLink={true}
                 />
                 <RecentOrdersTable />
-                <CustomerActivityFeed/>
+                <CustomerActivityFeed />
+                <LowStockComp
+                    list={lowStockList}
+                />
             </div>
         </div>
     )
