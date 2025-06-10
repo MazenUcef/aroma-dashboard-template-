@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom'
 import SidebarComponent from './SidebarComponent'
+import Cards from './Cards'
 
 const DashboardLayout = () => {
     return (
@@ -12,6 +13,7 @@ const DashboardLayout = () => {
                 <header className="h-[5rem] bg-[#f9fafb]">
                     
                 </header>
+                <Cards />
                 <Outlet />
             </div>
         </div>
