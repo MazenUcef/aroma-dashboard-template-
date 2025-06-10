@@ -1,4 +1,5 @@
 import ColumnChart from "../components/ColumnChart"
+import RecentOrdersTable from "../components/RecentOrdersTable"
 
 
 const Home = () => {
@@ -16,6 +17,7 @@ const Home = () => {
                     showDropdown={true}
                     showReportLink={true}
                 />
+                <RecentOrdersTable />
             </div>
         </div>
     )
