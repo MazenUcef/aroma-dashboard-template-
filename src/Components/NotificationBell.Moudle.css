@@ -1,0 +1,18 @@
+.notificationbellcontainer {
+  position: relative;
+  display: inline-block; /* To make sure the container only takes up space of its content */
+  cursor: pointer;
+  padding: 10px; /* Add some padding around the bell */
+}
+
+.notificationbellicon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px; /* Adjust size as needed */
+  height: 48px; /* Adjust size as needed */
+  border-radius: 50%;
+  background-color: #f0f0f0; /* Light gray background for the circle */
+  border: 1px solid #e0e0e0; /* Subtle border */
+}

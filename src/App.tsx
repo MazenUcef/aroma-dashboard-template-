@@ -1,9 +1,11 @@
-import React from 'react'
+import NotificationBell from "./Components/NotificationBell";
 
 const App = () => {
   return (
-    <div>App</div>
-  )
-}
+    <div>
+      <NotificationBell />
+    </div>
+  );
+};
 
-export default App
+export default App;
