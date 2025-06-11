@@ -47,7 +47,7 @@ function Cards() {
   ];
 
   return (
-    <div className="flex flex-wrap justify-between gap-4 p-4">
+    <div className="flex flex-wrap justify-between gap-4 mb-6 ">
       {dashBordCards.map((card) => (
         <div
           key={card.id}
