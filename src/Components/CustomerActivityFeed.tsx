@@ -1,3 +1,6 @@
+import ArrowRight from "../assets/icons/ArrowRight";
+import CartIcon from "../assets/icons/CartIcon";
+
 
 interface Activity {
   name: string;
@@ -33,19 +36,19 @@ const activities: Activity[] = [
 
 const CustomerActivityFeed = () => {
   return (
-    <div
-      className="w-[22.5rem] bg-white rounded-lg shadow-sm mt-6"
-      style={{ fontFamily: "Inter, sans-serif" }}
-    >
+    <div className="w-[22.5rem] h-[21.5rem] bg-white text-foreground rounded-lg shadow-sm">
       <div className="container mx-auto p-[1.8438rem]">
-        <h2 className="text-2xl font-bold mb-4">Customer Activity</h2>
+        <h2 className="text-[20px] font-semibold -mt-4">Customer Activity</h2>
         {activities.map((activity, index) => (
-          <div key={index} className="flex items-center mb-4 p-2  rounded-lg">
+          <div
+            key={index}
+            className="flex items-center my-0.5  p-2  rounded-lg"
+          >
             <div className="w-10 h-10 bg-green-200 rounded-full flex items-center justify-center mr-3 shrink-0">
               {activity.action.includes("order") ? (
                 <svg
-                  width="25"
-                  height="25"
+                  width="32"
+                  height="32"
                   viewBox="0 0 25 25"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -57,8 +60,8 @@ const CustomerActivityFeed = () => {
                 </svg>
               ) : activity.action.includes("member") ? (
                 <svg
-                  width="25"
-                  height="25"
+                  width="32"
+                  height="32"
                   viewBox="0 0 25 25"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -78,8 +81,8 @@ const CustomerActivityFeed = () => {
                 </svg>
               ) : activity.action.includes("review") ? (
                 <svg
-                  width="25"
-                  height="25"
+                  width="32"
+                  height="32"
                   viewBox="0 0 25 25"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -91,8 +94,8 @@ const CustomerActivityFeed = () => {
                 </svg>
               ) : (
                 <svg
-                  width="25"
-                  height="25"
+                  width="32"
+                  height="32"
                   viewBox="0 0 25 25"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -111,7 +114,7 @@ const CustomerActivityFeed = () => {
               <div className="w-full flex items-center justify-between">
                 <p className="text-xs text-gray-500">{activity.date}</p>
                 {activity.points && (
-                  <span className=" ml-auto text-sm font-semibold text-[#244937]">
+                  <span className=" ml-auto text-sm font-medium">
                     {activity.points} pts
                   </span>
                 )}
@@ -119,12 +122,11 @@ const CustomerActivityFeed = () => {
             </div>
           </div>
         ))}
-        <a
-          href="#"
-          className="block w-full text-center bg-[#244937] text-white py-2 rounded-lg hover:bg-green-800"
-        >
+        <button className="flex items-center justify-center gap-2 font-semibold text-xs w-full text-center bg-green text-white py-3 px-2 rounded-lg hover:bg-green-800 cursor-pointer">
+          <CartIcon w={16} h={16} />
           View All Activity
-        </a>
+          <ArrowRight />
+        </button>
       </div>
     </div>
   );

@@ -71,7 +71,7 @@ const ColumnChart: React.FC<DashboardCardProps> = ({
                 ],
                 chart: {
                     type: "bar",
-                    height: "320px",
+                    height: "420px", // changed it from 320 to 420 ---> Joe
                     fontFamily: "Inter, sans-serif",
                     toolbar: {
                         show: false,
@@ -184,7 +184,7 @@ const ColumnChart: React.FC<DashboardCardProps> = ({
     };
 
     return (
-        <div className="w-[46.5rem] bg-white rounded-lg shadow-sm dark:bg-gray-800 p-4 md:p-6">
+        <div className="w-[46.5rem] h-full bg-white rounded-lg shadow-sm dark:bg-gray-800 p-4 md:p-6">
             <div className='w-full flex justify-between items-center mb-4'>
                 <div>
                     <h1 className='text-[20px] font-semibold'>Revenue & Orders</h1>
@@ -250,7 +250,7 @@ const ColumnChart: React.FC<DashboardCardProps> = ({
                     {showReportLink && (
                         <Link
                             to="#"
-                            className="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-blue-600 hover:text-blue-700 dark:hover:text-blue-500  hover:bg-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
+                            className="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-[#244937] hover:text-[#ff8a42]  dark:hover:text-[#ff8a42]  hover:bg-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
                             {title} Report
                             <svg className="w-2.5 h-2.5 ms-1.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 9 4-4-4-4" />

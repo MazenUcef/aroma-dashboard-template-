@@ -1,9 +1,14 @@
-function CartIcon() {
+type CartIconProps = {
+  w?: number;
+  h?: number;
+};
+
+function CartIcon({ w, h }: CartIconProps) {
   return (
     <div>
       <svg
-        width="32"
-        height="32"
+        width={w || 32}
+        height={h || 32}
         viewBox="0 0 32 32"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
