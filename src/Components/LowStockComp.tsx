@@ -1,3 +1,4 @@
+import ArrowRight from "../assets/icons/ArrowRight";
 
 
 interface ListItem {
@@ -12,39 +13,45 @@ interface LowStockCompProps {
 
 const LowStockComp = ({ list }: LowStockCompProps) => {
     return (
-        <div className='w-[22.5rem] flex flex-col p-3 h-[30.688rem] bg-white rounded-2xl'>
+        <div className="w-[22.5rem] flex flex-col p-3 h-full bg-white rounded-lg shadow-sm mt-6">
             <div>
-                <h1 className="text-[20px] font-bold">Low Stock Alerts</h1>
+            <h1 className="text-xl font-semibold text-[#333333]">Low Stock Alerts</h1>
             </div>
             <div className="flex items-center justify-center">
-                <ul className="mt-4 w-[20.5rem]">
-                    {list.map((item, index) => (
-                        <li key={index} className="flex w-full bg-[#f9fafb] h-[4.875rem] rounded-lg items-center justify-between mb-4">
-                            <div className="flex justify-between w-full px-4 items-center">
-                                <img
-                                    src={item.image}
-                                    alt={`Product ${index + 1}`}
-                                    className="w-[3rem] h-[3rem] rounded-xl mr-3"
-                                />
-                                <div>
-                                    <h2 className="text-[12px] font-bold">{item.name}</h2>
-                                    <span className="text-red-500 text-[12px]">{item.count} left</span>
-                                </div>
-                                <button className="w-[5rem] bg-[#eeeeee] hover:bg-[#e0e0e0] cursor-pointer rounded-lg text-[#666666] h-[2rem] text-sm font-semibold transition-colors">
-                                    Reorder
-                                </button>
-                            </div>
-                        </li>
-                    ))}
-                </ul>
+            <ul className="mt-4 w-[20.5rem]">
+                {list.map((item, index) => (
+                <li
+                    key={index}
+                    className="flex w-full bg-[#f9fafb] h-[4.875rem] rounded-lg items-center justify-between mb-4"
+                >
+                    <div className="flex justify-between w-full px-4 items-center">
+                    <img
+                        src={item.image}
+                        alt={`Product ${index + 1}`}
+                        className="w-[3rem] h-[3rem] rounded-xl mr-3"
+                    />
+                    <div className="w-full">
+                        <h2 className="text-[12px] font-bold">{item.name}</h2>
+                        <span className="text-[#EF4444] text-[12px]">
+                        {item.count} left
+                        </span>
+                    </div>
+                    <button className="w-[5rem] px-2 py-1 bg-[#eeeeee] hover:bg-[#e0e0e0] cursor-pointer rounded-sm text-[#666666] h-[2rem] text-sm font-semibold transition-colors">
+                        Reorder
+                    </button>
+                    </div>
+                </li>
+                ))}
+            </ul>
             </div>
             <div>
-                <button className="w-[20.5rem] h-[3rem] flex items-center rounded-lg text-white font-semibold bg-[#244937] justify-center cursor-pointer">
+            <button className="w-[20.5rem] h-[3rem] flex items-center justify-center gap-2 font-semibold  rounded-lg text-xs text-white bg-[#244937] hover:bg-green-800 cursor-pointer">
                     View Inventory
-                </button>
+                    <ArrowRight/>
+            </button>
             </div>
         </div>
-    )
+    );
 }
 
 export default LowStockComp

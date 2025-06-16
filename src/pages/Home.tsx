@@ -32,27 +32,47 @@ const Home = () => {
         },
     ];
 
-    return (
-        <div>
-            <div className="p-4">
-                <Cards />
-                <ColumnChart
-                    title="Performance"
-                    value="3.4k"
-                    description="Leads generated per week"
-                    trendPercentage="42.5%"
-                    moneySpent="$3,232"
-                    conversionRate="1.2%"
-                    showDropdown={true}
-                    showReportLink={true}
-                />
-                <RecentOrdersTable />
-                <CustomerActivityFeed />
-                <OrderTypesChart/>
-                <LowStockComp list={lowStockList} />
+return (
+    <section className="flex flex-col px-6 pt-6 pb-12">
+        {/* Top row: Full-width Cards component */}
+        <div className="w-full">
+        <Cards />
+        </div>
+        {/* Second row: Two flex items */}
+        <div className="flex flex-col h-[43.625rem] md:flex-row gap-6 w-full">
+        <div className="h-[43.625rem] flex-col">
+            <div className="">
+            <OrderTypesChart />
+            </div>
+            <div className="">
+            <CustomerActivityFeed />
             </div>
         </div>
-    );
+
+        <div className="w-full">
+            <ColumnChart
+            title="Performance"
+            value="3.4k"
+            description="Leads generated per week"
+            trendPercentage="42.5%"
+            moneySpent="$3,232"
+            conversionRate="1.2%"
+            showDropdown={true}
+            showReportLink={true}
+            />
+        </div>
+        </div>
+        {/* Third row: Three flex items */}
+        <div className="flex flex-col md:flex-row gap-6 w-full h-[30.6875rem]">
+        <div className="">
+            <RecentOrdersTable />
+        </div>
+        <div className="">
+            <LowStockComp list={lowStockList} />
+        </div>
+        </div>
+    </section>
+);
 };
 
 export default Home;

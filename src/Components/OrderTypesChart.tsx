@@ -77,12 +77,12 @@ const OrderTypesCard = () => {
 
   return (
     <div
-      className="w-[22.5rem] bg-white rounded-lg shadow-sm my-6"
+      className="w-[22.5rem] h-[21.125rem] bg-white rounded-lg shadow-sm mb-4 overflow-hidden"
       style={{ fontFamily: "Inter, sans-serif" }}
     >
       <div className="flex justify-between mb-3 container mx-auto p-[1.8438rem]">
         <div className="flex justify-center items-center">
-          <h5 className="text-xl font-bold leading-none text-gray-900 pe-1">
+          <h5 className="text-[20px] font-semibold leading-none text-nowrap text-black pe-1">
             Order Types Distribution
           </h5>
         </div>
@@ -113,7 +113,7 @@ const OrderTypesCard = () => {
           options={chartOptions}
           series={chartSeries}
           type="donut"
-          height={250}
+          height={222}
         />
       </div>
     </div>

@@ -1,3 +1,4 @@
+import ArrowRight from "../assets/icons/ArrowRight";
 
 interface Order {
   id: string;
@@ -69,40 +70,41 @@ const RecentOrdersTable = () => {
 
   return (
     <div
-      className="w-[46.5rem] bg-white rounded-lg shadow-sm  p-4 md:p-6 mt-6"
+      className="w-[46.5rem] h-full bg-white rounded-lg shadow-sm  p-6 md:p-6 mt-6"
       style={{ fontFamily: "Inter, sans-serif" }}
     >
-      <div className="container mx-auto p-4">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-2xl font-bold">Recent Orders</h2>
-          <button className="bg-[#244937] text-white px-4 py-2 rounded">
-            View All →
+      <div className="container mx-auto">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-xl font-semibold text-[#333333]">Recent Orders</h2>
+          <button className="flex items-center justify-center gap-2 font-semibold cursor-pointer  rounded-lg text-xs bg-[#244937] text-white hover:bg-green-800 px-4 py-2">
+            View All
+            <ArrowRight />
           </button>
         </div>
-        <div className="overflow-x-auto">
+        <div className=" text-[16px] font-normal">
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-[#F9FAFB] text-[#666666]">
-                <th className="p-2">Order ID</th>
-                <th className="p-2">Customer</th>
-                <th className="p-2">Items</th>
-                <th className="p-2">Total</th>
-                <th className="p-2">STATUS</th>
+                <th className="p-2.5">Order ID</th>
+                <th className="p-2.5">Customer</th>
+                <th className="p-2.5">Items</th>
+                <th className="p-2.5">Total</th>
+                <th className="p-2.5">STATUS</th>
               </tr>
             </thead>
             <tbody>
               {orders.map((order) => (
                 <tr
                   key={order.id}
-                  className="border-b border-[#EEEEEE] text-[#666666]"
+                  className="border-b border-[#EEEEEE] text-[#666666] last:border-b-0"
                 >
-                  <td className="p-2">{order.id}</td>
-                  <td className="p-2">{order.customer}</td>
-                  <td className="p-2">{order.items}</td>
-                  <td className="p-2">{order.total} LE</td>
-                  <td className="p-2">
+                  <td className="p-2.5">{order.id}</td>
+                  <td className="p-2.5">{order.customer}</td>
+                  <td className="p-2.5">{order.items}</td>
+                  <td className="p-2.5">{order.total} LE</td>
+                  <td className="p-2.5">
                     <span
-                      className={`inline-flex items-center px-2 py-0.5 rounded ${getStatusColor(
+                      className={`inline-flex items-center px-2 py-1 rounded ${getStatusColor(
                         order.status
                       )}`}
                     >
