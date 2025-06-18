@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom'
 import SidebarComponent from './SidebarComponent'
 import NotificationBell from './NotificationBell'
-import { Avatar, Dropdown, DropdownDivider, DropdownHeader, DropdownItem } from 'flowbite-react'
+import { Avatar, Dropdown, DropdownItem } from 'flowbite-react'
 
 const DashboardLayout = () => {
     return (
@@ -35,7 +35,7 @@ const DashboardLayout = () => {
                         </Dropdown>
                     </div>
                 </header>
-               
+
                 <Outlet />
             </div>
         </div>
