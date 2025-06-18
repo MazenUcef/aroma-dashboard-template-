@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PaymentSettings from "../components/PaymentSettings";
 
 const Settings = () => {
     const [activeTab, setActiveTab] = useState<string>("StoreInformation");
@@ -6,7 +7,7 @@ const Settings = () => {
     const tabs = [
         { id: "StoreInformation", title: "Store Information", content: "Content 1" },
         { id: "BusinessHours", title: "Business Hours", content: "Content 2" },
-        { id: "Payment", title: "Payment", content: "Content 3" },
+        { id: "Payment", title: "Payment", content: <PaymentSettings /> },
         { id: "Delivery", title: "Delivery", content: "Content 4" },
         { id: "App", title: "App", content: "Content 5" },
         { id: "Security", title: "Security", content: "Content 6" },
@@ -17,7 +18,7 @@ const Settings = () => {
         <div className="w-full p-[24px]">
             <h1 className="text-[20px] mb-[4px] font-semibold font-poppins">Settings</h1>
             <h2 className="text-[14px] mb-[24px]">Manage your store preferences and configurations</h2>
-            <div className="w-[70.5rem] h-[20.003rem] rounded-xl bg-white p-[24px]">
+            <div className="w-[70.5rem] h-auto rounded-xl bg-white p-[24px]">
                 {/* Tab List */}
                 <div className="flex flex-wrap gap-1 mb-4">
                     {tabs.map((tab) => (
