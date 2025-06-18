@@ -1,5 +1,7 @@
 import { useState } from "react";
 import AppearanceSettings from "../components/AppearanceSettings";
+import PaymentSettings from "../components/PaymentSettings";
+
 
 const Settings = () => {
     const [activeTab, setActiveTab] = useState<string>("StoreInformation");
@@ -7,7 +9,7 @@ const Settings = () => {
     const tabs = [
         { id: "StoreInformation", title: "Store Information", content: "Content 1" },
         { id: "BusinessHours", title: "Business Hours", content: "Content 2" },
-        { id: "Payment", title: "Payment", content: "Content 3" },
+        { id: "Payment", title: "Payment", content: <PaymentSettings /> },
         { id: "Delivery", title: "Delivery", content: "Content 4" },
         { id: "App", title: "App", content: <AppearanceSettings/> },
         { id: "Security", title: "Security", content: "Content 6" },
