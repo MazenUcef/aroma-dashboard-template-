@@ -29,9 +29,9 @@ const BusinessHours = () => {
                     <div className="w-[33.75rem] flex flex-col gap-5">
                         <div className="flex w-full items-center justify-between">
                             <div>
-                                <Label>Saturday</Label>
+                                <Label className="text-[14px] text-black">Saturday</Label>
                             </div>
-                            <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-3">
                                 <TextInput
                                     disabled
                                     type="time"
@@ -39,7 +39,7 @@ const BusinessHours = () => {
                                     onChange={(e) => handleTimeChange("saturday", "from", e.target.value)}
                                     className="w-24"
                                 />
-                                <span>to</span>
+                                <span className="text-[16px] capitalize font-semibold text-black">to</span>
                                 <TextInput
                                     disabled
                                     type="time"
@@ -51,9 +51,9 @@ const BusinessHours = () => {
                         </div>
                         <div className="flex w-full items-center justify-between">
                             <div>
-                                <Label>Sunday</Label>
+                                <Label className="text-[14px] text-black">Sunday</Label>
                             </div>
-                            <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-3">
                                 <TextInput
                                     disabled
                                     type="time"
@@ -61,7 +61,7 @@ const BusinessHours = () => {
                                     onChange={(e) => handleTimeChange("sunday", "from", e.target.value)}
                                     className="w-24"
                                 />
-                                <span>to</span>
+                                <span className="text-[16px] capitalize font-semibold text-black">to</span>
                                 <TextInput
                                     disabled
                                     type="time"
@@ -73,9 +73,9 @@ const BusinessHours = () => {
                         </div>
                         <div className="flex w-full items-center justify-between">
                             <div>
-                                <Label>Monday</Label>
+                                <Label className="text-[14px] text-black">Monday</Label>
                             </div>
-                            <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-3">
                                 <TextInput
                                     disabled
                                     type="time"
@@ -83,7 +83,7 @@ const BusinessHours = () => {
                                     onChange={(e) => handleTimeChange("monday", "from", e.target.value)}
                                     className="w-24"
                                 />
-                                <span>to</span>
+                                <span className="text-[16px] capitalize font-semibold text-black">to</span>
                                 <TextInput
                                     disabled
                                     type="time"
@@ -97,9 +97,9 @@ const BusinessHours = () => {
                     <div className="w-[33.75rem] flex flex-col gap-5">
                         <div className="flex w-full items-center justify-between">
                             <div>
-                                <Label>Tuesday</Label>
+                                <Label className="text-[14px] text-black">Tuesday</Label>
                             </div>
-                            <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-3">
                                 <TextInput
                                     disabled
                                     type="time"
@@ -107,7 +107,7 @@ const BusinessHours = () => {
                                     onChange={(e) => handleTimeChange("tuesday", "from", e.target.value)}
                                     className="w-24"
                                 />
-                                <span>to</span>
+                                <span className="text-[16px] capitalize font-semibold text-black">to</span>
                                 <TextInput
                                     disabled
                                     type="time"
@@ -119,9 +119,9 @@ const BusinessHours = () => {
                         </div>
                         <div className="flex w-full items-center justify-between">
                             <div>
-                                <Label>Wednesday</Label>
+                                <Label className="text-[14px] text-black">Wednesday</Label>
                             </div>
-                            <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-3">
                                 <TextInput
                                     disabled
                                     type="time"
@@ -129,7 +129,7 @@ const BusinessHours = () => {
                                     onChange={(e) => handleTimeChange("wednesday", "from", e.target.value)}
                                     className="w-24"
                                 />
-                                <span>to</span>
+                                <span className="text-[16px] capitalize font-semibold text-black">to</span>
                                 <TextInput
                                     disabled
                                     type="time"
@@ -141,17 +141,19 @@ const BusinessHours = () => {
                         </div>
                         <div className="flex w-full items-center justify-between">
                             <div>
-                                <Label>Thursday</Label>
+                                <Label className="text-[14px] text-black">Thursday</Label>
                             </div>
-                            <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-3">
                                 <TextInput
+                                    disabled
                                     type="time"
                                     value={hours.thursday.from}
                                     onChange={(e) => handleTimeChange("thursday", "from", e.target.value)}
                                     className="w-24"
                                 />
-                                <span>to</span>
+                                <span className="text-[16px] capitalize font-semibold text-black">to</span>
                                 <TextInput
+                                    disabled
                                     type="time"
                                     value={hours.thursday.to}
                                     onChange={(e) => handleTimeChange("thursday", "to", e.target.value)}
