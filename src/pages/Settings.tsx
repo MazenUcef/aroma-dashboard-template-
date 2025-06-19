@@ -3,17 +3,14 @@ import AppearanceSettings from "../components/AppearanceSettings";
 import PaymentSettings from "../components/PaymentSettings";
 import StoreInformation from "../components/StoreInformation";
 import SecuritySettings from "../components/SecuritySettings";
+import BusinessHours from "../components/BusinessHours";
 
 const Settings = () => {
     const [activeTab, setActiveTab] = useState<string>("StoreInformation");
 
     const tabs = [
-        {
-            id: "StoreInformation",
-            title: "Store Information",
-            content: <StoreInformation />,
-        },
-        { id: "BusinessHours", title: "Business Hours", content: "Content 2" },
+        { id: "StoreInformation", title: "Store Information", content: <StoreInformation /> },
+        { id: "BusinessHours", title: "Business Hours", content: <BusinessHours /> },
         { id: "Payment", title: "Payment", content: <PaymentSettings /> },
         { id: "Delivery", title: "Delivery", content: "Content 4" },
         { id: "App", title: "App", content: <AppearanceSettings /> },
@@ -37,8 +34,8 @@ const Settings = () => {
                             key={tab.id}
                             onClick={() => setActiveTab(tab.id)}
                             className={`py-2 px-4 rounded-sm mx-2 text-sm font-medium cursor-pointer transition-colors ${activeTab === tab.id
-                                    ? "bg-[#def7ec] text-[#244937]"
-                                    : "bg-[#f9fafb] text-[#4d4d4d] hover:bg-gray-100"
+                                ? "bg-[#def7ec] text-[#244937]"
+                                : "bg-[#f9fafb] text-[#4d4d4d] hover:bg-gray-100"
                                 }`}
                         >
                             {tab.title}
