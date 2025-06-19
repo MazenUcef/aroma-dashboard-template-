@@ -33,6 +33,7 @@ const BusinessHours = () => {
                             </div>
                             <div className="flex items-center gap-2">
                                 <TextInput
+                                    disabled
                                     type="time"
                                     value={hours.saturday.from}
                                     onChange={(e) => handleTimeChange("saturday", "from", e.target.value)}
@@ -40,6 +41,7 @@ const BusinessHours = () => {
                                 />
                                 <span>to</span>
                                 <TextInput
+                                    disabled
                                     type="time"
                                     value={hours.saturday.to}
                                     onChange={(e) => handleTimeChange("saturday", "to", e.target.value)}
@@ -53,6 +55,7 @@ const BusinessHours = () => {
                             </div>
                             <div className="flex items-center gap-2">
                                 <TextInput
+                                    disabled
                                     type="time"
                                     value={hours.sunday.from}
                                     onChange={(e) => handleTimeChange("sunday", "from", e.target.value)}
@@ -60,6 +63,7 @@ const BusinessHours = () => {
                                 />
                                 <span>to</span>
                                 <TextInput
+                                    disabled
                                     type="time"
                                     value={hours.sunday.to}
                                     onChange={(e) => handleTimeChange("sunday", "to", e.target.value)}
@@ -73,6 +77,7 @@ const BusinessHours = () => {
                             </div>
                             <div className="flex items-center gap-2">
                                 <TextInput
+                                    disabled
                                     type="time"
                                     value={hours.monday.from}
                                     onChange={(e) => handleTimeChange("monday", "from", e.target.value)}
@@ -80,6 +85,7 @@ const BusinessHours = () => {
                                 />
                                 <span>to</span>
                                 <TextInput
+                                    disabled
                                     type="time"
                                     value={hours.monday.to}
                                     onChange={(e) => handleTimeChange("monday", "to", e.target.value)}
@@ -95,6 +101,7 @@ const BusinessHours = () => {
                             </div>
                             <div className="flex items-center gap-2">
                                 <TextInput
+                                    disabled
                                     type="time"
                                     value={hours.tuesday.from}
                                     onChange={(e) => handleTimeChange("tuesday", "from", e.target.value)}
@@ -102,6 +109,7 @@ const BusinessHours = () => {
                                 />
                                 <span>to</span>
                                 <TextInput
+                                    disabled
                                     type="time"
                                     value={hours.tuesday.to}
                                     onChange={(e) => handleTimeChange("tuesday", "to", e.target.value)}
@@ -115,6 +123,7 @@ const BusinessHours = () => {
                             </div>
                             <div className="flex items-center gap-2">
                                 <TextInput
+                                    disabled
                                     type="time"
                                     value={hours.wednesday.from}
                                     onChange={(e) => handleTimeChange("wednesday", "from", e.target.value)}
@@ -122,6 +131,7 @@ const BusinessHours = () => {
                                 />
                                 <span>to</span>
                                 <TextInput
+                                    disabled
                                     type="time"
                                     value={hours.wednesday.to}
                                     onChange={(e) => handleTimeChange("wednesday", "to", e.target.value)}
