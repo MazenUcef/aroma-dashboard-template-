@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import "tailwindcss";
 @plugin "flowbite-react/plugin/tailwindcss";
 @source "../.flowbite-react/class-list.json";
@@ -7,10 +7,10 @@
   --background: #ffffff;
   --foreground: #333333;
   --poppins: "Poppins", sans-serif;
-  --orange: #FF8A42;
+  --orange: #ff8a42;
   --green: #244937;
-  --red: #EF4444;
-  --purple: #5521B5;
+  --red: #ef4444;
+  --purple: #5521b5;
 }
 
 @theme inline {
@@ -25,13 +25,13 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #ffffff;  /* to be changed later */
-    --foreground: #333333;  /* to be changed later */
+    --background: #ffffff; /* to be changed later */
+    --foreground: #333333; /* to be changed later */
     --poppins: "Poppins", sans-serif;
-    --orange: #FF8A42;
+    --orange: #ff8a42;
     --green: #244937;
-    --red: #EF4444;
-    --purple: #5521B5;
+    --red: #ef4444;
+    --purple: #5521b5;
   }
 }
 
@@ -41,24 +41,24 @@
   }
 }
 
-.apexcharts-legend-text *, .apexcharts-legend-marker * {
+.apexcharts-legend-text *,
+.apexcharts-legend-marker * {
   pointer-events: none;
   border-radius: 4px !important;
 }
 
-
-.apexcharts-legend-text{
-    padding-left: 15px;
-    margin-left: -8px !important;
+.apexcharts-legend-text {
+  padding-left: 15px;
+  margin-left: -8px !important;
 }
 
-
-.apexcharts-legend.apx-legend-position-bottom.apexcharts-align-center, .apexcharts-legend.apx-legend-position-top.apexcharts-align-center{
-    justify-content: center;
-    align-items: center;
-    right: 0px;
-    position: absolute;
-    left: -60px !important;
-    top: -20px !important;
-    max-height: 125px;
+.apexcharts-legend.apx-legend-position-bottom.apexcharts-align-center,
+.apexcharts-legend.apx-legend-position-top.apexcharts-align-center {
+  justify-content: center;
+  align-items: center;
+  right: 0px;
+  position: absolute;
+  left: -60px !important;
+  top: -20px !important;
+  max-height: 125px;
 }

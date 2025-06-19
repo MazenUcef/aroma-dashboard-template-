@@ -1,10 +1,12 @@
 import { useState } from "react";
+
 import AppearanceSettings from "../components/AppearanceSettings";
 import PaymentSettings from "../components/PaymentSettings";
 
 
+
 const Settings = () => {
-    const [activeTab, setActiveTab] = useState<string>("StoreInformation");
+  const [activeTab, setActiveTab] = useState<string>("StoreInformation");
 
     const tabs = [
         { id: "StoreInformation", title: "Store Information", content: "Content 1" },
@@ -49,9 +51,13 @@ const Settings = () => {
                         </div>
                     ))}
                 </div>
+
             </div>
+          ))}
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default Settings;
