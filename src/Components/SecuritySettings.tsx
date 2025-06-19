@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import ToggleSwitch from "./ToggleSwitch";
+import { useState } from "react";
 import { Checkbox, Label } from "flowbite-react";
+import ToggleSwitch from "./ToggleSwitch";
 
 const SecuritySettings = () => {
   const [require2FA, setRequire2FA] = useState<boolean>(true);
