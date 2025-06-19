@@ -1,19 +1,19 @@
 import { useState } from "react";
-
 import AppearanceSettings from "../components/AppearanceSettings";
 import PaymentSettings from "../components/PaymentSettings";
+import StoreInformation from "../components/StoreInformation";
 
 
 
 const Settings = () => {
-  const [activeTab, setActiveTab] = useState<string>("StoreInformation");
+    const [activeTab, setActiveTab] = useState<string>("StoreInformation");
 
     const tabs = [
-        { id: "StoreInformation", title: "Store Information", content: "Content 1" },
+        { id: "StoreInformation", title: "Store Information", content: <StoreInformation /> },
         { id: "BusinessHours", title: "Business Hours", content: "Content 2" },
         { id: "Payment", title: "Payment", content: <PaymentSettings /> },
         { id: "Delivery", title: "Delivery", content: "Content 4" },
-        { id: "App", title: "App", content: <AppearanceSettings/> },
+        { id: "App", title: "App", content: <AppearanceSettings /> },
         { id: "Security", title: "Security", content: "Content 6" },
         { id: "Accessability", title: "Accessability", content: "Content 7" },
     ];
@@ -53,11 +53,8 @@ const Settings = () => {
                 </div>
 
             </div>
-          ))}
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default Settings;
