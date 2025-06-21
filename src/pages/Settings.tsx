@@ -2,25 +2,32 @@ import { useState } from "react";
 import AppearanceSettings from "../components/AppearanceSettings";
 import PaymentSettings from "../components/PaymentSettings";
 import DeliverySettings from "../components/DeliverySettings";
-
+import StoreInformation from "../components/StoreInformation";
+import SecuritySettings from "../components/SecuritySettings";
+import BusinessHours from "../components/BusinessHours";
 
 const Settings = () => {
     const [activeTab, setActiveTab] = useState<string>("StoreInformation");
 
     const tabs = [
-        { id: "StoreInformation", title: "Store Information", content: "Content 1" },
-        { id: "BusinessHours", title: "Business Hours", content: "Content 2" },
+        { id: "StoreInformation", title: "Store Information", content: <StoreInformation /> },
+        { id: "BusinessHours", title: "Business Hours", content: <BusinessHours /> },
         { id: "Payment", title: "Payment", content: <PaymentSettings /> },
         { id: "Delivery", title: "Delivery", content: <DeliverySettings/> },
         { id: "App", title: "App", content: <AppearanceSettings/> },
-        { id: "Security", title: "Security", content: "Content 6" },
+        { id: "App", title: "App", content: <AppearanceSettings /> },
+        { id: "Security", title: "Security", content: <SecuritySettings /> },
         { id: "Accessability", title: "Accessability", content: "Content 7" },
     ];
 
     return (
         <div className="w-full p-[24px]">
-            <h1 className="text-[20px] mb-[4px] font-semibold font-poppins">Settings</h1>
-            <h2 className="text-[14px] mb-[24px]">Manage your store preferences and configurations</h2>
+            <h1 className="text-[20px] mb-[4px] font-semibold font-poppins">
+                Settings
+            </h1>
+            <h2 className="text-[14px] mb-[24px]">
+                Manage your store preferences and configurations
+            </h2>
             <div className="w-[70.5rem] h-auto rounded-xl bg-white p-[24px]">
                 {/* Tab List */}
                 <div className="flex flex-wrap gap-1 mb-4">
