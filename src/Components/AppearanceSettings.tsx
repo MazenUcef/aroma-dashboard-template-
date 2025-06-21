@@ -11,9 +11,11 @@ const AppearanceSettings = () => {
   });
 
   return (
-    <div className="w-full mx-auto -mt-2 p-4 bg-white  space-y-6">
+    <div className="w-full mx-auto bg-white  space-y-6">
       <div className="flex items-center space-x-2 mb-4">
-        <h2 className="font-semibold text-[#1E1E1E]">App Settings</h2>
+        <h2 className="font-semibold text-[16px] text-[#1E1E1E]">
+          App Settings
+        </h2>
       </div>
       {/* Dark Mode */}
       <div className="flex justify-between items-center py-2 px-4 bg-[#F9FAFB] rounded-md">
@@ -29,7 +31,9 @@ const AppearanceSettings = () => {
 
       {/* Notifications */}
       <div className="space-y-4">
-        <h2 className="font-semibold text-[#1E1E1E]">Notifications</h2>
+        <h2 className="font-semibold text-[16px] text-[#1E1E1E]">
+          Notifications
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <NotificationItem
             title="New Orders"

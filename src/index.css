@@ -52,13 +52,16 @@
   margin-left: -8px !important;
 }
 
-.apexcharts-legend.apx-legend-position-bottom.apexcharts-align-center,
-.apexcharts-legend.apx-legend-position-top.apexcharts-align-center {
-  justify-content: center;
-  align-items: center;
-  right: 0px;
-  position: absolute;
-  left: -60px !important;
-  top: -20px !important;
-  max-height: 125px;
+.apexcharts-legend.apx-legend-position-bottom.apexcharts-align-center, .apexcharts-legend.apx-legend-position-top.apexcharts-align-center{
+    justify-content: center;
+    align-items: center;
+    right: 0px;
+    position: absolute;
+    left: -60px !important;
+    top: -20px !important;
+    max-height: 125px;
+}
+
+.custom-placeholder::placeholder {
+  color: #ccc !important;
 }

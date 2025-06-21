@@ -1,6 +1,7 @@
 import { useState } from "react";
 import AppearanceSettings from "../components/AppearanceSettings";
 import PaymentSettings from "../components/PaymentSettings";
+import DeliverySettings from "../components/DeliverySettings";
 import StoreInformation from "../components/StoreInformation";
 import SecuritySettings from "../components/SecuritySettings";
 import BusinessHours from "../components/BusinessHours";
@@ -12,7 +13,8 @@ const Settings = () => {
         { id: "StoreInformation", title: "Store Information", content: <StoreInformation /> },
         { id: "BusinessHours", title: "Business Hours", content: <BusinessHours /> },
         { id: "Payment", title: "Payment", content: <PaymentSettings /> },
-        { id: "Delivery", title: "Delivery", content: "Content 4" },
+        { id: "Delivery", title: "Delivery", content: <DeliverySettings/> },
+        { id: "App", title: "App", content: <AppearanceSettings/> },
         { id: "App", title: "App", content: <AppearanceSettings /> },
         { id: "Security", title: "Security", content: <SecuritySettings /> },
         { id: "Accessability", title: "Accessability", content: "Content 7" },
