@@ -12,7 +12,6 @@ const Settings = () => {
         { id: "BusinessHours", title: "Business Hours", content: "Content 2" },
         { id: "Payment", title: "Payment", content: <PaymentSettings /> },
         { id: "Delivery", title: "Delivery", content: <DeliverySettings/> },
-        { id: "App", title: "App", content: <AppearanceSettings/> },
         { id: "Security", title: "Security", content: "Content 6" },
         { id: "Accessability", title: "Accessability", content: "Content 7" },
     ];
