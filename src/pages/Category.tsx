@@ -1,9 +1,26 @@
-import React from 'react'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useState } from "react";
+import CategoryModal from "../components/CategoryModal";
 
 const Category = () => {
-    return (
-        <div>Category</div>
-    )
-}
+    const [isModalOpen, setIsModalOpen] = useState(true);
+    const [isEditing] = useState(false);
+    const [selectedCategory] = useState<any>(null);
 
-export default Category
+    return (
+        <div>
+            <CategoryModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                onSubmit={(data) => {
+                    console.log(data);
+                    setIsModalOpen(false);
+                }}
+                isEditMode={isEditing}
+                initialData={isEditing ? selectedCategory : undefined}
+            />
+        </div>
+    );
+};
+
+export default Category;
