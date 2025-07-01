@@ -1,7 +1,13 @@
 import { useState } from "react";
 import ProductModal from "../components/ProductModal";
 
+
 const Products = () => {
+
+  return (
+    <div>
+      Products
+      
   const [isModalOpen, setIsModalOpen] = useState(true);
   const [isEditing] = useState(false);
   const [selectedCategory] = useState<any>(null);
