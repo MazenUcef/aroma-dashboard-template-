@@ -9,6 +9,7 @@
   --poppins: "Poppins", sans-serif;
   --orange: #ff8a42;
   --green: #244937;
+  --lightgreen: #DEF7EC;
   --red: #ef4444;
   --purple: #5521b5;
 }
@@ -19,6 +20,7 @@
   --font-poppins: var(--poppins);
   --color-orange: var(--orange);
   --color-green: var(--green);
+  --color-lightgreen: var(--lightgreen);
   --color-red: var(--red);
   --color-purple: var(--purple);
 }
@@ -30,6 +32,7 @@
     --poppins: "Poppins", sans-serif;
     --orange: #ff8a42;
     --green: #244937;
+    --lightgreen: #DEF7EC;
     --red: #ef4444;
     --purple: #5521b5;
   }
