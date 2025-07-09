@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Card } from "flowbite-react";
 import defaultImage from "../assets/images/white-Mocha.png";
 import BadgeIcon from "../assets/icons/BadgeIcon";
-import ToggleSwitch from "../components/ToggleSwitch";
+import ToggleSwitch from "./ToggleSwitch";
 
 const ItemsCards = ({
   imgSrc = defaultImage,
