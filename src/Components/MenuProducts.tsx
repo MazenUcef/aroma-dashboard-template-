@@ -89,7 +89,7 @@ const MenuProducts: React.FC<ItemsCardsProps> = () => {
     },
   ];
   return (
-    <div className="flex flex-wrap gap-4 justify-start items-start w-full p-6">
+    <div className="flex flex-wrap gap-6 justify-start items-start w-[721px] ">
       {products.map(
         (
           { imgSrc, title, price, showToggle, initialToggleState, badge },
