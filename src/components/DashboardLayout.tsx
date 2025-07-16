@@ -9,9 +9,9 @@ const DashboardLayout = () => {
             {/* Sidebar for Desktop */}
             <SidebarComponent />
             {/* Main Content */}
-            <div className='w-full sm:w-[calc(100%-16rem)] bg-[#eef0f1] ml-auto  min-h-screen'>
+            <div className='w-full sm:w-[calc(100%-16rem)] bg-backgroundaccent ml-auto  min-h-screen'>
                 {/* Header with Menu Toggle for Mobile */}
-                <header className="h-[5rem] flex items-center gap-8 justify-end bg-[#f9fafb]">
+                <header className="h-[5rem] flex items-center gap-8 justify-end bg-background text-foreground">
                     <NotificationBell />
                     <div>
                         <Dropdown
