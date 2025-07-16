@@ -12,7 +12,7 @@ const ToggleSwitch = ({ isOn, onToggle }: ToggleProps) => {
     return (
         <div
             onClick={handleToggle}
-            className={`relative w-[40px] h-[22px] flex items-center rounded-full cursor-pointer transition-colors duration-300 ${isOn ? "bg-[#244937] dark:bg-text-blackish" : "bg-gray-300 dark:bg-gray-600"}`}
+            className={`relative w-[40px] h-[22px] flex items-center rounded-full cursor-pointer transition-colors duration-300 ${isOn ? "bg-switch dark:bg-switch " : "bg-tabhover dark:bg-tabhover"}`}
         >
             {/* Thumb circle */}
             <div
