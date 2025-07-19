@@ -13,16 +13,16 @@ interface LowStockCompProps {
 
 const LowStockComp = ({ list }: LowStockCompProps) => {
     return (
-        <div className="w-[22.5rem] flex flex-col p-3 h-full bg-white rounded-lg shadow-sm mt-6">
+        <div className="w-[22.5rem] flex flex-col p-3 h-full bg-background text-foreground dark:text-foreground rounded-lg mt-6">
             <div>
-            <h1 className="text-xl font-semibold text-[#333333]">Low Stock Alerts</h1>
+            <h1 className="text-xl font-semibold">Low Stock Alerts</h1>
             </div>
             <div className="flex items-center justify-center">
             <ul className="mt-4 w-[20.5rem]">
                 {list.map((item, index) => (
                 <li
                     key={index}
-                    className="flex w-full bg-[#f9fafb] h-[4.875rem] rounded-lg items-center justify-between mb-4"
+                    className="flex w-full bg-forminputs h-[4.875rem] rounded-lg items-center justify-between mb-4"
                 >
                     <div className="flex justify-between w-full px-4 items-center">
                     <img
@@ -36,7 +36,7 @@ const LowStockComp = ({ list }: LowStockCompProps) => {
                         {item.count} left
                         </span>
                     </div>
-                    <button className="w-[5rem] px-2 py-1 bg-[#eeeeee] hover:bg-[#e0e0e0] cursor-pointer rounded-sm text-[#666666] h-[2rem] text-sm font-semibold transition-colors">
+                    <button className="w-[5rem] px-2 py-1 bg-custombtn hover:bg-custombtn/80 cursor-pointer rounded-sm text-foreground h-[2rem] text-sm font-semibold transition-colors">
                         Reorder
                     </button>
                     </div>

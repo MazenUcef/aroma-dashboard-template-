@@ -36,7 +36,7 @@ const activities: Activity[] = [
 
 const CustomerActivityFeed = () => {
   return (
-    <div className="w-[22.5rem] h-[21.5rem] bg-white text-foreground rounded-lg shadow-sm">
+    <div className="w-[22.5rem] h-[21.5rem] bg-background text-foreground rounded-lg">
       <div className="container mx-auto p-[1.8438rem]">
         <h2 className="text-[20px] font-semibold -mt-4">Customer Activity</h2>
         {activities.map((activity, index) => (

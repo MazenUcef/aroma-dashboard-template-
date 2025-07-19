@@ -77,17 +77,17 @@ const OrderTypesCard = () => {
 
   return (
     <div
-      className="w-[22.5rem] h-[21.125rem] bg-white rounded-lg shadow-sm mb-4 overflow-hidden"
+      className="w-[22.5rem] h-[21.125rem] bg-background text-foreground dark:text-foreground rounded-lg mb-4 overflow-hidden"
       style={{ fontFamily: "Inter, sans-serif" }}
     >
       <div className="flex justify-between mb-3 container mx-auto p-[1.8438rem]">
         <div className="flex justify-center items-center">
-          <h5 className="text-[20px] font-semibold leading-none text-nowrap text-black pe-1">
+          <h5 className="text-[20px] font-semibold leading-none text-nowrap pe-1">
             Order Types Distribution
           </h5>
         </div>
-        <div className="hidden sm:inline-flex items-center justify-center w-8 h-8 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
-          <button className="text-gray-500 dark:text-gray-400">
+        <div className="hidden bg-background dark:bg-background sm:inline-flex items-center justify-center w-8 h-8 rounded-lg">
+          <button>
             <svg
               className="w-3.5 h-3.5"
               fill="none"
