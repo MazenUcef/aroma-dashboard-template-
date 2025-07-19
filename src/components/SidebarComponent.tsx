@@ -103,7 +103,7 @@ const SidebarComponent = () => {
         base: "",
       },
       itemGroup: {
-        base: "mt-4 space-y-2 border-t border-gray-200 pt-4 first:mt-0 first:border-t-0 first:pt-0 dark:border-gray-700",
+        base: "mt-4 space-y-2 border-t border-[#CECECE] pt-4 first:mt-0 first:border-t-0 first:pt-0 dark:border-[#CECECE]",
       },
       logo: {
         base: "mb-5 flex items-center pl-2.5",

@@ -24,8 +24,12 @@
   --borderdisabled: #D1D5DB;
   --switch: #244937;
   --inputborder: #CECECE;
-    --inputaccent: #F3F4F6;
+  --inputaccent: #F3F4F6;
   --secondaryinput: #FFFFFF;
+  --customtab: #BBDDCD ;
+  --customborder: #EEE ;
+  --custombtn: #EEE ;
+  --arrowcolor: #244937;
 
 }
 
@@ -52,6 +56,10 @@
   --color-inputborder: var(--inputborder);
   --color-inputaccent: var(--inputaccent);
   --color-secondaryinput: var(--secondaryinput);
+  --color-customtab: var(--customtab);
+  --color-customborder: var(--customborder);
+  --color-custombtn: var(--custombtn);
+  --color-arrowcolor: var(--arrowcolor);
 }
 
 
@@ -74,10 +82,14 @@
   --checked: #5B6771;
   --disabled: #F9FAFB;
   --borderdisabled: #D1D5DB;
-    --switch: #171A1C;
+  --switch: #171A1C;
   --inputborder: #5B6771;
   --inputaccent: #5B6771;
   --secondaryinput: #444D55;
+  --customtab: #8E9AA4 ;
+  --customborder: #5B6771 ;
+  --custombtn: #8E9AA4 ;
+  --arrowcolor: #F1F2F4;
 }
 
 
@@ -110,4 +122,24 @@
 
 .custom-placeholder::placeholder {
   color: #ccc !important;
+}
+
+foreignObject{
+    x: 0;
+    y: 0;
+    width: 300;
+    height: 264;
+    background-color: var(--background);
+}
+
+.apexcharts-pie-area {
+  stroke: var(--background) !important;
+}
+
+
+.apexcharts-legend-text{
+    color: var(--color-foreground) !important;
+    font-size: 12px;
+    font-weight: 400;
+    font-family: Inter, sans-serif;
 }

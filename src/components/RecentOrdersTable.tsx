@@ -70,12 +70,14 @@ const RecentOrdersTable = () => {
 
   return (
     <div
-      className="w-[46.5rem] h-full bg-white rounded-lg shadow-sm  p-6 md:p-6 mt-6"
+      className="w-[46.5rem] h-full bg-background text-foreground dark:text-foreground rounded-lg p-6 md:p-6 mt-6"
       style={{ fontFamily: "Inter, sans-serif" }}
     >
       <div className="container mx-auto">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-xl font-semibold text-[#333333]">Recent Orders</h2>
+          <h2 className="text-xl font-semibold ">
+            Recent Orders
+          </h2>
           <button className="flex items-center justify-center gap-2 font-semibold cursor-pointer  rounded-lg text-xs bg-[#244937] text-white hover:bg-green-800 px-4 py-2">
             View All
             <ArrowRight />
@@ -84,7 +86,7 @@ const RecentOrdersTable = () => {
         <div className=" text-[16px] font-normal">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-[#F9FAFB] text-[#666666]">
+              <tr className="bg-forminputs">
                 <th className="p-2.5">Order ID</th>
                 <th className="p-2.5">Customer</th>
                 <th className="p-2.5">Items</th>
@@ -96,7 +98,7 @@ const RecentOrdersTable = () => {
               {orders.map((order) => (
                 <tr
                   key={order.id}
-                  className="border-b border-[#EEEEEE] text-[#666666] last:border-b-0"
+                  className="border-b border-[#EEEEEE] last:border-b-0"
                 >
                   <td className="p-2.5">{order.id}</td>
                   <td className="p-2.5">{order.customer}</td>

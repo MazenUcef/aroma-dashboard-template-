@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import ApexCharts from 'apexcharts';
 import { Link } from 'react-router-dom';
 
+
 interface DashboardCardProps {
     title: string;
     value: string;
@@ -98,7 +99,7 @@ const ColumnChart: React.FC<DashboardCardProps> = ({
                     labels: {
                         style: {
                             fontFamily: "Inter, sans-serif",
-                            cssClass: 'text-xs font-normal fill-gray-500 dark:fill-gray-400'
+                            cssClass: 'text-xs font-normal fill-foreground dark:fill-foreground'
                         }
                     },
                     axisBorder: {
@@ -113,13 +114,13 @@ const ColumnChart: React.FC<DashboardCardProps> = ({
                         title: {
                             text: "Money Spent ($)",
                             style: {
-                                color: "#244937",
+                                color: "transparent",
                                 fontFamily: "Inter, sans-serif"
                             }
                         },
                         labels: {
                             style: {
-                                colors: "#244937",
+                                colors: "transparent",
                                 fontFamily: "Inter, sans-serif"
                             }
                         }
@@ -129,13 +130,13 @@ const ColumnChart: React.FC<DashboardCardProps> = ({
                         title: {
                             text: "Conversion Rate (%)",
                             style: {
-                                color: "#ff8a42",
+                                color: "transparent",
                                 fontFamily: "Inter, sans-serif"
                             }
                         },
                         labels: {
                             style: {
-                                colors: "#ff8a42",
+                                colors: "transparent",
                                 fontFamily: "Inter, sans-serif"
                             }
                         }
@@ -157,10 +158,14 @@ const ColumnChart: React.FC<DashboardCardProps> = ({
                     },
                     itemMargin: {
                         horizontal: 10
+                    },
+                    style: {
+                        colors: "#ff8a42",
+                        fontFamily: "Inter, sans-serif"
                     }
                 },
                 grid: {
-                    borderColor: "#f1f1f1"
+                    borderColor: "transparent"
                 }
             };
 
@@ -184,7 +189,7 @@ const ColumnChart: React.FC<DashboardCardProps> = ({
     };
 
     return (
-        <div className="w-[46.5rem] h-full bg-white rounded-lg shadow-sm dark:bg-gray-800 p-4 md:p-6">
+        <div className="w-[46.5rem] h-full bg-background rounded-lg p-4 md:p-6 text-foreground dark:text-foreground">
             <div className='w-full flex justify-between items-center mb-4'>
                 <div>
                     <h1 className='text-[20px] font-semibold'>Revenue & Orders</h1>
@@ -193,32 +198,32 @@ const ColumnChart: React.FC<DashboardCardProps> = ({
                     <button onClick={() => {
                         setActiveTab('yearly');
                         handleTimeRangeChange('yearly');
-                    }} className={`w-[5.063rem] rounded-l-md border border-gray-100 h-[2.375rem] cursor-pointer ${activeTab === 'yearly' ? 'bg-[#ddeee6]' : ''}`}>Years</button>
+                    }} className={`w-[5.063rem] rounded-l-md border border-customborder h-[2.375rem] cursor-pointer ${activeTab === 'yearly' ? 'bg-customtab' : ''}`}>Years</button>
                     <button onClick={() => {
                         setActiveTab('monthly');
                         handleTimeRangeChange('monthly');
-                    }} className={`w-[5.063rem] border border-gray-100 h-[2.375rem] cursor-pointer ${activeTab === 'monthly' ? 'bg-[#ddeee6]' : ''}`}>Months</button>
+                    }} className={`w-[5.063rem] border border-customborder h-[2.375rem] cursor-pointer ${activeTab === 'monthly' ? 'bg-customtab' : ''}`}>Months</button>
                     <button onClick={() => {
                         setActiveTab('weekly');
                         handleTimeRangeChange('weekly');
-                    }} className={`w-[5.063rem] border border-gray-100 h-[2.375rem] cursor-pointer ${activeTab === 'weekly' ? 'bg-[#ddeee6]' : ''}`}>Week</button>
+                    }} className={`w-[5.063rem] border border-customborder h-[2.375rem] cursor-pointer ${activeTab === 'weekly' ? 'bg-customtab' : ''}`}>Week</button>
                     <button onClick={() => {
                         setActiveTab('daily');
                         handleTimeRangeChange('daily');
-                    }} className={`w-[5.063rem] rounded-r-md border border-gray-100 h-[2.375rem] cursor-pointer ${activeTab === 'daily' ? 'bg-[#ddeee6]' : ''}`}>Daily</button>
+                    }} className={`w-[5.063rem] rounded-r-md border border-customborder h-[2.375rem] cursor-pointer ${activeTab === 'daily' ? 'bg-customtab' : ''}`}>Daily</button>
                 </div>
             </div>
-            <div className="flex justify-between pb-4 mb-4 border-b border-gray-200 dark:border-gray-700">
+            <div className="flex justify-between pb-4 mb-4 border-b border-[#CECECE] dark:border-[#CECECE]">
                 <div className="flex items-center">
-                    <div className="w-12 h-12 rounded-lg bg-gray-100 dark:bg-gray-700 flex items-center justify-center me-3">
-                        <svg className="w-6 h-6 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 19">
+                    <div className="w-12 h-12 rounded-lg bg-[#BBDDCD] dark:bg-[#BBDDCD] flex items-center justify-center me-3">
+                        <svg className="w-6 h-6 text-[#F9FAFB]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 19">
                             <path d="M14.5 0A3.987 3.987 0 0 0 11 2.1a4.977 4.977 0 0 1 3.9 5.858A3.989 3.989 0 0 0 14.5 0ZM9 13h2a4 4 0 0 1 4 4v2H5v-2a4 4 0 0 1 4-4Z" />
                             <path d="M5 19h10v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2ZM5 7a5.008 5.008 0 0 1 4-4.9 3.988 3.988 0 1 0-3.9 5.859A4.974 4.974 0 0 1 5 7Zm5 3a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm5-1h-.424a5.016 5.016 0 0 1-1.942 2.232A6.007 6.007 0 0 1 17 17h2a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5ZM5.424 9H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h2a6.007 6.007 0 0 1 4.366-5.768A5.016 5.016 0 0 1 5.424 9Z" />
                         </svg>
                     </div>
                     <div>
-                        <h5 className="leading-none text-2xl font-bold text-gray-900 dark:text-white pb-1">{value}</h5>
-                        <p className="text-sm font-normal text-gray-500 dark:text-gray-400">{description}</p>
+                        <h5 className="leading-none text-2xl font-bold  pb-1">{value}</h5>
+                        <p className="text-sm font-normal ">{description}</p>
                     </div>
                 </div>
                 <div>
@@ -233,24 +238,24 @@ const ColumnChart: React.FC<DashboardCardProps> = ({
 
             <div className="flex gap-16">
                 <dl className="flex items-center">
-                    <dt className="text-gray-500 dark:text-gray-400 text-sm font-normal me-1">Money spent:</dt>
-                    <dd className="text-gray-900 text-sm dark:text-white font-semibold">{moneySpent}</dd>
+                    <dt className=" text-sm font-normal me-1">Money spent:</dt>
+                    <dd className=" text-sm  font-semibold">{moneySpent}</dd>
                 </dl>
                 <dl className="flex items-center justify-end">
-                    <dt className="text-gray-500 dark:text-gray-400 text-sm font-normal me-1">Conversion rate:</dt>
-                    <dd className="text-gray-900 text-sm dark:text-white font-semibold">{conversionRate}</dd>
+                    <dt className=" text-sm font-normal me-1">Conversion rate:</dt>
+                    <dd className=" text-sm  font-semibold">{conversionRate}</dd>
                 </dl>
             </div>
 
             <div id="column-chart" ref={chartRef}></div>
 
-            <div className="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
+            <div className="grid grid-cols-1 items-center border-[#CECECE] border-t dark:border-[#CECECE] justify-between">
                 <div className="flex justify-between items-center pt-5">
 
                     {showReportLink && (
                         <Link
                             to="#"
-                            className="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-[#244937] hover:text-[#ff8a42]  dark:hover:text-[#ff8a42]  hover:bg-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
+                            className="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-foreground hover:text-[#ff8a42]  dark:hover:text-[#ff8a42]  px-3 py-2">
                             {title} Report
                             <svg className="w-2.5 h-2.5 ms-1.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 9 4-4-4-4" />
