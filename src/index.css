@@ -4,7 +4,9 @@
 @source "../.flowbite-react/class-list.json";
 
 :root {
-  --background: #ffffff;
+  --background: #FFF;
+  --backgroundaccent: #F9FAFB;
+  --backgroundtertiary: #f0f0f0;
   --foreground: #333333;
   --poppins: "Poppins", sans-serif;
   --orange: #ff8a42;
@@ -12,10 +14,29 @@
   --lightgreen: #DEF7EC;
   --red: #ef4444;
   --purple: #5521b5;
+  --sidebarhover: #DEF7EC;
+  --forminputs: #F9FAFB;
+  --tabhover: #DEF7EC;
+  --tabtext: #244937;
+  --linecolor: #EEE;
+  --checked: #244937;
+  --disabled: #F9FAFB;
+  --borderdisabled: #D1D5DB;
+  --switch: #244937;
+  --inputborder: #CECECE;
+  --inputaccent: #F3F4F6;
+  --secondaryinput: #FFFFFF;
+  --customtab: #BBDDCD ;
+  --customborder: #EEE ;
+  --custombtn: #EEE ;
+  --arrowcolor: #244937;
+
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-backgroundaccent: var(--backgroundaccent);
+  --color-backgroundtertiary: var(--backgroundtertiary);
   --color-foreground: var(--foreground);
   --font-poppins: var(--poppins);
   --color-orange: var(--orange);
@@ -23,20 +44,54 @@
   --color-lightgreen: var(--lightgreen);
   --color-red: var(--red);
   --color-purple: var(--purple);
+  --color-sidebarhover: var(--sidebarhover);
+  --color-forminputs: var(--forminputs);
+  --color-tabhover: var(--tabhover);
+  --color-tabtext: var(--tabtext);
+  --color-linecolor: var(--linecolor);
+  --color-checked: var(--checked);
+  --color-disabled: var(--disabled);
+  --color-borderdisabled: var(--borderdisabled);
+  --color-switch: var(--switch);
+  --color-inputborder: var(--inputborder);
+  --color-inputaccent: var(--inputaccent);
+  --color-secondaryinput: var(--secondaryinput);
+  --color-customtab: var(--customtab);
+  --color-customborder: var(--customborder);
+  --color-custombtn: var(--custombtn);
+  --color-arrowcolor: var(--arrowcolor);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #ffffff; /* to be changed later */
-    --foreground: #333333; /* to be changed later */
-    --poppins: "Poppins", sans-serif;
-    --orange: #ff8a42;
-    --green: #244937;
-    --lightgreen: #DEF7EC;
-    --red: #ef4444;
-    --purple: #5521b5;
-  }
+
+.dark {
+  --background: #2E3438;
+  --backgroundaccent: #171A1C;
+  --backgroundtertiary: #5B6771;
+  --foreground: #F1F2F4;
+  --poppins: "Poppins", sans-serif;
+  --orange: #ff8a42;
+  --green: #244937;
+  --lightgreen: #DEF7EC;
+  --red: #ef4444;
+  --purple: #5521b5;
+  --sidebarhover: #5B6771;
+  --forminputs: #444D55;
+  --tabhover: #8E9AA4;
+  --tabtext: #F1F2F4;
+  --linecolor: #5B6771;
+  --checked: #5B6771;
+  --disabled: #F9FAFB;
+  --borderdisabled: #D1D5DB;
+  --switch: #171A1C;
+  --inputborder: #5B6771;
+  --inputaccent: #5B6771;
+  --secondaryinput: #444D55;
+  --customtab: #8E9AA4 ;
+  --customborder: #5B6771 ;
+  --custombtn: #8E9AA4 ;
+  --arrowcolor: #F1F2F4;
 }
+
 
 @layer base {
   * {
@@ -67,4 +122,24 @@
 
 .custom-placeholder::placeholder {
   color: #ccc !important;
+}
+
+foreignObject{
+    x: 0;
+    y: 0;
+    width: 300;
+    height: 264;
+    background-color: var(--background);
+}
+
+.apexcharts-pie-area {
+  stroke: var(--background) !important;
+}
+
+
+.apexcharts-legend-text{
+    color: var(--color-foreground) !important;
+    font-size: 12px;
+    font-weight: 400;
+    font-family: Inter, sans-serif;
 }

@@ -1,6 +1,10 @@
 const NoteTextIcon: React.FC<React.SVGProps<SVGSVGElement>> = () => (
-  <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M15 21.2964V15.8964C15 15.3363 15 15.0563 14.891 14.8424C14.7951 14.6542 14.6422 14.5013 14.454 14.4054C14.2401 14.2964 13.9601 14.2964 13.4 14.2964H10.6C10.0399 14.2964 9.75992 14.2964 9.54601 14.4054C9.35785 14.5013 9.20487 14.6542 9.10899 14.8424C9 15.0563 9 15.3363 9 15.8964V21.2964M3 7.29639C3 8.95324 4.34315 10.2964 6 10.2964C7.65685 10.2964 9 8.95324 9 7.29639C9 8.95324 10.3431 10.2964 12 10.2964C13.6569 10.2964 15 8.95324 15 7.29639C15 8.95324 16.3431 10.2964 18 10.2964C19.6569 10.2964 21 8.95324 21 7.29639M6.2 21.2964H17.8C18.9201 21.2964 19.4802 21.2964 19.908 21.0784C20.2843 20.8867 20.5903 20.5807 20.782 20.2044C21 19.7765 21 19.2165 21 18.0964V6.49639C21 5.37628 21 4.81623 20.782 4.38841C20.5903 4.01208 20.2843 3.70612 19.908 3.51437C19.4802 3.29639 18.9201 3.29639 17.8 3.29639H6.2C5.0799 3.29639 4.51984 3.29639 4.09202 3.51437C3.71569 3.70612 3.40973 4.01208 3.21799 4.38841C3 4.81623 3 5.37628 3 6.49639V18.0964C3 19.2165 3 19.7765 3.21799 20.2044C3.40973 20.5807 3.71569 20.8867 4.09202 21.0784C4.51984 21.2964 5.07989 21.2964 6.2 21.2964Z" stroke="#333333" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
-  </svg>
+<svg width={24} height={25} viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M8 2.29639V5.29639" stroke="currentColor" strokeWidth="1.5" strokeMiterlimit={10} strokeLinecap="round" strokeLinejoin="round" />
+  <path d="M16 2.29639V5.29639" stroke="currentColor" strokeWidth="1.5" strokeMiterlimit={10} strokeLinecap="round" strokeLinejoin="round" />
+  <path d="M21 8.79639V17.2964C21 20.2964 19.5 22.2964 16 22.2964H8C4.5 22.2964 3 20.2964 3 17.2964V8.79639C3 5.79639 4.5 3.79639 8 3.79639H16C19.5 3.79639 21 5.79639 21 8.79639Z" stroke="currentColor" strokeWidth="1.5" strokeMiterlimit={10} strokeLinecap="round" strokeLinejoin="round" />
+  <path d="M8 11.2964H16" stroke="currentColor" strokeWidth="1.5" strokeMiterlimit={10} strokeLinecap="round" strokeLinejoin="round" />
+  <path d="M8 16.2964H12" stroke="currentColor" strokeWidth="1.5" strokeMiterlimit={10} strokeLinecap="round" strokeLinejoin="round" />
+</svg>
 );
 export default NoteTextIcon;

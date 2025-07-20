@@ -1,9 +1,8 @@
 import { useState } from "react";
 import CategoryModal from "../components/CategoryModal";
-import { Menu } from "lucide-react";
 
 const Category = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(true);
   const [isEditing] = useState(false);
   const [selectedCategory] = useState<any>(null);
 

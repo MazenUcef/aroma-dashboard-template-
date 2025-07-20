@@ -16,7 +16,7 @@ const MinusIcon = () => {
         />
         <path
           d="M12.6673 8.55078L3.33398 8.55078"
-          stroke="#1F2A37"
+          stroke="currentColor"
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"

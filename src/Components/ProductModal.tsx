@@ -72,7 +72,7 @@ const ModalTheme = createTheme({
     },
   },
 });
-
+ 
 const ProductModal: React.FC<CategoryModalProps> = ({ isOpen, onClose, onSubmit, initialData, isEditMode = false }) => {
   const { control, handleSubmit, reset, setValue, watch, formState: { errors } } = useForm<CategoryFormData>({
     defaultValues: {
