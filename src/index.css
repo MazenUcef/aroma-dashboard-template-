@@ -29,7 +29,10 @@
   --customtab: #BBDDCD ;
   --customborder: #EEE ;
   --custombtn: #EEE ;
+  --custombtn2: #244937 ;
+  --custombtn3: #fff ;
   --arrowcolor: #244937;
+  --overlay: #00000080;
 
 }
 
@@ -59,7 +62,10 @@
   --color-customtab: var(--customtab);
   --color-customborder: var(--customborder);
   --color-custombtn: var(--custombtn);
+  --color-custombtn2: var(--custombtn2);
+  --color-custombtn3: var(--custombtn3);
   --color-arrowcolor: var(--arrowcolor);
+  --color-overlay: var(--overlay);
 }
 
 
@@ -89,7 +95,10 @@
   --customtab: #8E9AA4 ;
   --customborder: #5B6771 ;
   --custombtn: #8E9AA4 ;
+  --custombtn2: #2E3438 ;
+  --custombtn3: #333 ;
   --arrowcolor: #F1F2F4;
+  --overlay: #ffffff33;
 }
 
 

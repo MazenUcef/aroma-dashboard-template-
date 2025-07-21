@@ -1,4 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import DeleteModal from './DeleteComponents';
 
 interface Column {
     key: string;
@@ -58,6 +60,7 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
 
+
     const toggleDropdown = () => setIsOpen(!isOpen);
 
     const handleClickOutside = (event: MouseEvent) => {
@@ -78,17 +81,17 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({
             <button
                 id="dropdownMenuIconButton"
                 onClick={toggleDropdown}
-                className={`inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-600 ${buttonClassName}`}
+                className={`inline-flex items-center p-2 text-sm font-medium text-center text-foreground bg-background rounded-lg hover:bg-background focus:ring-4 focus:outline-none dark:text-foreground focus:ring-gray-50 dark:bg-background dark:hover:bg-background dark:focus:ring-gray-600 ${buttonClassName}`}
                 type="button"
             >
                 {icon}
             </button>
             {isOpen && (
                 <div
-                    className={`z-10 absolute ${position === 'right' ? 'right-0' : 'left-0'} mt-1 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600 ${menuClassName}`}
+                    className={`z-10 absolute ${position === 'right' ? 'right-0' : 'left-0'} mt-1 bg-backgroundaccent border border-inputborder dark:border-inputborder divide-y divide-inputborder rounded-lg shadow-sm w-44 dark:bg-backgroundaccent dark:divide-inputborder ${menuClassName}`}
                 >
                     <ul
-                        className="py-2 text-sm text-gray-700 dark:text-gray-200"
+                        className="py-2 text-sm"
                         aria-labelledby="dropdownMenuIconButton"
                     >
                         {items.map((item, index) => (
@@ -96,7 +99,7 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({
                                 {item.href ? (
                                     <a
                                         href={item.href}
-                                        className="flex items-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                        className="flex items-center px-4 py-2 hover:bg-background dark:hover:bg-background dark:hover:text-forground"
                                         onClick={() => {
                                             item.onClick?.();
                                             setIsOpen(false);
@@ -107,7 +110,7 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({
                                     </a>
                                 ) : (
                                     <button
-                                        className="w-full text-left flex items-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                        className="w-full text-left flex items-center px-4 py-2 hover:bg-background dark:hover:bg-background dark:hover:text-forground"
                                         onClick={() => {
                                             item.onClick?.();
                                             setIsOpen(false);
@@ -137,6 +140,9 @@ export const DataTable: React.FC<DataTableProps> = ({
 }) => {
     const [selectedRows, setSelectedRows] = useState<string[]>([]);
     const [selectAll, setSelectAll] = useState(false);
+    const [openDeleteModal, setOpenDeleteModal] = useState(false);
+    const [deleteTargetId, setDeleteTargetId] = useState<string | null>(null);
+    const navigate = useNavigate();
 
     const handleRowSelect = (id: string) => {
         const newSelected = selectedRows.includes(id)
@@ -156,9 +162,11 @@ export const DataTable: React.FC<DataTableProps> = ({
     };
 
     return (
-        <div className={`relative overflow-x-auto shadow-md sm:rounded-lg ${className}`}>
-            <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <div
+            className={`relative overflow-x-auto shadow-md sm:rounded-lg ${className}`}
+        >
+            <table className="w-full text-sm text-left rtl:text-right text-foreground dark:text-foreground">
+                <thead className="text-xs uppercase bg-forminputs dark:bg-forminputs">
                     <tr>
                         {selectable && (
                             <th scope="col" className="p-4">
@@ -170,27 +178,33 @@ export const DataTable: React.FC<DataTableProps> = ({
                                         onChange={handleSelectAll}
                                         className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                                     />
-                                    <label htmlFor="checkbox-all-search" className="sr-only">Select all</label>
+                                    <label htmlFor="checkbox-all-search" className="sr-only">
+                                        Select all
+                                    </label>
                                 </div>
                             </th>
                         )}
-                        {columns.map(column => (
+                        {columns.map((column) => (
                             <th
                                 key={column.key}
                                 scope="col"
-                                className={`px-6 py-3 ${column.width ? column.width : ''}`}
+                                className={`px-6 py-3 ${column.width ? column.width : ""}`}
                             >
                                 {column.header}
                             </th>
                         ))}
-                        {(onEdit || onDelete) && <th scope="col" className="px-6 py-3">Action</th>}
+                        {(onEdit || onDelete) && (
+                            <th scope="col" className="px-6 py-3">
+                                Action
+                            </th>
+                        )}
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map(row => (
+                    {data.map((row) => (
                         <tr
                             key={row.id}
-                            className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"
+                            className="bg-background border-b dark:bg-background dark:border-inputborder border-inputborder hover:bg-tabhover dark:hover:bg-tabhover"
                         >
                             {selectable && (
                                 <td className="w-4 p-4">
@@ -202,17 +216,22 @@ export const DataTable: React.FC<DataTableProps> = ({
                                             onChange={() => handleRowSelect(row.id)}
                                             className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                                         />
-                                        <label htmlFor={`checkbox-table-search-${row.id}`} className="sr-only">Select</label>
+                                        <label
+                                            htmlFor={`checkbox-table-search-${row.id}`}
+                                            className="sr-only"
+                                        >
+                                            Select
+                                        </label>
                                     </div>
                                 </td>
                             )}
-                            {columns.map(column => (
-                                <td
-                                    key={`${row.id}-${column.key}`}
-                                    className="px-6 py-4"
-                                >
-                                    {column.key === 'name' ? (
-                                        <th scope="row" className="font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {columns.map((column) => (
+                                <td key={`${row.id}-${column.key}`} className="px-6 py-4">
+                                    {column.key === "name" ? (
+                                        <th
+                                            scope="row"
+                                            className="font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                        >
                                             {row[column.key]}
                                         </th>
                                     ) : (
@@ -224,14 +243,28 @@ export const DataTable: React.FC<DataTableProps> = ({
                                 <td className="px-6 py-4">
                                     <DropdownMenu
                                         items={[
-                                            ...(onEdit ? [{
-                                                label: 'Edit',
-                                                onClick: () => onEdit(row.id),
-                                            }] : []),
-                                            ...(onDelete ? [{
-                                                label: 'Delete',
-                                                onClick: () => onDelete(row.id),
-                                            }] : []),
+                                            ...(onEdit
+                                                ? [
+                                                    {
+                                                        label: "Edit",
+                                                        onClick: () => {
+                                                            navigate("/edit-order");
+                                                            onEdit?.(row.id);
+                                                        },
+                                                    },
+                                                ]
+                                                : []),
+                                            ...(onDelete
+                                                ? [
+                                                    {
+                                                        label: "Delete",
+                                                        onClick: () => {
+                                                            setDeleteTargetId(row.id);
+                                                            setOpenDeleteModal(true);
+                                                        },
+                                                    },
+                                                ]
+                                                : []),
                                         ]}
                                         position="right"
                                     />
@@ -241,6 +274,18 @@ export const DataTable: React.FC<DataTableProps> = ({
                     ))}
                 </tbody>
             </table>
+            <DeleteModal
+                isOpen={openDeleteModal}
+                onClose={() => setOpenDeleteModal(false)}
+                onConfirm={() => {
+                    if (deleteTargetId) {
+                        onDelete?.(deleteTargetId);
+                    }
+                    setOpenDeleteModal(false);
+                }}
+                title="Delete Row"
+                message="Are you sure you want to delete this row? This action cannot be undone."
+            />
         </div>
     );
 };

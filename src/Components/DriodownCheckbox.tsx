@@ -37,7 +37,7 @@ export const DropdownCheckbox = ({
             <button
                 id="dropdownCheckboxButton"
                 onClick={toggleDropdown}
-                className="text-[#244937] border-1 border-gray-200 bg-white font-semibold rounded-lg h-[48px] text-[16px] px-5 py-2.5 text-center inline-flex items-center"
+                className="text-arrowcolor border-1 border-inputborder bg-background font-semibold rounded-lg h-[48px] text-[16px] px-5 py-2.5 text-center inline-flex items-center"
                 type="button"
             >
                 {buttonText}
@@ -65,7 +65,7 @@ export const DropdownCheckbox = ({
                     className="z-10 absolute mt-1 w-48 bg-white divide-y divide-gray-100 rounded-lg shadow-sm dark:bg-gray-700 dark:divide-gray-600"
                 >
                     <ul
-                        className="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200"
+                        className="p-3 space-y-3 text-sm text-foreground dark:text-foreground"
                         aria-labelledby="dropdownCheckboxButton"
                     >
                         {options.map((option) => (
@@ -76,7 +76,7 @@ export const DropdownCheckbox = ({
                                         type="checkbox"
                                         checked={selectedOptions.includes(option.id)}
                                         onChange={() => handleCheckboxChange(option.id)}
-                                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                                        className="w-4 h-4 text-blue-600 bg-forminputs border-inputborder rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-forminputs dark:border-inputborder"
                                     />
                                     <label
                                         htmlFor={`checkbox-item-${option.id}`}

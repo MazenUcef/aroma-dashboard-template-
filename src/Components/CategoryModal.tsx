@@ -22,9 +22,9 @@ interface CategoryModalProps {
 
 const ModalTheme = createTheme({
   root: {
-    base: "fixed inset-x-0 top-0 z-50 h-screen overflow-y-auto overflow-x-hidden md:inset-0 md:h-full text-[#333333]",
+    base: "fixed inset-x-0 top-0 z-50 h-screen overflow-y-auto overflow-x-hidden md:inset-0 md:h-full text-foreground dark:text-foreground",
     show: {
-      on: "flex bg-black/22 dark:bg-black/22",
+      on: "flex bg-overlay dark:bg-overlay",
       off: "hidden",
     },
     sizes: {
@@ -54,7 +54,7 @@ const ModalTheme = createTheme({
   content: {
     base: "relative h-full w-full p-4 md:h-auto",
     inner:
-      "relative flex max-h-[90dvh] xl:w-[40rem] flex-col rounded-lg bg-white shadow dark:bg-gray-700",
+      "relative flex max-h-[90dvh] xl:w-[40rem] flex-col rounded-lg bg-backgroundaccent shadow dark:bg-backgroundaccent",
   },
   body: {
     base: "flex-1 overflow-auto p-6",

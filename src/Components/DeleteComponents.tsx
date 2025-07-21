@@ -1,12 +1,11 @@
-import React from "react";
-import { Button, Modal, ModalBody, ModalHeader } from "flowbite-react";
-import { useState } from "react";
+import { Button, Modal, ModalBody } from "flowbite-react";
 import AlertSq from "../assets/icons/AlertSq";
+
 const PopupTheme = {
   root: {
     base: "fixed inset-x-0 top-0 z-50 h-screen overflow-y-auto overflow-x-hidden md:inset-0 md:h-full",
     show: {
-      on: "flex bg-gray-900/50 dark:bg-gray-900/80",
+      on: "flex bg-overlay dark:bg-overlay",
       off: "hidden",
     },
     sizes: {
@@ -36,7 +35,7 @@ const PopupTheme = {
   content: {
     base: "relative w-[531px] h-[213px] p-6 md:h-auto mt-5",
     inner:
-      "relative flex max-h-[90dvh] flex-col rounded-lg bg-white shadow dark:bg-gray-700 w-[531px] h-[213px]",
+      "relative flex max-h-[90dvh] flex-col rounded-lg bg-backgroundaccent shadow dark:bg-backgroundaccent text-foreground dark:text-foreground w-[531px] h-[213px]",
   },
   body: {
     base: "flex-1 overflow-auto p-6 ",
@@ -56,50 +55,51 @@ const PopupTheme = {
     popup: "border-t",
   },
 };
-const DeleteComponents = () => {
-  const [openModal, setOpenModal] = useState(true);
 
+interface DeleteModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onConfirm: () => void;
+  title?: string;
+  message?: string;
+}
+
+const DeleteModal: React.FC<DeleteModalProps> = ({
+  isOpen,
+  onClose,
+  onConfirm,
+  title = "Confirm Deletion",
+  message = "Are you sure you want to delete this item? This action cannot be undone.",
+}) => {
   return (
-    <>
-      <Button onClick={() => setOpenModal(true)}>Toggle modal</Button>
-      <Modal
-        theme={PopupTheme}
-        show={openModal}
-        size="md"
-        onClose={() => setOpenModal(false)}
-        popup
-      >
-        {/* <ModalHeader /> */}
-
-        <ModalBody>
-          <div className="text-center">
-            <AlertSq className="mx-auto mb-2 h-12 w-12 text-gray-400 dark:text-gray-200" />
-            <p className="font-semibold font-poppins text-[14px] mb-2">
-              Confirm Deletion
-            </p>
-            <h3 className="mb-5 text-lg font-normal text-black dark:text-gray-400 font-poppins text-[12px]">
-              Are you sure you want to delete this item? This action cannot be
-              undone.
-            </h3>
-            <div className="flex justify-center gap-4">
-              <Button
-                className="border border-solid bg-white text-[#244937] border-[#244937] hover:bg-[#244937] hover:text-white w-[130px] h-[40px] font-poppins text-[14px] font-semibold"
-                onClick={() => setOpenModal(false)}
-              >
-                Cancel
-              </Button>
-              <Button
-                className="bg-[#244937] border border-solid text-white hover:bg-white hover:text-[#244937] w-[130px] h-[40px] font-poppins text-[14px] font-semibold"
-                onClick={() => setOpenModal(false)}
-              >
-                Delete
-              </Button>
-            </div>
+    <Modal theme={PopupTheme} show={isOpen} size="md" onClose={onClose} popup>
+      <ModalBody>
+        <div className="text-center">
+          <AlertSq className="mx-auto mb-2 h-12 w-12 text-gray-400 dark:text-gray-200" />
+          <p className="font-semibold font-poppins text-[14px] mb-2">{title}</p>
+          <h3 className="mb-5 text-lg font-normal font-poppins text-[12px]">
+            {message}
+          </h3>
+          <div className="flex justify-center gap-4">
+            <Button
+              color="none"
+              className="!border !border-solid !bg-backgroundaccent !text-arrowcolor !border-arrowcolor w-[130px] h-[40px] font-poppins text-[14px] font-semibold cursor-pointer focus:ring-0"
+              onClick={onClose}
+            >
+              Cancel
+            </Button>
+            <Button
+              color="none"
+              className="!bg-custombtn2  !text-white w-[130px] h-[40px] font-poppins text-[14px] font-semibold cursor-pointer focus:ring-0"
+              onClick={onConfirm}
+            >
+              Delete
+            </Button>
           </div>
-        </ModalBody>
-      </Modal>
-    </>
+        </div>
+      </ModalBody>
+    </Modal>
   );
 };
 
-export default DeleteComponents;
+export default DeleteModal;

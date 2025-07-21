@@ -12,7 +12,7 @@ const PluseIcon = () => {
       >
         <path
           d="M9.99935 4.16663V15.8333M4.16602 9.99996H15.8327"
-          stroke="white"
+          stroke="currentColor"
           strokeWidth="1.75"
           strokeLinecap="round"
           strokeLinejoin="round"
