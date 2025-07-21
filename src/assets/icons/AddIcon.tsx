@@ -12,14 +12,14 @@ const AddIcon = () => {
       >
         <path
           d="M5 10H15"
-          stroke="#292D32"
+          stroke="currentColor"
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
           d="M10 15V5"
-          stroke="#292D32"
+          stroke="currentColor"
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"

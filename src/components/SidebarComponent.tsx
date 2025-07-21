@@ -3,7 +3,6 @@ import {
     SidebarItem,
     SidebarItemGroup,
     SidebarItems,
-    SidebarCollapse,
 } from "flowbite-react";
 import Logo from "../assets/images/Dashbaord Logo.png";
 import DarkLogo from "../assets/images/Dashbaord Logo Dark.png";
@@ -117,26 +116,31 @@ const SidebarComponent = () => {
       
 
     const LinksBeforeDivider = [
-        {
-            name: "Dashboard",
-            icon: HomeIcon,
-            href: "/",
-        },
-        {
-            name: "Orders",
-            icon: ShoppingCartIcon,
-            href: "/orders",
-        },
-        {
-            name: "Inventory",
-            icon: ShoppingBagIcon,
-            href: "/inventory",
-        },
-        {
-            name: "Analytics",
-            icon: PieChartIcon,
-            href: "/analytics",
-        },
+      {
+        name: "Dashboard",
+        icon: HomeIcon,
+        href: "/",
+      },
+      {
+        name: "Orders",
+        icon: ShoppingCartIcon,
+        href: "/orders",
+      },
+      {
+        name: "Menu Management",
+        icon: NoteTextIcon,
+        href: "/menu",
+      },
+      {
+        name: "Inventory",
+        icon: ShoppingBagIcon,
+        href: "/inventory",
+      },
+      {
+        name: "Analytics",
+        icon: PieChartIcon,
+        href: "/analytics",
+      },
     ];
 
     const LinksAfterDivider = [
@@ -187,36 +191,6 @@ const SidebarComponent = () => {
               </SidebarItem>
             ))}
 
-            <SidebarCollapse
-              icon={NoteTextIcon}
-              label="Menu Management"
-              className={`font-semibold ${
-                isActive("/menu")
-                  ? " bg-sidebarhover dark:bg-sidebarhover text-primary"
-                  : " hover:bg-sidebarhover dark:hover:bg-sidebarhover"
-              }`}
-            >
-              <SidebarItem
-                href="/menu/products"
-                className={`ml-4 ${
-                  isActive("/menu/products")
-                    ? " bg-sidebarhover not-last:dark:bg-sidebarhover text-primary"
-                    : " hover:bg-sidebarhover dark:hover:bg-sidebarhover"
-                }`}
-              >
-                Products
-              </SidebarItem>
-              <SidebarItem
-                href="/menu/categories"
-                className={`ml-4 ${
-                  isActive("/menu/categories")
-                    ? " bg-sidebarhover dark:bg-sidebarhover text-primary"
-                    : " hover:bg-sidebarhover dark:hover:bg-sidebarhover"
-                }`}
-              >
-                Categories
-              </SidebarItem>
-            </SidebarCollapse>
           </SidebarItemGroup>
 
           <SidebarItemGroup>

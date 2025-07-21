@@ -13,7 +13,7 @@ const MenuHumIcon = () => {
       >
         <path
           d="M1.5 6H11.5M1.5 1H16.5M1.5 11H16.5"
-          stroke="#181D27"
+          stroke="currentColor"
           strokeWidth={2}
           strokeLinecap="round"
           strokeLinejoin="round"
