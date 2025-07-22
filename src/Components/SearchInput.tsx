@@ -45,7 +45,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
             <input
                 type="search"
                 id={id}
-                className={`block w-full h-[48px] ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 ${inputClassName}`}
+                className={`block w-full h-[48px] ps-10 text-sm text-foreground dark:text-foreground  border border-inputborder rounded-lg bg-forminputs focus:ring-blue-500 focus:border-blue-500 dark:bg-forminputs dark:border-inputborder dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 ${inputClassName}`}
                 placeholder={placeholder}
                 value={value}
                 onChange={onChange}
