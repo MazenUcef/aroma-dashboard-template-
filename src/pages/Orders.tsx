@@ -596,9 +596,9 @@ const Orders = () => {
                     />
                 </div>
                 <div className="flex justify-between items-center w-full mt-4">
-                    <span className="text-foreground dark:text-foreground">
-                        Showing {(currentPage - 1) * itemsPerPage + 1} to{' '}
-                        {Math.min(currentPage * itemsPerPage, orders.length)} of {orders.length} Entries
+                    <span className="">
+                        <span className='font-normal text-[14px] text-[#666666]'>Showing</span> {(currentPage - 1) * itemsPerPage + 1} <span className='font-normal text-[14px] text-[#666666]'>to</span>{' '}
+                        {Math.min(currentPage * itemsPerPage, orders.length)} <span className='font-normal text-[14px] text-[#666666]'>of</span> {orders.length}
                     </span>
                     <Pagination
                         currentPage={currentPage}
