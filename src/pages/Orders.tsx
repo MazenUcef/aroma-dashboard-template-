@@ -60,7 +60,7 @@ const Orders = () => {
             dateTime: "2023-05-17 09:10",
             amount: 89.99,
             items: 1,
-            status: "shipped",
+            status: "completed",
             payment: "paid",
         },
         {
@@ -120,7 +120,7 @@ const Orders = () => {
             dateTime: "2023-05-23 12:30",
             amount: 29.99,
             items: 1,
-            status: "shipped",
+            status: "completed",
             payment: "paid",
         },
         {
@@ -170,7 +170,7 @@ const Orders = () => {
             dateTime: "2023-05-28 11:45",
             amount: 59.99,
             items: 1,
-            status: "shipped",
+            status: "completed",
             payment: "paid",
         },
         {
@@ -230,7 +230,7 @@ const Orders = () => {
             dateTime: "2023-06-03 12:05",
             amount: 49.99,
             items: 1,
-            status: "shipped",
+            status: "completed",
             payment: "paid",
         },
         {
@@ -290,7 +290,7 @@ const Orders = () => {
             dateTime: "2023-06-09 15:35",
             amount: 129.99,
             items: 1,
-            status: "shipped",
+            status: "completed",
             payment: "paid",
         },
         {
@@ -350,7 +350,7 @@ const Orders = () => {
             dateTime: "2023-06-15 12:05",
             amount: 19.99,
             items: 1,
-            status: "shipped",
+            status: "completed",
             payment: "paid",
         },
         {
@@ -410,7 +410,7 @@ const Orders = () => {
             dateTime: "2023-06-21 16:35",
             amount: 29.99,
             items: 1,
-            status: "shipped",
+            status: "completed",
             payment: "paid",
         },
         {
@@ -470,7 +470,7 @@ const Orders = () => {
             dateTime: "2023-06-27 13:05",
             amount: 29.99,
             items: 1,
-            status: "shipped",
+            status: "completed",
             payment: "paid",
         },
         {
