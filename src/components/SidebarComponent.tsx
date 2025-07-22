@@ -16,14 +16,35 @@ import UserIcon from "../assets/icons/UserIcon";
 import BuildingIcon from "../assets/icons/BuildingIcon";
 import SettingsIcon from "../assets/icons/SettingsIcon";
 import { ThemeContext } from "../context/themeContext";
-import { useContext } from "react";
+import { useContext, useState, useEffect, useRef } from "react";
+import { Menu } from "lucide-react";
 
 const SidebarComponent = () => {
     const location = useLocation();
     const themeContext = useContext(ThemeContext);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const sidebarRef = useRef<HTMLDivElement>(null);
+    
     if (!themeContext) return null;
     const { theme } = themeContext;
     const darkMode = theme === "dark";
+
+    // Close sidebar when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (sidebarRef.current && !sidebarRef.current.contains(event.target as Node)) {
+                setIsMenuOpen(false);
+            }
+        };
+
+        if (isMenuOpen) {
+            document.addEventListener('mousedown', handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [isMenuOpen]);
 
     const isActive = (href: string) => {
         if (href === "/") {
@@ -44,7 +65,7 @@ const SidebarComponent = () => {
       },
       collapse: {
         button:
-          "group flex w-full items-center rounded-lg p-2 text-base font-normal text-foreground dark:text-foreground transition duration-75", // ⬅ removed hover:bg
+          "group flex w-full items-center rounded-lg p-2 text-base font-normal text-foreground dark:text-foreground transition duration-75",
         icon: {
           base: "h-6 w-6 text-foreground transition duration-75 group-hover:text-foreground dark:text-foreground dark:group-hover:text-foreground",
           open: {
@@ -114,7 +135,6 @@ const SidebarComponent = () => {
       },
     };
       
-
     const LinksBeforeDivider = [
       {
         name: "Dashboard",
@@ -162,55 +182,92 @@ const SidebarComponent = () => {
     ];
 
     return (
-      <Sidebar
-        theme={SidebarTheme}
-        className="h-screen fixed top-0 left-0"
-        aria-label="Sidebar"
-      >
-        <Link to="/" className="h-[6.519rem]">
-          <img
-            src={darkMode ? DarkLogo : Logo}
-            alt="Logo"
-            className="w-[11.204rem] h-[2.689] mx-auto pt-2 pb-7"
-          />
-        </Link>
-        <SidebarItems className="mt-5">
-          <SidebarItemGroup>
-            {LinksBeforeDivider.map((link, index) => (
-              <SidebarItem
-                key={index}
-                href={link.href}
-                icon={link.icon}
-                className={`font-semibold ${
-                  isActive(link.href)
-                    ? " bg-sidebarhover  dark:bg-sidebarhover text-primary"
-                    : "hover:bg-sidebarhover dark:hover:bg-sidebarhover "
-                }`}
-              >
-                {link.name}
-              </SidebarItem>
-            ))}
+      <>
+        {/* Mobile menu button */}
+        <div
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="fixed top-4 left-4 p-2 rounded-md cursor-pointer dark:bg-gray-700 sm:hidden"
+        >
+          <Menu size={24} />
+        </div>
 
-          </SidebarItemGroup>
+        {/* Backdrop */}
+{isMenuOpen && (
+          <div className="fixed inset-0 bg-white/30  z-30 sm:hidden" />
+        )}
 
-          <SidebarItemGroup>
-            {LinksAfterDivider.map((link, index) => (
-              <SidebarItem
-                key={index}
-                href={link.href}
-                icon={link.icon}
-                className={`font-semibold ${
-                  isActive(link.href)
-                    ? "bg-sidebarhover dark:bg-sidebarhover  text-primary"
-                    : " hover:bg-sidebarhover dark:hover:bg-sidebarhover"
-                }`}
-              >
-                {link.name}
-              </SidebarItem>
-            ))}
-          </SidebarItemGroup>
-        </SidebarItems>
-      </Sidebar>
+        <Sidebar
+          ref={sidebarRef}
+          theme={SidebarTheme}
+          className={`h-screen fixed top-0 left-0 transition-transform duration-300 z-40
+            ${isMenuOpen ? "translate-x-0" : "-translate-x-full"} 
+            sm:translate-x-0`}
+          aria-label="Sidebar"
+        >
+          <div className="flex justify-between items-center h-[6.519rem] px-4">
+            <Link to="/">
+              <img
+                src={darkMode ? DarkLogo : Logo}
+                alt="Logo"
+                className="w-[11.204rem] h-[2.689]"
+              />
+            </Link>
+          </div>
+          
+          <SidebarItems className="mt-5">
+            <SidebarItemGroup>
+              {LinksBeforeDivider.map((link, index) => (
+                <SidebarItem
+                  key={index}
+                  href={link.href}
+                  icon={link.icon}
+                  className={`font-semibold ${
+                    isActive(link.href)
+                      ? " bg-sidebarhover  dark:bg-sidebarhover text-primary"
+                      : "hover:bg-sidebarhover dark:hover:bg-sidebarhover "
+                  }`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {link.name}
+                </SidebarItem>
+              ))}
+            </SidebarItemGroup>
+
+            <SidebarItemGroup>
+              {LinksAfterDivider.map((link, index) => (
+                <SidebarItem
+                  key={index}
+                  href={link.href}
+                  icon={link.icon}
+                  className={`font-semibold ${
+                    isActive(link.href)
+                      ? "bg-sidebarhover dark:bg-sidebarhover  text-primary"
+                      : " hover:bg-sidebarhover dark:hover:bg-sidebarhover"
+                  }`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {link.name}
+                </SidebarItem>
+              ))}
+            </SidebarItemGroup>
+          </SidebarItems>
+
+          {/* User section at the bottom */}
+          <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-[#CECECE] dark:border-[#CECECE]">
+            <div className="flex items-center gap-3">
+              {/* <img 
+                src={UserAvatar} 
+                alt="User" 
+                className="w-8 h-8 rounded-full" 
+              /> */}
+              <div>
+                <p className="font-medium text-sm">John Doe</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">admin@example.com</p>
+              </div>
+            </div>
+          </div>
+        </Sidebar>
+      </>
     );
 };
 
