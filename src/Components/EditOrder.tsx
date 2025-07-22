@@ -145,7 +145,7 @@ const EditOrder = () => {
   };
   return (
     <div>
-      <div className="mb-4 ml-6 w-[1128px] h-[40px] flex items-center flex-row justify-between mt-6">
+      <div className="mb-4 ml-6 w-[1128px] h-[40px] flex items-center flex-row justify-between mt-6  ">
         <Breadcrumb
           aria-label="breadcrumb"
           className="mt-2 mb-4"
@@ -172,10 +172,10 @@ const EditOrder = () => {
         </div>
       </div>
 
-      <div className="flex flex-col  gap-6 w-[1128px] rounded-lg shadow-md mb-2 ml-6 mt-6  p-6 bg-[#f9fafb]">
+      <div className="flex flex-col  gap-6 w-[1128px] rounded-lg shadow-md mb-2 ml-6 mt-6  p-6 bg-[#f9fafb] ">
         <div className="flex items-center justify-center gap-6">
           <div className="flex flex-col justify-start h-[977px] w-[552px] mb-1 rounded-lg">
-            <div className="flex flex-col h-[365px] w-full bg-white rounded-lg gap-6 p-4">
+            <div className="flex flex-col  w-full bg-white rounded-lg gap-6 p-4">
               <p className="font-poppins text-[16px] font-semibold text-[#333333]">
                 Product Selection
               </p>
@@ -897,7 +897,7 @@ const EditOrder = () => {
             </div>
           </div>
           <div className="flex flex-col justify-start h-[977px] w-[552px] bg-[#f9fafb] mb-1 rounded-lg gap-6">
-            <div className="flex flex-col gap-6 p-4 bg-white">
+            <div className="flex flex-col rounded-lg gap-6 p-4 bg-white">
               {/* Order Details Section */}
               <div className="w-[504px] flex flex-col bg-white rounded-lg gap-6">
                 <div className="w-[504px] h-[22px]">
@@ -1177,7 +1177,7 @@ const EditOrder = () => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col gap-6 p-4 bg-white">
+            <div className="flex flex-col rounded-lg gap-6 p-4 bg-white">
               <div className=" bg-white">
                 <div className="max-w-md">
                   <div className="mb-2 block">
