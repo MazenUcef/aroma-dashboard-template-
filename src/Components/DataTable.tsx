@@ -144,6 +144,33 @@ export const DataTable: React.FC<DataTableProps> = ({
     const [deleteTargetId, setDeleteTargetId] = useState<string | null>(null);
     const navigate = useNavigate();
 
+    const getStatusStyles = (status: string) => {
+        switch (status.toLowerCase()) {
+            case 'completed':
+                return 'bg-[#DEF7EC] text-[#244937]';
+            case 'cancelled':
+                return 'bg-[#FDE8E8] text-[#9B1C1C]';
+            case 'processing':
+            case 'in progress':
+                return 'bg-[#EDEBFE] text-[#5521B5]';
+            default:
+                return '';
+        }
+    };
+
+    const getPaymentStyles = (payment: string) => {
+        switch (payment.toLowerCase()) {
+            case 'pending':
+                return 'text-[#FACC15]';
+            case 'refunded':
+                return 'text-[#EF4444]';
+            case 'paid':
+                return 'text-[#22C55E]';
+            default:
+                return '';
+        }
+    };
+
     const handleRowSelect = (id: string) => {
         const newSelected = selectedRows.includes(id)
             ? selectedRows.filter(rowId => rowId !== id)
@@ -227,7 +254,15 @@ export const DataTable: React.FC<DataTableProps> = ({
                             )}
                             {columns.map((column) => (
                                 <td key={`${row.id}-${column.key}`} className="px-6 py-4">
-                                    {column.key === "name" ? (
+                                    {column.key === "status" ? (
+                                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusStyles(String(row[column.key]))}`}>
+                                            {row[column.key]}
+                                        </span>
+                                    ) : column.key === "payment" ? (
+                                        <span className={`${getPaymentStyles(String(row[column.key]))}`}>
+                                            {row[column.key]}
+                                        </span>
+                                    ) : column.key === "name" ? (
                                         <th
                                             scope="row"
                                             className="font-medium text-gray-900 whitespace-nowrap dark:text-white"
