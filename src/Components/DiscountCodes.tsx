@@ -10,7 +10,40 @@ interface Coupon {
   end: string;
   active: boolean;
 }
-
+const DropDownTheme = {
+  arrowIcon: "ml-2 h-4 w-4",
+  content: "py-0 focus:outline-none",
+  floating: {
+    animation: "transition-opacity",
+    arrow: {
+      base: "absolute z-10 h-2 w-2 rotate-45",
+      style: {
+        dark: "bg-gray-900 dark:bg-gray-700",
+        light: "bg-white",
+        auto: "bg-white dark:bg-gray-700",
+      },
+      placement: "-4px",
+    },
+    base: "z-10 w-fit divide-y divide-gray-100 rounded shadow focus:outline-none  hover:bg-backgroundaccent dark:hover:bg-backgroundaccent",
+    content:
+      "py-1 text-sm text-foreground dark:text-foreground  hover:bg-backgroundaccent dark:hover:bg-backgroundaccent",
+    divider: "my-1 h-px bg-background dark:bg-background",
+    header: "block px-4 py-2 text-sm text-foreground dark:text-foreground",
+    hidden: "invisible opacity-0",
+    item: {
+      container: "",
+      base: "flex w-full cursor-pointer hover:bg-backgroundaccent dark:hover:bg-backgroundaccent bg-background dark:bg-background items-center justify-start px-4 text-sm text-foreground dark:text-foreground focus:bg-backgroundaccent dark:focus:bg-backgroundaccent",
+      icon: "mr-2 h-4 w-4",
+    },
+    style: {
+      dark: "bg-background text-foreground dark:bg-background",
+      light: "border border-gray-200 bg-white text-gray-900",
+      auto: "border border-gray-200 bg-white text-gray-900 dark:border-none dark:bg-background dark:text-white ",
+    },
+    target: "w-fit",
+  },
+  inlineWrapper: "flex items-center",
+};
 const DiscountCodes = () => {
   const [coupons, setCoupons] = useState<Coupon[]>([
     {
@@ -77,13 +110,13 @@ const DiscountCodes = () => {
             </p>
           </div>
 
-          <div className="flex items-center  gap-3 font-normal text-xs font-poppins text-[#999999]">
-            <div className="flex items-center gap-1 text-xs font-normal font-poppins text-[#999999]">
-              <CalendarDays className="w-4 h-4 text-xs font-normal font-poppins text-[#999999]0" />
+          <div className="flex items-center  gap-3 font-normal text-xs font-poppins text-custombackground">
+            <div className="flex items-center gap-1 text-xs font-normal font-poppins text-custombackground">
+              <CalendarDays className="w-4 h-4 text-xs font-normal font-poppins text-custombackground" />
               Starts: {coupon.start}
             </div>
-            <div className="flex items-center gap-1 text-xs font-normal font-poppins text-[#999999]">
-              <CalendarDays className="w-4 h-4 text-xs font-normal font-poppins text-[#999999]" />
+            <div className="flex items-center gap-1 text-xs font-normal font-poppins text-custombackground">
+              <CalendarDays className="w-4 h-4 text-xs font-normal font-poppins text-custombackground" />
               Expires: {coupon.end}
             </div>
 
@@ -95,13 +128,17 @@ const DiscountCodes = () => {
                 onChange={() => toggleCouponStatus(coupon.code)}
                 className="sr-only peer"
               />
-              <div className="w-9 h-5 bg-gray-200  rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-green relative" />
+              <div className="w-9 h-5  bg-backgroundtertiary dark:bg-backgroundtertiary rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-switch dark:peer-checked:bg-switch relative" />
             </label>
 
             <Dropdown
-              label={<EllipsisVertical className="w-5 h-5 text-gray-600" />}
+              className="  border-b dark:border-inputborder border-inputborder  rounded-lg"
+              label={
+                <EllipsisVertical className="w-5 h-5 text-foreground dark:text-foreground" />
+              }
               inline
               arrowIcon={false}
+              theme={DropDownTheme}
             >
               <DropdownItem>Edit</DropdownItem>
               <DropdownItem>Delete</DropdownItem>
