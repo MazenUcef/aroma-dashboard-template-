@@ -34,6 +34,7 @@
   --arrowcolor: #244937;
   --overlay: #00000080;
   --custombackground: #999999;
+  --usersicon: #244937;
 }
 
 @theme inline {
@@ -67,6 +68,7 @@
   --color-arrowcolor: var(--arrowcolor);
   --color-overlay: var(--overlay);
   --color-custombackground: var(--custombackground);
+  --color-usersicon: var(--usersicon);
 }
 
 .dark {
@@ -100,6 +102,7 @@
   --arrowcolor: #f1f2f4;
   --overlay: #ffffff33;
   --custombackground: #999999;
+  --usersicon: #8e9aa4;
 }
 
 @layer base {
