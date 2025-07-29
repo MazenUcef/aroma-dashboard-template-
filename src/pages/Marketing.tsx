@@ -1,5 +1,6 @@
 import { useState } from "react";
 import DiscountCodes from "../components/DiscountCodes";
+import LoyaltyProgram from "../components/LoyaltyProgram";
 
 const Marketing = () => {
   const [activeTab, setActiveTab] = useState<string>("Discount Codes");
@@ -10,7 +11,11 @@ const Marketing = () => {
       title: "Discount Codes",
       content: <DiscountCodes />,
     },
-    { id: "Loyalty Program", title: "Loyalty Program", content: "Content 7" },
+    {
+      id: "Loyalty Program",
+      title: "Loyalty Program",
+      content: <LoyaltyProgram />,
+    },
   ];
   return (
     <div className="w-full p-[24px] bg-backgroundaccent text-foreground">
