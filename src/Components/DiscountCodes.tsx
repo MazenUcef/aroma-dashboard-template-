@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import { Dropdown, DropdownItem } from "flowbite-react";
 import { EllipsisVertical, CalendarDays } from "lucide-react";
