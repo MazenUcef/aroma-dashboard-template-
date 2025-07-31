@@ -31,6 +31,7 @@
   --custombtn: #EEE ;
   --custombtn2: #244937 ;
   --custombtn3: #fff ;
+  --custombtn4: #244937 ;
   --arrowcolor: #244937;
   --overlay: #00000080;
 
@@ -64,6 +65,7 @@
   --color-custombtn: var(--custombtn);
   --color-custombtn2: var(--custombtn2);
   --color-custombtn3: var(--custombtn3);
+  --color-custombtn4: var(--custombtn4);
   --color-arrowcolor: var(--arrowcolor);
   --color-overlay: var(--overlay);
 }
@@ -96,6 +98,7 @@
   --custombtn: #8E9AA4 ;
   --custombtn2: #2E3438 ;
   --custombtn3: #333 ;
+  --custombtn4: #8E9AA4 ;
   --arrowcolor: #F1F2F4;
   --overlay: #ffffff33;
 }

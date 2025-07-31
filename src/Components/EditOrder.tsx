@@ -92,28 +92,82 @@ const EditOrder = () => {
     </svg>
   );
 
-  const breadcrampThemes = {
-    root: { base: "", list: "flex items-center" },
+  const breadcrampTheme = {
+    root: {
+      base: "",
+      list: "flex items-center",
+    },
     item: {
       base: "group flex items-center",
-      chevron: "mx-1 h-4 w-4 stroke-black group-first:hidden md:mx-2",
+      chevron: "mx-1 h-4 w-4 text-foreground dark:text-foreground group-first:hidden md:mx-2",
       href: {
-        off: "flex items-center text-xl font-semibold text-gray-500",
-        on: "flex items-center text-xl font-semibold text-gray-700 hover:text-gray-900",
+        off: "flex items-center text-sm font-medium text-foreground dark:text-foreground",
+        on: "flex items-center text-sm font-medium text-foreground hover:text-foreground dark:text-foreground dark:hover:text-foreground",
       },
-      icon: "mr-2 h-4 w-4 stroke-black",
+      icon: "mr-2 h-4 w-4",
+    },
+  };
+
+  const inputTheme = {
+    base: "flex",
+    addon:
+      "inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-200 px-3 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-600 dark:text-gray-400",
+    field: {
+      base: "relative w-full",
+      icon: {
+        base: "pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3",
+        svg: "h-5 w-5 text-gray-500 dark:text-gray-400",
+      },
+      rightIcon: {
+        base: "pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3",
+        svg: "h-5 w-5 text-gray-500 dark:text-gray-400",
+      },
+      input: {
+        base: "block w-full border focus:outline-none focus:ring-1 disabled:cursor-not-allowed disabled:opacity-50",
+        sizes: {
+          sm: "p-2 sm:text-xs",
+          md: "p-2.5 text-sm",
+          lg: "p-4 sm:text-base",
+        },
+        colors: {
+          gray: "border-inputborder bg-forminputs text-foreground placeholder-foreground focus:border-primary-500 focus:ring-primary-500 dark:border-inputborder dark:bg-forminputs dark:text-foreground dark:placeholder-foreground dark:focus:border-primary-500 dark:focus:ring-primary-500",
+          info: "border-cyan-500 bg-cyan-50 text-cyan-900 placeholder-cyan-700 focus:border-cyan-500 focus:ring-cyan-500 dark:border-cyan-400 dark:bg-cyan-100 dark:focus:border-cyan-500 dark:focus:ring-cyan-500",
+          failure:
+            "border-red-500 bg-red-50 text-red-900 placeholder-red-700 focus:border-red-500 focus:ring-red-500 dark:border-red-400 dark:bg-red-100 dark:focus:border-red-500 dark:focus:ring-red-500",
+          warning:
+            "border-yellow-500 bg-yellow-50 text-yellow-900 placeholder-yellow-700 focus:border-yellow-500 focus:ring-yellow-500 dark:border-yellow-400 dark:bg-yellow-100 dark:focus:border-yellow-500 dark:focus:ring-yellow-500",
+          success:
+            "border-green-500 bg-green-50 text-green-900 placeholder-green-700 focus:border-green-500 focus:ring-green-500 dark:border-green-400 dark:bg-green-100 dark:focus:border-green-500 dark:focus:ring-green-500",
+        },
+        withRightIcon: {
+          on: "pr-10",
+          off: "",
+        },
+        withIcon: {
+          on: "pl-10",
+          off: "",
+        },
+        withAddon: {
+          on: "rounded-r-lg",
+          off: "rounded-lg",
+        },
+        withShadow: {
+          on: "shadow-sm dark:shadow-sm-light",
+          off: "",
+        },
+      },
     },
   };
 
   const [countryCode, setCountryCode] = useState("+20");
   const [phoneNumber, setPhoneNumber] = useState("");
   const selectedItemStyle =
-    "mr-2 ml-1 flex items-center justify-center bg-[#F9FAFB] border border-gray-300 rounded-lg  font-poppins text-[14px] font-semibold text-[#666666] cursor-pointer hover:bg-gray-100 w-[113px] h-[24px]";
+    "mr-2 ml-1 flex items-center justify-center bg-backgroundaccent border border-inputborder rounded-lg  font-poppins text-[14px] font-semibold text-foreground cursor-pointer hover:bg-inputborder w-[113px] h-[24px]";
   const TableTheme = {
     root: {
       base: "w-full text-left text-sm text-gray-500 dark:text-gray-400",
       shadow:
-        "absolute left-0 top-0 -z-10 h-full w-full rounded-lg bg-white drop-shadow-md dark:bg-black",
+        "absolute left-0 top-0 -z-10 h-full w-full rounded-lg bg-background drop-shadow-md dark:bg-black",
       wrapper: "relative",
     },
     body: {
@@ -125,14 +179,14 @@ const EditOrder = () => {
     head: {
       base: "group/head text-xs uppercase text-gray-700 dark:text-gray-400 ",
       cell: {
-        base: "bg-[#F9FAFB] p-4 w-[97.75px] h-[49px] group-first/head:first:rounded-tl-lg group-first/head:last:rounded-tr-lg dark:bg-gray-700",
+        base: "bg-forminputs p-4 w-[97.75px] h-[49px] group-first/head:first:rounded-tl-lg group-first/head:last:rounded-tr-lg dark:bg-forminputs",
       },
     },
     row: {
       base: "group/row",
-      hovered: "hover:bg-gray-50 dark:hover:bg-gray-600",
+      hovered: "hover:bg-tabhover dark:hover:bg-tabhover text-foreground dark:text-foreground",
       striped:
-        "odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700 ",
+        "odd:bg-background even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700 ",
     },
   };
   const [discount, setDiscount] = useState("WELCOME10");
@@ -144,39 +198,37 @@ const EditOrder = () => {
     setQuantity((prev) => prev + 1);
   };
   return (
-    <div>
+    <div className="!text-foreground !dark:text-foreground">
       <div className="mb-4 ml-6 w-[1128px] h-[40px] flex items-center flex-row justify-between mt-6  ">
         <Breadcrumb
           aria-label="breadcrumb"
           className="mt-2 mb-4"
-          theme={breadcrampThemes.root}
+          theme={breadcrampTheme.root}
         >
-          <BreadcrumbItem href="#">
-            <span className="font-poppins text-[20px] font-semibold text-[#333333]">
+          <BreadcrumbItem theme={breadcrampTheme.item} href="#">
+            <span className="font-poppins text-[20px] font-semibold">
               Orders Management
             </span>
           </BreadcrumbItem>
-          <BreadcrumbItem href="#">
-            <span className="font-poppins text-[16px] font-semibold text-[#333333]">
-              Edit
-            </span>
+          <BreadcrumbItem theme={breadcrampTheme.item} href="#">
+            <span className="font-poppins text-[16px] font-semibold">Edit</span>
           </BreadcrumbItem>
         </Breadcrumb>
-        <div className="flex items-center gap-2">
-          <Button className="bg-white hover:bg-white w-[168px] h-[40px] rounded-lg border border-[#244937]">
-            <RefreshIcon width={20} height={20} strokeColor="#244937" />
-            <span className="font-poppins text-[14px] font-semibold text-[#244937]">
+        <div className="flex items-center">
+          <button className="flex items-center justify-center border border-arrowcolor text-arrowcolor px-6 py-2 text-sm font-medium w-[168px] h-[40px] rounded-lg gap-1">
+            <RefreshIcon width={34} height={34} strokeColor="currentColor" />
+            <span className="font-poppins text-[14px] font-semibold">
               Reset
             </span>
-          </Button>
+          </button>
         </div>
       </div>
 
-      <div className="flex flex-col  gap-6 w-[1128px] rounded-lg shadow-md mb-2 ml-6 mt-6  p-6 bg-[#f9fafb] ">
+      <div className="flex flex-col  gap-6 w-[1128px] rounded-lg mb-2 ml-6 bg-backgroundaccent ">
         <div className="flex items-center justify-center gap-6">
           <div className="flex flex-col justify-start h-[977px] w-[552px] mb-1 rounded-lg">
-            <div className="flex flex-col  w-full bg-white rounded-lg gap-6 p-4">
-              <p className="font-poppins text-[16px] font-semibold text-[#333333]">
+            <div className="flex flex-col  w-full bg-background rounded-lg gap-6 p-4">
+              <p className="font-poppins text-[16px] font-semibold">
                 Product Selection
               </p>
               <div className="max-w-md">
@@ -188,12 +240,12 @@ const EditOrder = () => {
                   required
                 />
               </div>
-              <div className="flex flex-col space-y-6">
+              <div className="flex flex-col space-y-6 !text-foreground !dark:text-foreground">
                 {/* Row 1: Category + Status */}
                 <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8">
                   {/* Category */}
                   <div className="flex flex-col">
-                    <label className="text-gray-900 text-lg font-poppins font-semibold text-[12px] mb-2">
+                    <label className="text-lg font-poppins font-semibold text-[12px] mb-2">
                       Category
                     </label>
                     <div className="relative w-full md:w-80">
@@ -215,7 +267,7 @@ const EditOrder = () => {
                               </div>
                             ))}
                             {selectedCategories.length === 0 && (
-                              <span className="text-[#666666] font-poppins text-[14px] font-semibold ml-2">
+                              <span className="font-poppins text-[14px] font-semibold ml-2">
                                 Select categories...
                               </span>
                             )}
@@ -259,7 +311,7 @@ const EditOrder = () => {
 
                   {/* Status */}
                   <div className="flex flex-col ">
-                    <label className="text-gray-900 text-lg font-poppins font-semibold text-[12px] mb-2">
+                    <label className=" text-lg font-poppins font-semibold text-[12px] mb-2">
                       Status
                     </label>
                     <div className="relative w-[150px] h-[40px]">
@@ -283,7 +335,7 @@ const EditOrder = () => {
                               </div>
                             )}
                             {!selectedStatus && (
-                              <span className="text-[#666666] font-poppins text-[14px] font-semibold ml-2">
+                              <span className=" font-poppins text-[14px] font-semibold ml-2">
                                 Select status...
                               </span>
                             )}
@@ -326,7 +378,7 @@ const EditOrder = () => {
                 <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8">
                   {/* Product Name */}
                   <div className="flex flex-col">
-                    <label className="text-gray-900 text-lg font-poppins font-semibold text-[12px] mb-2">
+                    <label className="text-lg font-poppins font-semibold text-[12px] mb-2">
                       Product Name
                     </label>
                     <div className="relative w-full md:w-80">
@@ -394,8 +446,8 @@ const EditOrder = () => {
                   </div>
 
                   {/* Extras */}
-                  <div className="flex flex-col">
-                    <label className="text-gray-900 text-lg font-poppins font-semibold text-[12px] mb-2">
+                  <div className="flex flex-col !text-foreground !dark:text-foreground">
+                    <label className=" text-lg font-poppins font-semibold text-[12px] mb-2">
                       Extras
                     </label>
                     <div className="relative w-[150px] h-[40px]">
@@ -419,7 +471,7 @@ const EditOrder = () => {
                               </div>
                             )}
                             {!selectedExtras && (
-                              <span className="text-[#666666] font-poppins text-[14px] font-semibold ml-2">
+                              <span className=" font-poppins text-[14px] font-semibold ml-2">
                                 Select extras...
                               </span>
                             )}
@@ -462,7 +514,7 @@ const EditOrder = () => {
               {/* Quantity Selector */}
               <div className="flex items-end gap-6">
                 <div className="flex flex-col">
-                  <Label className="text-sm font-semibold text-gray-900" />
+                  <Label className="text-sm font-semibold" />
                   Quantity
                   <Select
                     value={quantity}
@@ -487,23 +539,25 @@ const EditOrder = () => {
               </div>
             </div>
 
-            <div className="flex flex-col h-[588px] w-full bg-white rounded-lg gap-6 mt-6 p-4">
-              <div className="flex flex-row h-[22px] w-full bg-white rounded-lg gap-6 ">
-                <p className="font-poppins text-[16px] font-semibold text-[#333333] ">
+            <div className="flex flex-col h-[588px] w-full bg-background rounded-lg gap-6 mt-6 p-4 !text-foreground !dark:text-foreground">
+              <div className="flex flex-row h-[22px] w-full bg-background rounded-lg gap-6 ">
+                <p className="font-poppins text-[16px] font-semibold">
                   Customer Information
                 </p>
               </div>
-              <div className="flex max-w-md flex-row gap-4">
+              <div className="flex max-w-md flex-row gap-4 !text-foreground !dark:text-foreground">
                 <div className="w-[244px] h-[65px]">
                   <div className="mb-2 block ">
                     <Label
                       htmlFor="Name"
-                      className="font-poppins text-[12px] font-semibold text-[#333333]"
+                      className="font-poppins text-[12px] font-semibold !text-foreground !dark:text-foreground"
                     >
                       Name
                     </Label>
                   </div>
                   <TextInput
+                    theme={inputTheme}
+                    color="gray"
                     id="Name"
                     type="text"
                     sizing="md"
@@ -515,12 +569,14 @@ const EditOrder = () => {
                   <div className="mb-2 block ">
                     <Label
                       htmlFor="LastName"
-                      className="font-poppins text-[12px] font-semibold text-[#333333]"
+                      className="font-poppins text-[12px] font-semibold !text-foreground !dark:text-foreground"
                     >
                       Last
                     </Label>
                   </div>
                   <TextInput
+                    theme={inputTheme}
+                    color="gray"
                     id="LastName"
                     type="text"
                     sizing="md"
@@ -533,12 +589,14 @@ const EditOrder = () => {
                 <div className="mb-2 block">
                   <Label
                     htmlFor="email4"
-                    className="font-poppins text-[12px] font-semibold text-[#333333]"
+                    className="font-poppins text-[12px] font-semibold !text-foreground !dark:text-foreground"
                   >
                     Contact Email
                   </Label>
                 </div>
                 <TextInput
+                  theme={inputTheme}
+                  color="gray"
                   id="email4"
                   type="email"
                   placeholder="AlbeirLatef@aromadrips.com"
@@ -548,14 +606,14 @@ const EditOrder = () => {
               <div className="max-w-md">
                 <label
                   htmlFor="phone"
-                  className="block mb-2 font-poppins text-[12px] font-semibold text-[#333333] "
+                  className="block mb-2 font-poppins text-[12px] font-semibold !text-foreground !dark:text-foreground"
                 >
                   Phone Number
                 </label>
                 <div className="flex w-full overflow-hidden rounded-md border border-gray-300 focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500">
                   {/* Country Code Section */}
-                  <div className="flex items-center bg-gray-100 px-3 w-[99px] h-[40px]">
-                    <div className="shrink-0 z-10 inline-flex items-center  text-sm font-medium text-center text-gray-900 bg-gray-100 ">
+                  <div className="flex items-center bg-forminputs px-3 w-[99px] h-[40px]">
+                    <div className="shrink-0 z-10 inline-flex items-center  text-sm font-medium text-center">
                       <svg
                         fill="none"
                         aria-hidden="true"
@@ -601,7 +659,7 @@ const EditOrder = () => {
                     </div>
                     <div className="relative ">
                       <select
-                        className="  bg-transparent text-sm focus:outline-none border-none text-gray-900 font-poppins text-[14px] font-normal pr-6 appearance-none relative"
+                        className="  bg-transparent text-sm focus:outline-none border-none font-poppins text-[14px] font-normal pr-6 appearance-none relative"
                         value={countryCode}
                         onChange={(e) => setCountryCode(e.target.value)}
                         required
@@ -613,9 +671,9 @@ const EditOrder = () => {
                       {/* Custom Dropdown Arrow */}
                       <div className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 font-bold">
                         <svg
-                          className="w-4 h-4 text-black"
+                          className="w-4 h-4"
                           fill="none"
-                          stroke="black"
+                          stroke="currentColor"
                           viewBox="0 0 24 24"
                         >
                           <path
@@ -641,10 +699,10 @@ const EditOrder = () => {
                 </div>
               </div>
               <VectorLine />
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-4 ">
                 <label
                   htmlFor="address"
-                  className="block mb-2 text-[16px] font-poppins font-semibold "
+                  className="block mb-2 text-[16px] font-poppins font-semibold !text-foreground !dark:text-foreground"
                 >
                   Customer Address
                 </label>
@@ -657,7 +715,7 @@ const EditOrder = () => {
                     renderTrigger={() => (
                       <div className="flex items-center justify-between border border-gray-300 rounded-lg px-4 py-2 w-full cursor-pointer">
                         <div className="flex items-center space-x-2">
-                          <div className="shrink-0 z-10 inline-flex items-center  text-sm font-medium text-center text-gray-900 bg-gray-100 ">
+                          <div className="shrink-0 z-10 inline-flex items-center  text-sm font-medium text-center bg-background ">
                             <svg
                               fill="none"
                               aria-hidden="true"
@@ -701,16 +759,14 @@ const EditOrder = () => {
                               </g>
                             </svg>
                           </div>
-                          <span className="text-gray-800 font-medium">
-                            {selectedCountry}
-                          </span>
+                          <span className="font-medium">{selectedCountry}</span>
                         </div>
-                        <ChevronDown className="h-4 w-4 text-gray-600" />
+                        <ChevronDown className="h-4 w-4" />
                       </div>
                     )}
                   >
                     <DropdownItem onClick={() => setSelectedCountry("Egypt")}>
-                      <div className="shrink-0 z-10 inline-flex items-center  text-sm font-medium text-center text-gray-900 bg-gray-100 ">
+                      <div className="shrink-0 z-10 inline-flex items-center  text-sm font-medium text-center">
                         <svg
                           fill="none"
                           aria-hidden="true"
@@ -757,7 +813,7 @@ const EditOrder = () => {
                       Egypt
                     </DropdownItem>
                     <DropdownItem onClick={() => setSelectedCountry("USA")}>
-                      <div className="shrink-0 z-10 inline-flex items-center  text-sm font-medium text-center text-gray-900 bg-gray-100 ">
+                      <div className="shrink-0 z-10 inline-flex items-center  text-sm font-medium text-center">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 247 130"
@@ -823,7 +879,7 @@ const EditOrder = () => {
                       USA
                     </DropdownItem>
                     <DropdownItem onClick={() => setSelectedCountry("UK")}>
-                      <div className="shrink-0 z-10 inline-flex items-center  text-sm font-medium text-center text-gray-900 bg-gray-100 ">
+                      <div className="shrink-0 z-10 inline-flex items-center  text-sm font-medium text-center">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 60 30"
@@ -857,9 +913,7 @@ const EditOrder = () => {
                     label=""
                     renderTrigger={() => (
                       <div className="flex items-center justify-between border border-gray-300 rounded-lg px-4 py-2 w-full cursor-pointer">
-                        <span className="text-gray-800 font-medium">
-                          {selectedCity}
-                        </span>
+                        <span className=" font-medium">{selectedCity}</span>
                         <ChevronDown className="h-4 w-4 text-gray-600" />
                       </div>
                     )}
@@ -880,12 +934,14 @@ const EditOrder = () => {
                 <div className="mb-2 block">
                   <Label
                     htmlFor="Address"
-                    className="font-poppins text-[12px] font-semibold text-[#333333]"
+                    className="font-poppins text-[12px] font-semibold !text-foreground !dark:text-foreground"
                   >
                     Address
                   </Label>
                 </div>
                 <TextInput
+                  theme={inputTheme}
+                  color="gray"
                   id="Address"
                   type="text"
                   icon={AddressIcon}
@@ -896,10 +952,10 @@ const EditOrder = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col justify-start h-[977px] w-[552px] bg-[#f9fafb] mb-1 rounded-lg gap-6">
-            <div className="flex flex-col rounded-lg gap-6 p-4 bg-white">
+          <div className="flex flex-col justify-start h-[977px] w-[552px] bg-backgroundaccent mb-1 rounded-lg gap-6">
+            <div className="flex flex-col rounded-lg gap-6 p-4 bg-background">
               {/* Order Details Section */}
-              <div className="w-[504px] flex flex-col bg-white rounded-lg gap-6">
+              <div className="w-[504px] flex flex-col bg-background rounded-lg gap-6">
                 <div className="w-[504px] h-[22px]">
                   <p className="font-poppins font-semibold text-[16px]">
                     Order Details
@@ -909,30 +965,30 @@ const EditOrder = () => {
                   <Table hoverable theme={TableTheme}>
                     <TableHead>
                       <TableRow className="w-[97.75px] h-[49px]">
-                        <TableHeadCell className="font-poppins font-semibold text-[14px] text-[#666666]">
+                        <TableHeadCell className="font-poppins font-semibold text-[14px]">
                           Product
                         </TableHeadCell>
-                        <TableHeadCell className="font-poppins font-semibold text-[14px] text-[#666666]">
+                        <TableHeadCell className="font-poppins font-semibold text-[14px]">
                           Item
                         </TableHeadCell>
-                        <TableHeadCell className="font-poppins font-semibold text-[14px] text-[#666666]">
+                        <TableHeadCell className="font-poppins font-semibold text-[14px]">
                           Extras
                         </TableHeadCell>
-                        <TableHeadCell className="font-poppins font-semibold text-[14px] text-[#666666]">
+                        <TableHeadCell className="font-poppins font-semibold text-[14px]">
                           Price
                         </TableHeadCell>
-                        <TableHeadCell className="font-poppins font-semibold text-[14px] text-[#666666]">
+                        <TableHeadCell className="font-poppins font-semibold text-[14px]">
                           Total
                         </TableHeadCell>
-                        <TableHeadCell className="font-poppins font-semibold text-[14px] text-[#666666]">
+                        <TableHeadCell className="font-poppins font-semibold text-[14px]">
                           Act
                         </TableHeadCell>
                       </TableRow>
                     </TableHead>
                     <TableBody className="divide-y">
                       {/* Table Rows... */}
-                      <TableRow className="bg-white border-gray-200">
-                        <TableCell className="whitespace-nowrap font-poppins text-[12px] text-[#666666]">
+                      <TableRow className="bg-background border-inputborder">
+                        <TableCell className="whitespace-nowrap font-poppins text-[12px]">
                           Risstretto
                         </TableCell>
                         <TableCell>1</TableCell>
@@ -943,8 +999,8 @@ const EditOrder = () => {
                           <TrashIcon />
                         </TableCell>
                       </TableRow>
-                      <TableRow className="bg-white dark:border-gray-700 border-gray-200 dark:bg-gray-800">
-                        <TableCell className="whitespace-nowrap font-poppins font-normal test-[12px] text-[#666666] dark:text-white">
+                      <TableRow className="bg-background  border-inputborder">
+                        <TableCell className="whitespace-nowrap font-poppins font-normal test-[12px]">
                           Mango(S)
                         </TableCell>
                         <TableCell>2</TableCell>
@@ -962,8 +1018,8 @@ const EditOrder = () => {
                           </a>
                         </TableCell>
                       </TableRow>
-                      <TableRow className="bg-white dark:border-gray-700 border-gray-200 dark:bg-gray-800">
-                        <TableCell className="whitespace-nowrap font-poppins font-normal test-[12px] text-[#666666] dark:text-white">
+                      <TableRow className="bg-background  border-inputborder">
+                        <TableCell className="whitespace-nowrap font-poppins font-normal test-[12px]">
                           Cold Bre..
                         </TableCell>
                         <TableCell>1</TableCell>
@@ -979,8 +1035,8 @@ const EditOrder = () => {
                           </a>
                         </TableCell>
                       </TableRow>
-                      <TableRow className="bg-white dark:border-gray-700 border-gray-200 dark:bg-gray-800">
-                        <TableCell className="whitespace-nowrap font-poppins font-normal test-[12px] text-[#666666] dark:text-white">
+                      <TableRow className="bg-background border-inputborder">
+                        <TableCell className="whitespace-nowrap font-poppins font-normal test-[12px]">
                           Mojito
                         </TableCell>
                         <TableCell>1</TableCell>
@@ -1004,7 +1060,7 @@ const EditOrder = () => {
               </div>
 
               {/* Text Under the Table */}
-              <div className="w-[504px]  flex flex-col bg-white rounded-lg gap-4 ">
+              <div className="w-[504px]  flex flex-col bg-background rounded-lg gap-4 ">
                 <p className="font-poppins font-semibold text-[16px]">
                   Payment Method
                 </p>
@@ -1013,7 +1069,7 @@ const EditOrder = () => {
                   <div className="flex flex-col">
                     <Label
                       htmlFor="discount"
-                      className="mb-1 font-semibold text-[14px] font-poppins text-[#4D4D4D]"
+                      className="mb-1 font-semibold text-[14px] font-poppins !text-foreground !dark:text-foreground"
                     >
                       Discount
                     </Label>
@@ -1021,17 +1077,17 @@ const EditOrder = () => {
                       id="discount"
                       value={discount}
                       onChange={(e) => setDiscount(e.target.value)}
-                      className="rounded-lg font-normal text-[14px] font-poppins text-[#666666] "
+                      className="rounded-lg font-normal text-[14px] font-poppins"
                     >
                       <option
                         value="WELCOME10"
-                        className="font-normal text-[14px] font-poppins text-[#666666]"
+                        className="font-normal text-[14px] font-poppins !text-foreground !dark:text-foreground"
                       >
                         WELCOME10
                       </option>
                       <option
                         value="SAVE15"
-                        className="font-normal text-[14px] font-poppins text-[#666666]"
+                        className="font-normal text-[14px] font-poppins !text-foreground !dark:text-foreground"
                       >
                         SAVE15
                       </option>
@@ -1042,16 +1098,18 @@ const EditOrder = () => {
                   <div className="flex flex-col">
                     <Label
                       htmlFor="promo"
-                      className="mb-1 font-semibold text-[14px] font-poppins text-[#4D4D4D]"
+                      className="mb-1 font-semibold text-[14px] font-poppins !text-foreground !dark:text-foreground"
                     >
                       Promo
                     </Label>
                     <TextInput
+                      theme={inputTheme}
+                      color="gray"
                       id="promo"
                       type="text"
                       value={promo}
                       onChange={(e) => setPromo(e.target.value)}
-                      className="rounded-lg font-normal text-[14px] font-poppins text-[#666666]"
+                      className="rounded-lg font-normal text-[14px] font-poppins"
                     />
                   </div>
 
@@ -1059,7 +1117,7 @@ const EditOrder = () => {
                   <div className="flex flex-col">
                     <Label
                       htmlFor="payment"
-                      className="mb-1 font-semibold text-[14px] font-poppins text-[#4D4D4D]"
+                      className="mb-1 font-semibold text-[14px] font-poppins !text-foreground !dark:text-foreground"
                     >
                       Payment
                     </Label>
@@ -1067,23 +1125,23 @@ const EditOrder = () => {
                       id="payment"
                       value={payment}
                       onChange={(e) => setPayment(e.target.value)}
-                      className="rounded-lg font-normal text-[14px] font-poppins text-[#666666]"
+                      className="rounded-lg font-normal text-[14px] font-poppins"
                     >
                       <option
                         value="Visa"
-                        className="font-normal text-[14px] font-poppins text-[#666666]"
+                        className="font-normal text-[14px] font-poppins !text-foreground !dark:text-foreground"
                       >
                         Visa
                       </option>
                       <option
                         value="Mastercard"
-                        className="font-normal text-[14px] font-poppins text-[#666666]"
+                        className="font-normal text-[14px] font-poppins !text-foreground !dark:text-foreground"
                       >
                         Mastercard
                       </option>
                       <option
                         value="Paypal"
-                        className="font-normal text-[14px] font-poppins text-[#666666]"
+                        className="font-normal text-[14px] font-poppins !text-foreground !dark:text-foreground"
                       >
                         Paypal
                       </option>
@@ -1094,7 +1152,7 @@ const EditOrder = () => {
                   <div className="flex flex-col">
                     <Label
                       htmlFor="orderStatus"
-                      className="mb-1 font-semibold text-[14px] font-poppins text-[#4D4D4D]"
+                      className="mb-1 font-semibold text-[14px] font-poppins !text-foreground !dark:text-foreground"
                     >
                       Order Status
                     </Label>
@@ -1102,23 +1160,23 @@ const EditOrder = () => {
                       id="orderStatus"
                       value={orderStatus}
                       onChange={(e) => setOrderStatus(e.target.value)}
-                      className="rounded-lg font-normal text-[14px] font-poppins text-[#666666]"
+                      className="rounded-lg font-normal text-[14px] font-poppins"
                     >
                       <option
                         value="Paid"
-                        className="font-normal text-[14px] font-poppins text-[#666666]"
+                        className="font-normal text-[14px] font-poppins"
                       >
                         Paid
                       </option>
                       <option
                         value="Pending"
-                        className="font-normal text-[14px] font-poppins text-[#666666]"
+                        className="font-normal text-[14px] font-poppins"
                       >
                         Pending
                       </option>
                       <option
                         value="Failed"
-                        className="font-normal text-[14px] font-poppins text-[#666666]"
+                        className="font-normal text-[14px] font-poppins"
                       >
                         Failed
                       </option>
@@ -1128,13 +1186,13 @@ const EditOrder = () => {
                 </div>
                 {/* OrderSummery */}
                 <div>
-                  <p className="font-poppins font-semibold text-[16px]">
+                  <p className="font-poppins font-semibold text-[16px] !text-foreground !dark:text-foreground">
                     Order Summary
                   </p>
-                  <div className="w-[504px] bg-white rounded-lg p-2 ">
+                  <div className="w-[504px] bg-background rounded-lg p-2 ">
                     {/* Subtotal */}
                     <div className="flex justify-between mb-2">
-                      <p className="text-[12px] font-semibold font-poppins">
+                      <p className="text-[12px] font-semibold font-poppins !text-foreground !dark:text-foreground">
                         Subtotal :
                       </p>
                       <p className="text-[12px] font-normal font-poppins">
@@ -1144,7 +1202,7 @@ const EditOrder = () => {
 
                     {/* Discount */}
                     <div className="flex justify-between mb-2">
-                      <p className="text-[12px] font-semibold font-poppins">
+                      <p className="text-[12px] font-semibold font-poppins !text-foreground !dark:text-foreground">
                         Discount (10%):
                       </p>
                       <p className="text-[12px] font-normal font-poppins ">
@@ -1154,7 +1212,7 @@ const EditOrder = () => {
 
                     {/* VAT */}
                     <div className="flex justify-between mb-4">
-                      <p className="text-[12px] font-semibold font-poppins">
+                      <p className="text-[12px] font-semibold font-poppins !text-foreground !dark:text-foreground">
                         VAT (14%):
                       </p>
                       <p className="text-[12px] font-normal font-poppins">
@@ -1169,7 +1227,7 @@ const EditOrder = () => {
                       <p className="text-[16px] font-semibold font-poppins">
                         Total Amount:
                       </p>
-                      <p className="text-[16px] font-semibold font-poppins text-gray-900">
+                      <p className="text-[16px] font-semibold font-poppins">
                         256.50 EGP
                       </p>
                     </div>
@@ -1177,18 +1235,20 @@ const EditOrder = () => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col rounded-lg gap-6 p-4 bg-white">
-              <div className=" bg-white">
+            <div className="flex flex-col rounded-lg gap-6 p-4 bg-background">
+              <div className=" bg-background">
                 <div className="max-w-md">
                   <div className="mb-2 block">
                     <Label
                       htmlFor="comment"
-                      className="font-poppins text-[16px] font-semibold text-[#244937]"
+                      className="font-poppins text-[16px] font-semibold !text-foreground !dark:text-foreground"
                     >
                       Order Notes
                     </Label>
                   </div>
                   <Textarea
+                    theme={inputTheme}
+                    color="gray"
                     id="comment"
                     placeholder="Write text here ..."
                     required
@@ -1203,13 +1263,13 @@ const EditOrder = () => {
         <div className="flex items-end justify-end mb-2 gap-6">
           <button
             type="button"
-            className="border border-green text-green px-6 py-2 rounded-md text-sm font-medium w-[168px]"
+            className="border border-arrowcolor text-arrowcolor px-6 py-2 rounded-md text-sm font-medium w-[168px]"
           >
             Cancel
           </button>
           <button
             type="submit"
-            className="bg-green text-white px-6 py-2 rounded-md text-sm font-medium w-[168px]"
+            className="bg-custombtn2 text-white px-6 py-2 rounded-md text-sm font-medium w-[168px]"
           >
             Save Changes
           </button>
