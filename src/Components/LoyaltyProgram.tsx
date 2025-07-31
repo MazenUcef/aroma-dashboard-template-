@@ -128,11 +128,11 @@ const LoyaltyProgram = () => {
     },
   };
   return (
-    <div className="p-4">
-      <h2 className="text-base font-semibold mb-4 font-poppins">
+    <div className="sm:p-4 md:p-0">
+      <h2 className="hidden md:block text-base font-semibold mb-4 font-poppins">
         Loyalty Program Sections
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 ">
         {tiersState.map((tier, index) => (
           <div
             key={tier.title}
