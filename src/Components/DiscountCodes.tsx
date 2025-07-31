@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Dropdown, DropdownItem } from "flowbite-react";
 import { EllipsisVertical, CalendarDays } from "lucide-react";
+import CreateNewDiscountModal from "./CreateNewDiscountModal";
 
 interface Coupon {
   code: string;
@@ -47,6 +48,15 @@ const DropDownTheme = {
 };
 
 const DiscountCodes = () => {
+    const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false);
+  const [isEditingCategory, setIsEditingCategory] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<any>(null);
+  // Product modal state
+  const handleAddCategory = () => {
+    setSelectedCategory(null);
+    setIsEditingCategory(false);
+    setIsCategoryModalOpen(true);
+  };
   const [coupons, setCoupons] = useState<Coupon[]>([
     {
       code: "SUMMER25",
@@ -171,6 +181,16 @@ const DiscountCodes = () => {
           </div>
         </div>
       ))}
+      <CreateNewDiscountModal
+        isOpen={isCategoryModalOpen}
+        onClose={() => setIsCategoryModalOpen(false)}
+        onSubmit={(data) => {
+          console.log("Submitted Category:", data);
+          setIsCategoryModalOpen(false);
+        }}
+        isEditMode={isEditingCategory}
+        initialData={isEditingCategory ? selectedCategory : undefined}
+      />
     </div>
   );
 };
