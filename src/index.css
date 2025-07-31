@@ -34,7 +34,8 @@
   --custombtn4: #244937 ;
   --arrowcolor: #244937;
   --overlay: #00000080;
-
+  --custombackground: #999999;
+  --usersicon: #244937;
 }
 
 @theme inline {
@@ -68,6 +69,8 @@
   --color-custombtn4: var(--custombtn4);
   --color-arrowcolor: var(--arrowcolor);
   --color-overlay: var(--overlay);
+  --color-custombackground: var(--custombackground);
+  --color-usersicon: var(--usersicon);
 }
 
 .dark {
@@ -101,6 +104,8 @@
   --custombtn4: #8E9AA4 ;
   --arrowcolor: #F1F2F4;
   --overlay: #ffffff33;
+  --custombackground: #999999;
+  --usersicon: #8e9aa4;
 }
 
 @layer base {
