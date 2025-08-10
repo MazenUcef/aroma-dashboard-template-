@@ -23,19 +23,20 @@
   --disabled: #f9fafb;
   --borderdisabled: #d1d5db;
   --switch: #244937;
-  --inputborder: #CECECE;
-  --inputaccent: #F3F4F6;
-  --secondaryinput: #FFFFFF;
-  --customtab: #BBDDCD ;
-  --customborder: #EEE ;
-  --custombtn: #EEE ;
-  --custombtn2: #244937 ;
-  --custombtn3: #fff ;
-  --custombtn4: #244937 ;
+  --inputborder: #cecece;
+  --inputaccent: #f3f4f6;
+  --secondaryinput: #ffffff;
+  --customtab: #bbddcd;
+  --customborder: #eee;
+  --custombtn: #eee;
+  --custombtn2: #244937;
+  --custombtn3: #fff;
+  --custombtn4: #244937;
   --arrowcolor: #244937;
   --overlay: #00000080;
   --custombackground: #999999;
   --usersicon: #244937;
+  --textinput: #666666;
 }
 
 @theme inline {
@@ -71,6 +72,7 @@
   --color-overlay: var(--overlay);
   --color-custombackground: var(--custombackground);
   --color-usersicon: var(--usersicon);
+  --color-textinput: var(--textinput);
 }
 
 .dark {
@@ -84,28 +86,29 @@
   --lightgreen: #def7ec;
   --red: #ef4444;
   --purple: #5521b5;
-  --sidebarhover: #5B6771;
-  --forminputs: #444D55;
-  --tabhover: #8E9AA4;
-  --tabtext: #F1F2F4;
-  --linecolor: #5B6771;
-  --checked: #5B6771;
-  --disabled: #F9FAFB;
-  --borderdisabled: #D1D5DB;
-  --switch: #171A1C;
-  --inputborder: #5B6771;
-  --inputaccent: #5B6771;
-  --secondaryinput: #444D55;
-  --customtab: #8E9AA4 ;
-  --customborder: #5B6771 ;
-  --custombtn: #8E9AA4 ;
-  --custombtn2: #2E3438 ;
-  --custombtn3: #333 ;
-  --custombtn4: #8E9AA4 ;
-  --arrowcolor: #F1F2F4;
+  --sidebarhover: #5b6771;
+  --forminputs: #444d55;
+  --tabhover: #8e9aa4;
+  --tabtext: #f1f2f4;
+  --linecolor: #5b6771;
+  --checked: #5b6771;
+  --disabled: #f9fafb;
+  --borderdisabled: #d1d5db;
+  --switch: #171a1c;
+  --inputborder: #5b6771;
+  --inputaccent: #5b6771;
+  --secondaryinput: #444d55;
+  --customtab: #8e9aa4;
+  --customborder: #5b6771;
+  --custombtn: #8e9aa4;
+  --custombtn2: #2e3438;
+  --custombtn3: #333;
+  --custombtn4: #8e9aa4;
+  --arrowcolor: #f1f2f4;
   --overlay: #ffffff33;
   --custombackground: #999999;
   --usersicon: #8e9aa4;
+  --textinput: #e3e6e8;
 }
 
 @layer base {
