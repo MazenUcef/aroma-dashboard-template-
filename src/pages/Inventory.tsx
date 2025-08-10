@@ -1,9 +1,15 @@
-import React from 'react'
-
+import React from "react";
+import CreateNewDiscountModal from "../components/CreateNewDiscountModal";
 const Inventory = () => {
-    return (
-        <div>Inventory</div>
-    )
-}
+  return (
+    <div>
+      <CreateNewDiscountModal
+        isOpen={true}
+        onClose={() => {}}
+        onSubmit={() => {}}
+      />
+    </div>
+  );
+};
 
-export default Inventory
+export default Inventory;
