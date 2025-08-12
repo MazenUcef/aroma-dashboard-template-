@@ -416,6 +416,7 @@ const CreateNewDiscountModal: React.FC<DiscountModalProps> = ({
     },
     inlineWrapper: "flex items-center",
   };
+  const today = new Date();
   return (
     <Modal theme={ModalTheme} show={isOpen} onClose={onClose} size="lg" popup>
       <ModalHeader />
@@ -474,6 +475,7 @@ const CreateNewDiscountModal: React.FC<DiscountModalProps> = ({
                 name="startDate"
                 render={({ field }) => (
                   <Datepicker
+                    defaultValue={today}
                     theme={datepickertheme}
                     className={inputDatepickerClasses}
                     value={field.value as any}
@@ -491,6 +493,7 @@ const CreateNewDiscountModal: React.FC<DiscountModalProps> = ({
                 name="endDate"
                 render={({ field }) => (
                   <Datepicker
+                    defaultValue={today}
                     theme={datepickertheme}
                     value={field.value as any}
                     onChange={(date: Date | null) => field.onChange(date)}

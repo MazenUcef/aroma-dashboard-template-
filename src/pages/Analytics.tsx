@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import ReportsAnalytics from "../components/ReportsAnalytics";
 
 const Analytics = () => {
-    return (
-        <div>Analytics</div>
-    )
-}
+  return (
+    <div>
+      <ReportsAnalytics />
+    </div>
+  );
+};
 
-export default Analytics
+export default Analytics;
