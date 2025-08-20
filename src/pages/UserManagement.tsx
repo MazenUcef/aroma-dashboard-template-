@@ -1,7 +1,11 @@
 import React from "react";
-
+import AddUserManagement from "../components/AddUserMangement";
 const UserManagement = () => {
-  return <div>UserManagement</div>;
+  return (
+    <div>
+      <AddUserManagement />
+    </div>
+  );
 };
 
 export default UserManagement;
