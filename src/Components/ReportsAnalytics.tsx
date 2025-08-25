@@ -390,7 +390,10 @@ const ReportsAnalytics = () => {
   };
   return (
     <div className="m-4 ">
-      <div className="flex items-center justify-between bg-backgroundaccent  mb-6 w-[1128px]">
+      <div
+        className="flex items-center justify-between bg-white p-4 rounded-lg shadow-sm mb-6 
+      w-full md:w-[1128px]"
+      >
         {/* Left Section */}
         <div>
           <h2 className="text-lg font-semibold text-gray-900 mb-1">
@@ -430,9 +433,12 @@ const ReportsAnalytics = () => {
           className="hidden"
         />
       </div>
-      <div className="flex flex-wrap bg-white p-4 gap-6 rounded-lg shadow-sm mb-6 w-[1128px]">
+      <div
+        className="flex flex-wrap bg-white p-4 gap-6 rounded-lg shadow-sm mb-6
+             w-full md:w-[1128px]"
+      >
         {/* Date Range */}
-        <div className="flex flex-col ">
+        <div className="flex flex-col w-full md:w-[245px]">
           <label className="mb-1 text-base font-poppins font-semibold">
             Date Range
           </label>
@@ -440,17 +446,17 @@ const ReportsAnalytics = () => {
             defaultValue={today}
             value={dateRange}
             onChange={(date: Date | null) => setDateRange(date)}
-            className="w-[245.3333px]"
+            className="w-full"
           />
         </div>
 
         {/* Categories */}
-        <div className="flex flex-col ">
+        <div className="flex flex-col w-full md:w-[245px]">
           <label className="mb-1 text-sm font-semibold">Categories</label>
           <Select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-            className="w-[245.3333px]"
+            className="w-full"
           >
             <option>All Categories</option>
             <option>Category 1</option>
@@ -459,14 +465,14 @@ const ReportsAnalytics = () => {
         </div>
 
         {/* Branches */}
-        <div className="flex flex-col ">
+        <div className="flex flex-col  w-full md:w-[245px]">
           <label className="mb-1 text-base font-poppins font-semibold">
             Branches
           </label>
           <Select
             value={branch}
             onChange={(e) => setBranch(e.target.value)}
-            className="w-[245.3333px]"
+            className="w-full"
           >
             <option>All Branches</option>
             <option>Branch 1</option>
@@ -475,14 +481,14 @@ const ReportsAnalytics = () => {
         </div>
 
         {/* Comparison */}
-        <div className="flex flex-col ">
+        <div className="flex flex-col w-full md:w-[245px]">
           <label className="mb-1 text-base font-poppins font-semibold">
             Comparison
           </label>
           <Select
             value={comparison}
             onChange={(e) => setComparison(e.target.value)}
-            className="w-[245.3333px]"
+            className="w-full"
           >
             <option>Comparison</option>
             <option>Option 1</option>
@@ -610,13 +616,13 @@ const ReportsAnalytics = () => {
           </div>
         </div>
       </div>
-      <div className="bg-white rounded-xl shadow-sm p-4 w-[1128px] mt-6">
+      <div className="bg-white rounded-xl shadow-sm p-4 w-full md:w-[1128px] mt-6">
         {/* Header */}
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-4 gap-3">
           <h2 className="font-semibold text-gray-900 text-lg">
             Operational Metrics
           </h2>
-          <div className="flex space-x-1 bg-gray-100 rounded-lg p-1">
+          <div className="flex space-x-1 bg-gray-100 rounded-lg p-1 self-start md:self-auto">
             {periods.map((period) => (
               <Button
                 key={period}
@@ -636,7 +642,7 @@ const ReportsAnalytics = () => {
         </div>
 
         {/* Metrics Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {metrics.map((metric) => (
             <div
               key={metric.label}
@@ -655,7 +661,8 @@ const ReportsAnalytics = () => {
           ))}
         </div>
       </div>
-      <div className=" p-6 bg-white rounded-lg shadow-sm border border-gray-200 w-[1128px] mt-6">
+
+      <div className="p-6 bg-white rounded-lg shadow-sm border border-gray-200 w-full md:w-[1128px] mt-6">
         {/* Header */}
         <div className="mb-4">
           <h2 className="text-lg font-semibold text-gray-800 mb-6">
@@ -665,26 +672,29 @@ const ReportsAnalytics = () => {
         </div>
 
         {/* Revenue & Orders Row */}
-        <div className="flex justify-between items-start ">
+        <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
+          {/* Left Section */}
           <div>
             <h3 className="text-base font-semibold text-gray-800">
               Revenue & Orders
             </h3>
-            <div className="flex items-center mt-4 space-x-4">
+            <div className="flex flex-col sm:flex-row sm:items-center mt-4 gap-3 sm:space-x-4">
+              {/* Icon + Text */}
               <div className="flex items-center space-x-3">
                 <div className="p-2 bg-gray-100 rounded-lg flex items-center justify-center">
+                  {/* Your SVG Icon */}
                   <svg
-                    width={48}
-                    height={49}
+                    width="48"
+                    height="49"
                     viewBox="0 0 48 49"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <rect
                       y="0.0512695"
-                      width={48}
-                      height={48}
-                      rx={8}
+                      width="48"
+                      height="48"
+                      rx="8"
                       fill="#F3F4F6"
                     />
                     <path
@@ -724,7 +734,7 @@ const ReportsAnalytics = () => {
                   </p>
                 </div>
               </div>
-              <span className="bg-green-100 text-green-600 text-xs font-medium px-2 py-1 rounded-full">
+              <span className="bg-green-100 text-green-600 text-xs font-medium px-2 py-1 rounded-full self-start sm:self-center">
                 ↑ 24%
               </span>
             </div>
@@ -738,7 +748,7 @@ const ReportsAnalytics = () => {
           </div>
 
           {/* Filter Buttons */}
-          <div className="flex space-x-2">
+          <div className="flex gap-2 self-start md:self-auto">
             {["years", "months", "days"].map((range) => (
               <button
                 key={range}
@@ -768,13 +778,14 @@ const ReportsAnalytics = () => {
         </div>
 
         {/* Footer */}
-        <div className="flex justify-between items-center mt-2 text-sm text-gray-500">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mt-4 text-sm text-gray-500 gap-2">
           <span>Last 7 days</span>
           <a href="#" className="text-green-700 font-medium">
             USERS REPORT &gt;
           </a>
         </div>
       </div>
+
       <div className="flex flex-col md:flex-row gap-6 w-full mt-6">
         <div className=" p-5 bg-white rounded-xl border border-gray-200 shadow-sm w-full max-w-[552px]">
           {/* Header */}

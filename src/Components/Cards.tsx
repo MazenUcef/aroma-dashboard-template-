@@ -50,7 +50,10 @@ function Cards() {
       {dashBordCards.map((card) => (
         <div
           key={card.id}
-          className="flex flex-row-reverse justify-center items-center w-[264px] h-[160px] p-4 rounded-[8px] bg-background  md:flex-row-reverse md:max-w-xl cursor-pointer"
+          className="flex flex-row-reverse justify-between items-center 
+             w-full sm:w-[264px] md:w-[264px] 
+             h-[160px] p-4 rounded-[8px] bg-background 
+             cursor-pointer"
         >
           <div className="flex shrink-0 items-center justify-center w-[64px] h-[64px] gap-1 rounded-[100px] bg-[#244937]">
             <card.icon w={32} h={32} />
