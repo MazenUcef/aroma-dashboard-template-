@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PluseIcon from "../assets/icons/PluseIcon";
 import { FooterDivider, Pagination, Avatar } from "flowbite-react";
 import { DropdownCheckbox } from "../components/DriodownCheckbox";
@@ -17,7 +17,14 @@ const UserManagement = () => {
   const [searchTerm2, setSearchTerm2] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [openModal, setOpenModal] = useState(false);
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 640);
 
+  useEffect(() => {
+    const handleResize = () => setIsSmallScreen(window.innerWidth < 640);
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   const AllUsers = [
     { id: "1", label: "Admins", checked: true },
     { id: "2", label: "Staff" },
@@ -486,12 +493,12 @@ const UserManagement = () => {
     {
       key: "status",
       header: "Status",
-      width: "w-64 hidden md:table-cell", // hidden on mobile
+      width: "w-64 hidden md:table-cell", // hides automatically on mobile
     },
     {
       key: "LastActive",
       header: "LAST ACTIVE",
-      width: "w-64 hidden md:table-cell", // hidden on mobile
+      width: "w-64 hidden md:table-cell",
     },
   ];
 
@@ -603,10 +610,8 @@ const UserManagement = () => {
         {/* Table */}
         <div className="overflow-x-auto">
           <DataTable
-            columns={window.innerWidth < 640 ? smallScreenColumns : columns}
-            data={
-              window.innerWidth < 640 ? formattedUsersSmall : formattedUsers
-            }
+            columns={isSmallScreen ? smallScreenColumns : columns}
+            data={isSmallScreen ? formattedUsersSmall : formattedUsers}
             selectable={true}
             onSelect={handleSelect}
             onEdit={handleEdit}

@@ -212,11 +212,13 @@ export const DataTable: React.FC<DataTableProps> = ({
                 </div>
               </th>
             )}
-            {columns.map((column) => (
+            {columns.map((column, index) => (
               <th
                 key={column.key}
                 scope="col"
-                className={`px-6 py-3 ${column.width ? column.width : ""}`}
+                className={`px-6 py-3 ${column.width ? column.width : ""} ${
+                  index > 2 ? "hidden md:table-cell" : ""
+                }`}
               >
                 {column.header}
               </th>
@@ -253,8 +255,13 @@ export const DataTable: React.FC<DataTableProps> = ({
                   </div>
                 </td>
               )}
-              {columns.map((column) => (
-                <td key={`${row.id}-${column.key}`} className="px-6 py-4">
+              {columns.map((column, index) => (
+                <td
+                  key={`${row.id}-${column.key}`}
+                  className={`px-6 py-4 ${
+                    index > 2 ? "hidden md:table-cell" : ""
+                  }`}
+                >
                   {column.key === "status" ? (
                     <span
                       className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusStyles(
