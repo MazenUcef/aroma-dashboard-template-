@@ -33,26 +33,20 @@ const PopupTheme = {
     },
   },
   content: {
-    base: "relative w-[531px] h-[213px] p-6 md:h-auto mt-5",
-    inner:
-      "relative flex max-h-[90dvh] flex-col rounded-lg bg-backgroundaccent shadow dark:bg-backgroundaccent text-foreground dark:text-foreground w-[531px] h-[213px]",
+    base: `
+      relative w-full sm:w-[531px] h-auto p-4 sm:p-6 
+      mt-10 sm:mt-5
+    `,
+    inner: `
+      relative flex max-h-[90dvh] flex-col rounded-lg 
+      bg-backgroundaccent shadow dark:bg-backgroundaccent 
+      text-foreground dark:text-foreground 
+      w-full sm:w-[531px]
+    `,
   },
   body: {
-    base: "flex-1 overflow-auto p-6 ",
+    base: "flex-1 overflow-auto p-4 sm:p-6",
     popup: "pt-6",
-  },
-  header: {
-    base: "flex items-start justify-between rounded-t border-b p-5 dark:border-gray-600",
-    popup: "border-b-0 p-2",
-    title: "text-xl font-medium text-gray-900 dark:text-white",
-    close: {
-      base: "ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white",
-      icon: "h-5 w-5",
-    },
-  },
-  footer: {
-    base: "flex items-center space-x-2 rounded-b border-gray-200 p-6 dark:border-gray-600",
-    popup: "border-t",
   },
 };
 
@@ -80,6 +74,8 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
           <h3 className="mb-5 text-lg font-normal font-poppins text-[12px]">
             {message}
           </h3>
+
+          {/* Buttons always next to each other */}
           <div className="flex justify-center gap-4">
             <Button
               color="none"
@@ -90,7 +86,7 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
             </Button>
             <Button
               color="none"
-              className="!bg-custombtn2  !text-white w-[130px] h-[40px] font-poppins text-[14px] font-semibold cursor-pointer focus:ring-0"
+              className="!bg-custombtn2 !text-white w-[130px] h-[40px] font-poppins text-[14px] font-semibold cursor-pointer focus:ring-0"
               onClick={onConfirm}
             >
               Delete

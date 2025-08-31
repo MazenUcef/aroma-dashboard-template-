@@ -65,10 +65,7 @@ const AddUserManagement: React.FC<AddUserManagementProps> = ({
   const ModalTheme = {
     root: {
       base: "fixed inset-x-0 top-0 z-50 h-screen overflow-y-auto overflow-x-hidden md:inset-0 md:h-full text-foreground dark:text-foreground",
-      show: {
-        on: "flex bg-overlay dark:bg-overlay",
-        off: "hidden",
-      },
+      show: { on: "flex bg-overlay dark:bg-overlay", off: "hidden" },
       sizes: {
         sm: "max-w-sm",
         md: "max-w-md",
@@ -98,10 +95,7 @@ const AddUserManagement: React.FC<AddUserManagementProps> = ({
       inner:
         "relative flex xl:w-[40rem] flex-col rounded-lg bg-backgroundaccent shadow dark:bg-backgroundaccent",
     },
-    body: {
-      base: "flex-1 overflow-auto p-6",
-      popup: "pt-0",
-    },
+    body: { base: "flex-1 overflow-auto p-6", popup: "pt-0" },
     header: {
       base: "flex items-start justify-between rounded-t border-b p-5 dark:border-gray-600",
       popup: "border-b-0 p-2",
@@ -112,16 +106,18 @@ const AddUserManagement: React.FC<AddUserManagementProps> = ({
       },
     },
   };
+
   return (
     <div className="p-6">
       {/* Modal */}
       <Modal theme={ModalTheme} show={isOpen} onClose={onClose} size="lg" popup>
-        <div className="p-6  overflow-auto">
+        <div className="p-6 overflow-auto">
           <h2 className="text-base font-semibold mb-4 font-poppins">
             Add New User
           </h2>
 
-          <div className="grid grid-cols-2 gap-4">
+          {/* Form Inputs */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <Label htmlFor="fullname">Full Name</Label>
               <TextInput
@@ -163,6 +159,7 @@ const AddUserManagement: React.FC<AddUserManagementProps> = ({
             </div>
           </div>
 
+          {/* Role */}
           <div className="mt-4">
             <Label htmlFor="role">Role</Label>
             <Select
@@ -176,9 +173,10 @@ const AddUserManagement: React.FC<AddUserManagementProps> = ({
             </Select>
           </div>
 
+          {/* Permissions */}
           <div className="mt-4">
             <p className="font-medium">Permissions</p>
-            <div className="grid grid-cols-2 gap-2 mt-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
               {allPermissions.map((perm) => (
                 <div key={perm} className="flex items-center gap-2">
                   <Checkbox
@@ -192,6 +190,7 @@ const AddUserManagement: React.FC<AddUserManagementProps> = ({
             </div>
           </div>
 
+          {/* Profile Image */}
           <div className="mt-4">
             <Label>Profile Image</Label>
             <div
@@ -215,6 +214,7 @@ const AddUserManagement: React.FC<AddUserManagementProps> = ({
             </div>
           </div>
 
+          {/* Status */}
           <div className="mt-4">
             <Label className="font-medium text-gray-700">User Status</Label>
             <div className="flex items-center justify-between mt-1">
@@ -225,16 +225,17 @@ const AddUserManagement: React.FC<AddUserManagementProps> = ({
             </div>
           </div>
 
-          <div className="flex justify-end gap-3 mt-6">
+          {/* Actions */}
+          <div className="flex flex-col sm:flex-row justify-end gap-3 mt-6">
             <Button
-              className="font-poppins text-green border-2 border-[#244937]"
+              className="font-poppins text-green border-2 border-[#244937] w-full sm:w-auto"
               color="light"
               onClick={onClose}
             >
               Cancel
             </Button>
             <Button
-              className="font-poppins bg-switch dark:bg-switch text-white"
+              className="font-poppins bg-switch dark:bg-switch text-white w-full sm:w-auto"
               color="success"
               onClick={handleSubmit}
             >
