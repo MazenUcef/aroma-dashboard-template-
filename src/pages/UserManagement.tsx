@@ -5,8 +5,8 @@ import { DropdownCheckbox } from "../components/DriodownCheckbox";
 import { SearchInput } from "../components/SearchInput";
 import Trash from "../assets/icons/Trash";
 import { DataTable } from "../components/DataTable";
-import { UploadIcon } from "lucide-react";
 import AddUserManagement from "../components/AddUserMangement";
+
 const footertheme = {
   divider: {
     base: "my-4 w-full border-inputborder sm:mx-auto lg:my-6 dark:border-inputborder",
@@ -16,6 +16,7 @@ const footertheme = {
 const UserManagement = () => {
   const [searchTerm2, setSearchTerm2] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [openModal, setOpenModal] = useState(false);
 
   const AllUsers = [
     { id: "1", label: "Admins", checked: true },
@@ -26,6 +27,7 @@ const UserManagement = () => {
   const handleSelectionChange = (selectedIds: string[]) => {
     console.log("Selected IDs:", selectedIds);
   };
+
   const Users = [
     {
       id: "1001",
@@ -41,7 +43,7 @@ const UserManagement = () => {
       customer: "Jane Smith",
       email: "jane.smith@example.com",
       LastActive: "2023-05-16 14:45",
-      Role: "Deal Manager",
+      Role: "Investor",
       status: "processing",
       avatar: "https://i.pravatar.cc/150?img=2",
     },
@@ -109,7 +111,7 @@ const UserManagement = () => {
       avatar: "https://i.pravatar.cc/150?img=9",
     },
     {
-      id: "ORD-1010",
+      id: "1010",
       customer: "James Anderson",
       email: "james.anderson@example.com",
       LastActive: "2023-05-19 11:50",
@@ -451,6 +453,7 @@ const UserManagement = () => {
     currentPage * itemsPerPage
   );
 
+  // Full version (desktop & tablet)
   const formattedUsers = paginatedUsers.map((user) => ({
     ...user,
     customerInfo: (
@@ -463,6 +466,16 @@ const UserManagement = () => {
       </div>
     ),
   }));
+
+  // Small screen version (just username text, no avatar, no email)
+  const formattedUsersSmall = paginatedUsers.map((user) => ({
+    ...user,
+    customerInfo: (
+      <span className="font-medium text-gray-900">{user.customer}</span>
+    ),
+  }));
+
+  // Responsive columns: hide on small screens, show on md+
   const columns = [
     {
       key: "customerInfo",
@@ -470,8 +483,26 @@ const UserManagement = () => {
       width: "w-64",
     },
     { key: "Role", header: "ROLE", width: "w-64" },
-    { key: "status", header: "Status", width: "w-64" },
-    { key: "LastActive", header: "LAST ACTIVE", width: "w-64" },
+    {
+      key: "status",
+      header: "Status",
+      width: "w-64 hidden md:table-cell", // hidden on mobile
+    },
+    {
+      key: "LastActive",
+      header: "LAST ACTIVE",
+      width: "w-64 hidden md:table-cell", // hidden on mobile
+    },
+  ];
+
+  // Columns for small screens (show only essential columns)
+  const smallScreenColumns = [
+    {
+      key: "customerInfo",
+      header: "Username",
+      width: "w-64",
+    },
+    { key: "Role", header: "ROLE", width: "w-64" },
   ];
 
   const handleSelect = (selectedIds: string[]) => {
@@ -489,13 +520,13 @@ const UserManagement = () => {
   const onPageChange = (page: number) => {
     setCurrentPage(page);
   };
-  const [openModal, setOpenModal] = useState(false);
 
   const handleAddUser = () => {
     setOpenModal(true);
   };
+
   return (
-    <div className="flex py-[15px] px-[24px] flex-col w-[70.5rem] min-h-screen text-foreground dark:text-foreground">
+    <div className="flex py-[15px] px-[24px] flex-col w-full lg:w-[70.5rem] min-h-screen text-foreground dark:text-foreground">
       {/* Header */}
       <div className="flex justify-between items-center mb-8">
         <div>
@@ -505,32 +536,59 @@ const UserManagement = () => {
           </p>
         </div>
         <div className="flex gap-4">
+          {/* Responsive Button */}
           <button
             onClick={handleAddUser}
-            className="flex items-center ml-auto justify-center gap-2 rounded-lg bg-custombtn2 px-4 py-2 text-sm font-medium text-white focus:outline-none focus:ring-4 transition-colors duration-200"
+            className="flex items-center justify-center rounded-lg bg-custombtn2 px-4 py-2 text-sm font-medium text-white focus:outline-none focus:ring-4 transition-colors duration-200"
           >
-            <PluseIcon />
-            Add New User
-          </button>
-          <button className="border border-arrowcolor dark:border-arrowcolor bg-custombtn3 dark:bg-custombtn3 w-[48px] h-[48px] flex justify-center items-center rounded-md">
-            <UploadIcon size={20} />
+            {/* Small screen: + only */}
+            <span className="sm:hidden">
+              <PluseIcon />
+            </span>
+            {/* md+ screen: icon + text */}
+            <span className="hidden sm:flex items-center gap-2">
+              <PluseIcon /> Add New User
+            </span>
           </button>
         </div>
       </div>
 
       {/* Filter + Search */}
       <div className="p-4 bg-background rounded-lg shadow-sm">
-        <div className="w-full flex justify-between items-center">
+        {/* Small screen layout */}
+        <div className="flex flex-col gap-4 sm:hidden">
+          {/* Search above */}
+          <SearchInput
+            value={searchTerm2}
+            className="w-full h-[48px]"
+            onChange={(e) => setSearchTerm2(e.target.value)}
+            placeholder="Search"
+          />
+
+          {/* Dropdown + Delete */}
+          <div className="flex justify-between items-center w-full">
+            <DropdownCheckbox
+              buttonText="All"
+              options={AllUsers}
+              onSelectionChange={handleSelectionChange}
+            />
+            <button className="bg-[#FDE8E8] border border-[#EF4444] w-[48px] h-[48px] flex justify-center items-center rounded-md">
+              <Trash />
+            </button>
+          </div>
+        </div>
+
+        {/* md+ layout (unchanged) */}
+        <div className="hidden sm:flex flex-col sm:flex-row justify-between items-center gap-4">
           <DropdownCheckbox
             buttonText="All"
             options={AllUsers}
             onSelectionChange={handleSelectionChange}
           />
-
-          <div className="flex gap-6 items-center">
+          <div className="flex gap-4 items-center w-full sm:w-auto">
             <SearchInput
               value={searchTerm2}
-              className="w-[320px] h-[48px]"
+              className="w-full sm:w-[320px] h-[48px]"
               onChange={(e) => setSearchTerm2(e.target.value)}
               placeholder="Search Customer"
             />
@@ -545,8 +603,10 @@ const UserManagement = () => {
         {/* Table */}
         <div className="overflow-x-auto">
           <DataTable
-            columns={columns}
-            data={formattedUsers}
+            columns={window.innerWidth < 640 ? smallScreenColumns : columns}
+            data={
+              window.innerWidth < 640 ? formattedUsersSmall : formattedUsers
+            }
             selectable={true}
             onSelect={handleSelect}
             onEdit={handleEdit}
@@ -556,15 +616,10 @@ const UserManagement = () => {
         </div>
 
         {/* Pagination */}
-        <div className="flex justify-between items-center w-full mt-4">
-          <span className="">
-            <span className="font-normal text-[14px] text-[#666666]">
-              Showing
-            </span>{" "}
-            {(currentPage - 1) * itemsPerPage + 1}{" "}
-            <span className="font-normal text-[14px] text-[#666666]">to</span>{" "}
-            {Math.min(currentPage * itemsPerPage, Users.length)}{" "}
-            <span className="font-normal text-[14px] text-[#666666]">of</span>{" "}
+        <div className="flex flex-col sm:flex-row justify-between items-center w-full mt-4 gap-3">
+          <span className="text-sm text-[#666666]">
+            Showing {(currentPage - 1) * itemsPerPage + 1} to{" "}
+            {Math.min(currentPage * itemsPerPage, Users.length)} of{" "}
             {Users.length}
           </span>
           <Pagination
