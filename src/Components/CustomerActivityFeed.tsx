@@ -1,7 +1,6 @@
 import ArrowRight from "../assets/icons/ArrowRight";
 import CartIcon from "../assets/icons/CartIcon";
 
-
 interface Activity {
   name: string;
   date: string;
@@ -36,7 +35,7 @@ const activities: Activity[] = [
 
 const CustomerActivityFeed = () => {
   return (
-    <div className="w-[22.5rem] h-[21.5rem] bg-background text-foreground rounded-lg">
+    <div className="w-full md:w-[22.5rem] h-[21.5rem] bg-background text-foreground rounded-lg">
       <div className="container mx-auto p-[1.8438rem]">
         <h2 className="text-[20px] font-semibold -mt-4">Customer Activity</h2>
         {activities.map((activity, index) => (

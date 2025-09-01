@@ -77,7 +77,7 @@ const OrderTypesCard = () => {
 
   return (
     <div
-      className="w-[22.5rem] h-[21.125rem] bg-background text-foreground dark:text-foreground rounded-lg mb-4 overflow-hidden"
+      className="w-full md:w-[22.5rem] h-[21.125rem] bg-background text-foreground dark:text-foreground rounded-lg mb-4 overflow-hidden"
       style={{ fontFamily: "Inter, sans-serif" }}
     >
       <div className="flex justify-between mb-3 container mx-auto p-[1.8438rem]">

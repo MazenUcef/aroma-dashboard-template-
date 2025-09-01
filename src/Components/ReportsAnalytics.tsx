@@ -434,8 +434,7 @@ const ReportsAnalytics = () => {
         />
       </div>
       <div
-        className="flex flex-wrap bg-white p-4 gap-6 rounded-lg shadow-sm mb-6
-             w-full md:w-[1128px]"
+        className="flex flex-wrap bg-white p-4 gap-6 rounded-lg shadow-sm mb-6 w-full md:w-[1128px]"
       >
         {/* Date Range */}
         <div className="flex flex-col w-full md:w-[245px]">
