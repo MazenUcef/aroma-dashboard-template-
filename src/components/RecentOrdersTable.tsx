@@ -54,7 +54,6 @@ const orders: Order[] = [
 ];
 
 const RecentOrdersTable = () => {
-
   const getStatusColor = (status: string) => {
     switch (status) {
       case "Completed":
@@ -70,26 +69,29 @@ const RecentOrdersTable = () => {
 
   return (
     <div
-      className="w-[46.5rem] h-full bg-background text-foreground dark:text-foreground rounded-lg p-6 md:p-6 mt-6"
+      className="w-full md:w-[46.5rem] h-full bg-background text-foreground dark:text-foreground rounded-lg p-6 md:p-6 mt-6"
       style={{ fontFamily: "Inter, sans-serif" }}
     >
       <div className="container mx-auto">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-xl font-semibold ">
-            Recent Orders
-          </h2>
+          <h2 className="text-xl font-semibold ">Recent Orders</h2>
           <button className="flex items-center justify-center gap-2 font-semibold cursor-pointer  rounded-lg text-xs bg-[#244937] text-white hover:bg-green-800 px-4 py-2">
             View All
             <ArrowRight />
           </button>
         </div>
-        <div className=" text-[16px] font-normal">
+        <div className="text-[16px] font-normal overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-forminputs">
+                {/* Always show Order ID */}
                 <th className="p-2.5">Order ID</th>
-                <th className="p-2.5">Customer</th>
-                <th className="p-2.5">Items</th>
+
+                {/* Hide Customer & Items on small screens */}
+                <th className="p-2.5 hidden md:table-cell">Customer</th>
+                <th className="p-2.5 hidden md:table-cell">Items</th>
+
+                {/* Always show Total & Status */}
                 <th className="p-2.5">Total</th>
                 <th className="p-2.5">STATUS</th>
               </tr>
@@ -100,9 +102,16 @@ const RecentOrdersTable = () => {
                   key={order.id}
                   className="border-b border-[#EEEEEE] last:border-b-0"
                 >
+                  {/* Always show Order ID */}
                   <td className="p-2.5">{order.id}</td>
-                  <td className="p-2.5">{order.customer}</td>
-                  <td className="p-2.5">{order.items}</td>
+
+                  {/* Hide on small screens */}
+                  <td className="p-2.5 hidden md:table-cell">
+                    {order.customer}
+                  </td>
+                  <td className="p-2.5 hidden md:table-cell">{order.items}</td>
+
+                  {/* Always show Total & Status */}
                   <td className="p-2.5">{order.total} LE</td>
                   <td className="p-2.5">
                     <span
