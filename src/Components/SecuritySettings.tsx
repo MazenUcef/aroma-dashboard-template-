@@ -65,7 +65,7 @@ const SecuritySettings = () => {
       </div>
 
       <div className="flex flex-col mb-4 text-foreground">
-        <div className="w-[1050px] flex justify-between items-center h-[48px] rounded-lg">
+        <div className="w-full md:w-[1050px] flex justify-between items-center  rounded-lg">
           <div className="flex flex-col">
             <h2 className="font-poppins text-[14px] font-semibold mb-2">
               Two-Factor Authentication
@@ -83,7 +83,7 @@ const SecuritySettings = () => {
         </div>
       </div>
 
-      <div className="flex flex-col bg-forminputs p-4 rounded-lg w-[1050px] text-foreground">
+      <div className="flex flex-col bg-forminputs p-4 rounded-lg w-full md:w-[1050px] text-foreground">
         <div className="flex max-w-md flex-col gap-2" id="checkbox">
           <p className="text-[16px] font-semibold font-poppins">
             Password Requirements
