@@ -18,11 +18,8 @@ type Product = {
   badge: string;
 };
 
-interface ItemsCardsProps {
-  products: Product[];
-}
-const MenuProducts: React.FC<ItemsCardsProps> = () => {
-  const products = [
+const MenuProducts: React.FC = () => {
+  const products: Product[] = [
     {
       imgSrc: image1,
       title: "Americano",
@@ -81,31 +78,57 @@ const MenuProducts: React.FC<ItemsCardsProps> = () => {
     },
     {
       imgSrc: image8,
-      title: "caramel",
+      title: "Caramel",
       price: "$4.50",
       showToggle: true,
       initialToggleState: true,
       badge: "Hot Coffee",
     },
   ];
+
   return (
-    <div className="flex flex-wrap gap-6 justify-start items-start w-[721px] ">
-      {products.map(
-        (
-          { imgSrc, title, price, showToggle, initialToggleState, badge },
-          idx
-        ) => (
-          <ItemsCards
-            key={idx}
-            imgSrc={imgSrc}
-            title={title}
-            price={price}
-            showToggle={showToggle}
-            initialToggleState={initialToggleState}
-            badge={badge}
-          />
-        )
-      )}
+    <div className="w-full max-w-[721px]">
+      {/* Small screens → show only 3 */}
+      <div className="grid grid-cols-1 gap-6 md:hidden">
+        {products
+          .slice(0, 3)
+          .map(
+            (
+              { imgSrc, title, price, showToggle, initialToggleState, badge },
+              idx
+            ) => (
+              <ItemsCards
+                key={idx}
+                imgSrc={imgSrc}
+                title={title}
+                price={price}
+                showToggle={showToggle}
+                initialToggleState={initialToggleState}
+                badge={badge}
+              />
+            )
+          )}
+      </div>
+
+      {/* md and above → show all */}
+      <div className="hidden md:grid grid-cols-2 gap-6">
+        {products.map(
+          (
+            { imgSrc, title, price, showToggle, initialToggleState, badge },
+            idx
+          ) => (
+            <ItemsCards
+              key={idx}
+              imgSrc={imgSrc}
+              title={title}
+              price={price}
+              showToggle={showToggle}
+              initialToggleState={initialToggleState}
+              badge={badge}
+            />
+          )
+        )}
+      </div>
     </div>
   );
 };

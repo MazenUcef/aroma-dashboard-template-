@@ -71,8 +71,21 @@ const ModalTheme = createTheme({
   },
 });
 
-const CategoryModal: React.FC<CategoryModalProps> = ({ isOpen, onClose, onSubmit, initialData, isEditMode = false }) => {
-  const { register, handleSubmit, reset, setValue, watch, formState: { errors } } = useForm<CategoryFormData>({
+const CategoryModal: React.FC<CategoryModalProps> = ({
+  isOpen,
+  onClose,
+  onSubmit,
+  initialData,
+  isEditMode = false,
+}) => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useForm<CategoryFormData>({
     defaultValues: {
       name: "",
       maxItems: 0,
