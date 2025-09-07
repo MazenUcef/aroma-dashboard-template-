@@ -13,7 +13,7 @@ const VectorLine: React.FC<VectorLineProps> = ({
 }) => {
   return (
     <svg
-      width={width}
+      className="w-[295px] md:w-[504px]"
       height={height}
       viewBox={`0 0 ${width} ${height}`}
       fill="none"

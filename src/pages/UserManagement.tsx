@@ -627,12 +627,30 @@ const UserManagement = () => {
             {Math.min(currentPage * itemsPerPage, Users.length)} of{" "}
             {Users.length}
           </span>
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={onPageChange}
-            showIcons
-          />
+          {/* Pagination */}
+          {/* Small screen → arrows */}
+          <div className="block md:hidden">
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={onPageChange}
+              showIcons
+              previousLabel=""
+              nextLabel=""
+            />
+          </div>
+
+          {/* Medium+ screen → text */}
+          <div className="hidden md:block">
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={onPageChange}
+              showIcons
+              previousLabel="Previous"
+              nextLabel="Next"
+            />
+          </div>
         </div>
       </div>
 

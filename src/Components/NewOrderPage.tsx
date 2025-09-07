@@ -178,7 +178,7 @@ const NewOrderPage = () => {
       },
     },
     head: {
-      base: "group/head text-xs uppercase text-gray-700 dark:text-gray-400 ",
+      base: "group/head text-xs uppercase text-gray-700 dark:text-gray-400",
       cell: {
         base: "bg-forminputs p-4 w-[97.75px] h-[49px] group-first/head:first:rounded-tl-lg group-first/head:last:rounded-tr-lg dark:bg-forminputs",
       },
@@ -188,7 +188,7 @@ const NewOrderPage = () => {
       hovered:
         "hover:bg-tabhover dark:hover:bg-tabhover text-foreground dark:text-foreground",
       striped:
-        "odd:bg-background even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700 ",
+        "odd:bg-background even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700",
     },
   };
   const [discount, setDiscount] = useState("WELCOME10");
@@ -196,26 +196,146 @@ const NewOrderPage = () => {
   const [payment, setPayment] = useState("Visa");
   const [orderStatus, setOrderStatus] = useState("Paid");
   return (
-    <div className="!text-foreground !dark:text-foreground">
-      <div className="mb-4 ml-6 w-[1128px] h-[40px] flex items-center flex-row justify-between mt-6">
+    <div className="!text-foreground !dark:text-foreground w-[375px] md:w-[1128px]">
+      {/* Main header section */}
+      <div className="m-6  flex flex-row items-center justify-between">
+        {/* Breadcrumb */}
         <Breadcrumb
           aria-label="breadcrumb"
-          className="mt-2 mb-4"
+          className="mt-2 mb-4 md:mb-0"
           theme={breadcrampTheme.root}
         >
           <BreadcrumbItem href="#" theme={breadcrampTheme.item}>
-            <span className="font-poppins text-[20px] font-semibold">
+            <span className="font-poppins text-[16px] md:text-[20px] font-semibold">
               Orders Management
             </span>
           </BreadcrumbItem>
           <BreadcrumbItem href="#" theme={breadcrampTheme.item}>
-            <span className="font-poppins text-[16px] font-semibold">
+            <span className="font-poppins text-[14px] md:text-[16px] font-semibold">
               New Order
             </span>
           </BreadcrumbItem>
         </Breadcrumb>
-        <div className="flex items-center gap-2">
-          <button className="flex items-center justify-center border border-arrowcolor text-arrowcolor px-6 py-2 text-sm font-medium w-[168px] h-[40px] rounded-lg gap-1">
+        {/* Buttons */}
+        <div className="flex items-center">
+          {/* Small screen icon button */}
+          <button className="md:hidden w-9 h-9 flex items-center justify-center bg-white">
+            {/* Inline your SVG here */}
+            <svg
+              width={36}
+              height={36}
+              viewBox="0 0 36 36"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g filter="url(#filter0_dii_4205_51324)">
+                <path
+                  d="M2 9C2 4.58172 5.58172 1 10 1H26C30.4183 1 34 4.58172 34 9V25C34 29.4183 30.4183 33 26 33H10C5.58172 33 2 29.4183 2 25V9Z"
+                  fill="white"
+                />
+                <path
+                  d="M10 1.5H26C30.1421 1.5 33.5 4.85786 33.5 9V25C33.5 29.1421 30.1421 32.5 26 32.5H10C5.85786 32.5 2.5 29.1421 2.5 25V9C2.5 4.85786 5.85786 1.5 10 1.5Z"
+                  stroke="#244937"
+                />
+                <path
+                  d="M11.332 15.6667C11.332 15.6667 11.4129 15.1005 13.7561 12.7574C16.0992 10.4142 19.8982 10.4142 22.2413 12.7574C23.0715 13.5875 23.6076 14.6005 23.8495 15.6667M11.332 15.6667V11.6667M11.332 15.6667H15.332M24.6654 18.3333C24.6654 18.3333 24.5845 18.8995 22.2413 21.2426C19.8982 23.5858 16.0992 23.5858 13.7561 21.2426C12.9259 20.4125 12.3898 19.3995 12.1479 18.3333M24.6654 18.3333V22.3333M24.6654 18.3333H20.6654"
+                  stroke="#244937"
+                  strokeWidth="1.75"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </g>
+              <defs>
+                <filter
+                  id="filter0_dii_4205_51324"
+                  x={0}
+                  y={0}
+                  width={36}
+                  height={36}
+                  filterUnits="userSpaceOnUse"
+                  colorInterpolationFilters="sRGB"
+                >
+                  <feFlood floodOpacity={0} result="BackgroundImageFix" />
+                  <feColorMatrix
+                    in="SourceAlpha"
+                    type="matrix"
+                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                    result="hardAlpha"
+                  />
+                  <feOffset dy={1} />
+                  <feGaussianBlur stdDeviation={1} />
+                  <feColorMatrix
+                    type="matrix"
+                    values="0 0 0 0 0.0392157 0 0 0 0 0.0496732 0 0 0 0 0.0705882 0 0 0 0.05 0"
+                  />
+                  <feBlend
+                    mode="normal"
+                    in2="BackgroundImageFix"
+                    result="effect1_dropShadow_4205_51324"
+                  />
+                  <feBlend
+                    mode="normal"
+                    in="SourceGraphic"
+                    in2="effect1_dropShadow_4205_51324"
+                    result="shape"
+                  />
+                  <feColorMatrix
+                    in="SourceAlpha"
+                    type="matrix"
+                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                    result="hardAlpha"
+                  />
+                  <feOffset dy={-2} />
+                  <feComposite
+                    in2="hardAlpha"
+                    operator="arithmetic"
+                    k2={-1}
+                    k3={1}
+                  />
+                  <feColorMatrix
+                    type="matrix"
+                    values="0 0 0 0 0.0392157 0 0 0 0 0.0496732 0 0 0 0 0.0705882 0 0 0 0.05 0"
+                  />
+                  <feBlend
+                    mode="normal"
+                    in2="shape"
+                    result="effect2_innerShadow_4205_51324"
+                  />
+                  <feColorMatrix
+                    in="SourceAlpha"
+                    type="matrix"
+                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                    result="hardAlpha"
+                  />
+                  <feMorphology
+                    radius={1}
+                    operator="erode"
+                    in="SourceAlpha"
+                    result="effect3_innerShadow_4205_51324"
+                  />
+                  <feOffset />
+                  <feComposite
+                    in2="hardAlpha"
+                    operator="arithmetic"
+                    k2={-1}
+                    k3={1}
+                  />
+                  <feColorMatrix
+                    type="matrix"
+                    values="0 0 0 0 0.0392157 0 0 0 0 0.0496732 0 0 0 0 0.0705882 0 0 0 0.18 0"
+                  />
+                  <feBlend
+                    mode="normal"
+                    in2="effect2_innerShadow_4205_51324"
+                    result="effect3_innerShadow_4205_51324"
+                  />
+                </filter>
+              </defs>
+            </svg>
+          </button>
+
+          {/* MD+ Reset button */}
+          <button className="hidden md:flex items-center justify-center border border-arrowcolor text-arrowcolor px-6 py-2 text-sm font-medium w-[168px] h-[40px] rounded-lg gap-1">
             <RefreshIcon width={34} height={34} strokeColor="currentColor" />
             <span className="font-poppins text-[14px] font-semibold">
               Reset
@@ -224,14 +344,16 @@ const NewOrderPage = () => {
         </div>
       </div>
 
-      <div className="flex flex-col  gap-6 w-[1128px] rounded-lg mb-2 ml-6 bg-backgroundaccent ">
-        <div className="flex items-center justify-center gap-6">
-          <div className="flex flex-col justify-start h-[977px] w-[552px] mb-1 rounded-lg">
-            <div className="flex flex-col  w-full bg-background rounded-lg gap-6 p-4">
+      <div className="flex flex-col w-full gap-6 md:w-[1128px] rounded-lg mb-2 ml-6 bg-backgroundaccent  ">
+        {/* Sections left + right */}
+        <div className="flex flex-col sm:flex-col md:flex-row flex-wrap items-center justify-center gap-4 sm:gap-6 lg:gap-8 w-full">
+          {/* left section */}
+          <div className="flex flex-col h-[-webkit-fill-available] justify-start w-full md:w-[552px] bg-backgroundaccent mb-1 rounded-lg gap-6 flex-1">
+            <div className="flex flex-col w-[343px] md:w-full bg-background rounded-lg gap-6 p-4">
               <p className="font-poppins text-[16px] font-semibold">
                 Product Selection
               </p>
-              <div className="max-w-md">
+              <div className="w-full md:max-w-md">
                 <TextInput
                   id="product-name"
                   type="text"
@@ -240,7 +362,7 @@ const NewOrderPage = () => {
                   required
                 />
               </div>
-              <div className="flex flex-col space-y-6">
+              <div className="flex flex-col space-y-6 !text-foreground !dark:text-foreground">
                 {/* Row 1: Category + Status */}
                 <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8">
                   {/* Category */}
@@ -253,7 +375,7 @@ const NewOrderPage = () => {
                         label=""
                         dismissOnClick={false}
                         renderTrigger={() => (
-                          <div className="flex flex-wrap w-[338px] h-[40px] items-center border border-gray-300 rounded-lg min-h-[42px] cursor-pointer">
+                          <div className="flex flex-wrap w-full md:w-[338px] h-[40px] items-center border border-gray-300 rounded-lg min-h-[42px] cursor-pointer">
                             {selectedCategories.map((category) => (
                               <div key={category} className={selectedItemStyle}>
                                 <span>{category}</span>
@@ -314,12 +436,12 @@ const NewOrderPage = () => {
                     <label className="text-lg font-poppins font-semibold text-[12px] mb-2">
                       Status
                     </label>
-                    <div className="relative w-[150px] h-[40px]">
+                    <div className="relative w-full md:w-[150px] h-[40px]">
                       <Dropdown
                         label=""
                         dismissOnClick={true}
                         renderTrigger={() => (
-                          <div className="flex flex-wrap w-[150px] h-[40px] items-center border border-gray-300 rounded-lg min-h-[42px] cursor-pointer">
+                          <div className="flex flex-wrap w-full md:w-[150px] h-[40px] items-center border border-gray-300 rounded-lg min-h-[42px] cursor-pointer">
                             {selectedStatus && (
                               <div className={selectedItemStyle}>
                                 <span className="truncate max-w-[calc(100%-16px)]">
@@ -386,7 +508,7 @@ const NewOrderPage = () => {
                         label=""
                         dismissOnClick={false}
                         renderTrigger={() => (
-                          <div className="flex flex-wrap w-[338px] h-[40px] items-center border border-gray-300 rounded-lg min-h-[42px] cursor-pointer">
+                          <div className="flex flex-wrap w-full md:w-[338px] h-[40px] items-center border border-gray-300 rounded-lg min-h-[42px] cursor-pointer">
                             {selectedProductName.map((product) => (
                               <div key={product} className={selectedItemStyle}>
                                 <span className="truncate max-w-[calc(100%-16px)]">
@@ -446,16 +568,16 @@ const NewOrderPage = () => {
                   </div>
 
                   {/* Extras */}
-                  <div className="flex flex-col">
+                  <div className="flex flex-col !text-foreground !dark:text-foreground">
                     <label className=" text-lg font-poppins font-semibold text-[12px] mb-2">
                       Extras
                     </label>
-                    <div className="relative w-[150px] h-[40px]">
+                    <div className="relative w-full md:w-[150px] h-[40px]">
                       <Dropdown
                         label=""
                         dismissOnClick={true}
                         renderTrigger={() => (
-                          <div className="flex flex-wrap w-[150px] h-[40px] items-center border border-gray-300 rounded-lg min-h-[42px] cursor-pointer">
+                          <div className="flex flex-wrap w-full md:w-[150px] h-[40px] items-center border border-gray-300 rounded-lg min-h-[42px] cursor-pointer">
                             {selectedExtras && (
                               <div className={selectedItemStyle}>
                                 <span className="truncate max-w-[calc(100%-16px)]">
@@ -512,12 +634,12 @@ const NewOrderPage = () => {
               </div>
 
               {/* Quantity Selector */}
-              <div className="flex items-center space-x-4 w-[504px] h-[44px] ">
+              <div className="flex items-center space-x-4 w-full md:w-[504px] h-[44px] ">
                 <label className="text-[16px] font-semibold">Quantity</label>
-                <div className="flex items-center justify-center border rounded-md overflow-hidden shadow-sm w-[283px] h-[37px] border-[#D1D5DB]">
+                <div className="flex items-center justify-center border rounded-md overflow-hidden shadow-sm w-full md:w-[283px] h-[37px] border-[#D1D5DB]">
                   <button
                     onClick={decrease}
-                    className=" pt-1 text-lg text-foreground bg-forminputs hover:bg-forminputs w-[95px] h-[37px]"
+                    className=" pt-1 text-lg text-foreground bg-forminputs hover:bg-forminputs w-full md:w-[95px] h-[37px]"
                   >
                     −
                   </button>
@@ -526,34 +648,34 @@ const NewOrderPage = () => {
                       type="text"
                       value={quantity}
                       readOnly
-                      className="text-center text-sm focus:outline-none w-[95px] h-[37px]"
+                      className="text-center text-sm focus:outline-none w-full md:w-[95px] h-[37px]"
                     />
                   </div>
                   <button
                     onClick={increase}
-                    className=" pt-1 text-lg text-foreground bg-forminputs hover:bg-forminputs w-[95px] h-[37px]"
+                    className=" pt-1 text-lg text-foreground bg-forminputs hover:bg-forminputs w-full md:w-[95px] h-[37px]"
                   >
                     +
                   </button>
                 </div>
-                <button className="bg-custombtn4 text-white px-6 py-2 rounded-md text-sm font-medium w-[101px] border border-inputborder">
+                <button className="bg-custombtn4 text-white px-6 py-2 rounded-md text-sm font-medium w-full md:w-[101px] border border-inputborder">
                   Add
                 </button>
               </div>
             </div>
 
-            <div className="flex flex-col h-[588px] w-full bg-background rounded-lg gap-6 mt-6 p-4">
+            <div className="flex flex-col  w-[343px] md:w-full bg-background rounded-lg gap-6 mt-6 p-4 !text-foreground !dark:text-foreground">
               <div className="flex flex-row h-[22px] w-full bg-background rounded-lg gap-6 ">
                 <p className="font-poppins text-[16px] font-semibold">
                   Customer Information
                 </p>
               </div>
-              <div className="flex max-w-md flex-row gap-4">
-                <div className="w-[244px] h-[65px]">
+              <div className="flex flex-col max-w-md md:flex-row gap-4 !text-foreground !dark:text-foreground">
+                <div className="w-full md:w-[244px] h-[65px]">
                   <div className="mb-2 block ">
                     <Label
                       htmlFor="Name"
-                      className="font-poppins text-[12px] font-semibold"
+                      className="font-poppins text-[12px] font-semibold !text-foreground !dark:text-foreground"
                     >
                       Name
                     </Label>
@@ -568,11 +690,11 @@ const NewOrderPage = () => {
                     required
                   />
                 </div>
-                <div className="w-[244px] h-[65px]">
+                <div className="w-full md:w-[244px] h-[65px]">
                   <div className="mb-2 block ">
                     <Label
                       htmlFor="LastName"
-                      className="font-poppins text-[12px] font-semibold"
+                      className="font-poppins text-[12px] font-semibold !text-foreground !dark:text-foreground"
                     >
                       Last
                     </Label>
@@ -588,11 +710,11 @@ const NewOrderPage = () => {
                   />
                 </div>
               </div>
-              <div className="max-w-md w-[504px] h-[65px]">
+              <div className="max-w-md  w-full md:w-[504px] h-[65px]">
                 <div className="mb-2 block">
                   <Label
                     htmlFor="email4"
-                    className="font-poppins text-[12px] font-semibold"
+                    className="font-poppins text-[12px] font-semibold !text-foreground !dark:text-foreground"
                   >
                     Contact Email
                   </Label>
@@ -609,7 +731,7 @@ const NewOrderPage = () => {
               <div className="max-w-md">
                 <label
                   htmlFor="phone"
-                  className="block mb-2 font-poppins text-[12px] font-semibold"
+                  className="block mb-2 font-poppins text-[12px] font-semibold !text-foreground !dark:text-foreground"
                 >
                   Phone Number
                 </label>
@@ -705,20 +827,20 @@ const NewOrderPage = () => {
               <div className="flex flex-col gap-4">
                 <label
                   htmlFor="address"
-                  className="block mb-2 text-[16px] font-poppins font-semibold "
+                  className="block mb-2 text-[16px] font-poppins font-semibold !text-foreground !dark:text-foreground "
                 >
                   Customer Address
                 </label>
               </div>
-              <div className="flex space-x-4">
+              <div className="flex flex-col md:flex-row space-x-4 gap-4">
                 {/* Country Dropdown */}
-                <div className="relative w-48">
+                <div className="relative w-full md:w-48">
                   <Dropdown
                     label=""
                     renderTrigger={() => (
-                      <div className="flex items-center justify-between border border-gray-300 rounded-lg px-4 py-2 w-full cursor-pointer">
+                      <div className="flex items-center justify-between border border-gray-300 rounded-lg px-4 py-2 w-[295px] md:w-full cursor-pointer">
                         <div className="flex items-center space-x-2">
-                          <div className="shrink-0 z-10 inline-flex items-center  text-sm font-medium text-center">
+                          <div className="shrink-0 z-10 inline-flex items-center  text-sm font-medium text-center bg-background ">
                             <svg
                               fill="none"
                               aria-hidden="true"
@@ -913,11 +1035,14 @@ const NewOrderPage = () => {
                 </div>
 
                 {/* City Dropdown */}
-                <div className="relative w-48">
+                <div className="relative w-full md:w-48">
                   <Dropdown
                     label=""
                     renderTrigger={() => (
-                      <div className="flex items-center justify-between border border-gray-300 rounded-lg px-4 py-2 w-full cursor-pointer">
+                      <div
+                        className="flex items-center justify-between border border-gray-300 rounded-lg px-4 py-2 
+                      w-[295px] md:w-full cursor-pointer"
+                      >
                         <span className=" font-medium">{selectedCity}</span>
                         <ChevronDown className="h-4 w-4 text-gray-600" />
                       </div>
@@ -935,11 +1060,11 @@ const NewOrderPage = () => {
                   </Dropdown>
                 </div>
               </div>
-              <div className="max-w-md w-[528px] h-[58px] mb-4">
+              <div className="max-w-md   w-full md:w-[528px] h-[58px] mb-4">
                 <div className="mb-2 block">
                   <Label
                     htmlFor="Address"
-                    className="font-poppins text-[12px] font-semibold"
+                    className="font-poppins text-[12px] font-semibold !text-foreground !dark:text-foreground"
                   >
                     Address
                   </Label>
@@ -957,29 +1082,30 @@ const NewOrderPage = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col justify-start h-[977px] w-[552px] bg-backgroundaccent mb-1 rounded-lg gap-6">
-            <div className="flex flex-col rounded-lg gap-6 p-4 bg-background">
+          {/* right section */}
+          <div className="flex flex-col justify-start w-full md:w-[552px] bg-backgroundaccent mb-1 rounded-lg gap-6">
+            <div className="flex flex-col w-[340px] md:w-full rounded-lg gap-6 p-4 bg-background">
               {/* Order Details Section */}
-              <div className="w-[504px] flex flex-col bg-background rounded-lg gap-6">
-                <div className="w-[504px] h-[22px]">
+              <div className=" w-full md:w-[504px] flex flex-col bg-background rounded-lg gap-6">
+                <div className="w-full md:w-[504px] h-[22px]">
                   <p className="font-poppins font-semibold text-[16px]">
                     Order Details
                   </p>
                 </div>
-                <div className="w-[504px]">
+                <div className="w-[292px] md:w-[504px]">
                   <Table hoverable theme={TableTheme}>
                     <TableHead>
-                      <TableRow className="w-[97.75px] h-[49px]">
+                      <TableRow className="w-full md:w-[97.75px] h-[49px]">
                         <TableHeadCell className="font-poppins font-semibold text-[14px]">
                           Product
                         </TableHeadCell>
                         <TableHeadCell className="font-poppins font-semibold text-[14px]">
                           Item
                         </TableHeadCell>
-                        <TableHeadCell className="font-poppins font-semibold text-[14px]">
+                        <TableHeadCell className="font-poppins font-semibold text-[14px] hidden md:table-cell">
                           Extras
                         </TableHeadCell>
-                        <TableHeadCell className="font-poppins font-semibold text-[14px]">
+                        <TableHeadCell className="font-poppins font-semibold text-[14px] hidden md:table-cell">
                           Price
                         </TableHeadCell>
                         <TableHeadCell className="font-poppins font-semibold text-[14px]">
@@ -991,28 +1117,33 @@ const NewOrderPage = () => {
                       </TableRow>
                     </TableHead>
                     <TableBody className="divide-y">
-                      {/* Table Rows... */}
                       <TableRow className="bg-background border-inputborder">
                         <TableCell className="whitespace-nowrap font-poppins text-[12px]">
                           Risstretto
                         </TableCell>
                         <TableCell>1</TableCell>
-                        <TableCell>Milk</TableCell>
-                        <TableCell>65</TableCell>
+                        <TableCell className="hidden md:table-cell">
+                          Milk
+                        </TableCell>
+                        <TableCell className="hidden md:table-cell">
+                          65
+                        </TableCell>
                         <TableCell>65</TableCell>
                         <TableCell>
                           <TrashIcon />
                         </TableCell>
                       </TableRow>
                       <TableRow className="bg-background border-inputborder">
-                        <TableCell className="whitespace-nowrap font-poppins font-normal test-[12px]">
+                        <TableCell className="whitespace-nowrap font-poppins font-normal text-[12px]">
                           Mango(S)
                         </TableCell>
                         <TableCell>2</TableCell>
-                        <TableCell className="whitespace-nowrap">
+                        <TableCell className="hidden md:table-cell">
                           No Extras
                         </TableCell>
-                        <TableCell>35</TableCell>
+                        <TableCell className="hidden md:table-cell">
+                          35
+                        </TableCell>
                         <TableCell>70</TableCell>
                         <TableCell>
                           <a
@@ -1024,12 +1155,16 @@ const NewOrderPage = () => {
                         </TableCell>
                       </TableRow>
                       <TableRow className="bg-background border-inputborder">
-                        <TableCell className="whitespace-nowrap font-poppins font-normal test-[12px]">
+                        <TableCell className="whitespace-nowrap font-poppins font-normal text-[12px]">
                           Cold Bre..
                         </TableCell>
                         <TableCell>1</TableCell>
-                        <TableCell>No Extras</TableCell>
-                        <TableCell>55</TableCell>
+                        <TableCell className="hidden md:table-cell">
+                          No Extras
+                        </TableCell>
+                        <TableCell className="hidden md:table-cell">
+                          55
+                        </TableCell>
                         <TableCell>55</TableCell>
                         <TableCell>
                           <a
@@ -1041,12 +1176,16 @@ const NewOrderPage = () => {
                         </TableCell>
                       </TableRow>
                       <TableRow className="bg-background border-inputborder">
-                        <TableCell className="whitespace-nowrap font-poppins font-normal test-[12px]">
+                        <TableCell className="whitespace-nowrap font-poppins font-normal text-[12px]">
                           Mojito
                         </TableCell>
                         <TableCell>1</TableCell>
-                        <TableCell>No Extras</TableCell>
-                        <TableCell>60</TableCell>
+                        <TableCell className="hidden md:table-cell">
+                          No Extras
+                        </TableCell>
+                        <TableCell className="hidden md:table-cell">
+                          60
+                        </TableCell>
                         <TableCell>60</TableCell>
                         <TableCell>
                           <a
@@ -1057,7 +1196,6 @@ const NewOrderPage = () => {
                           </a>
                         </TableCell>
                       </TableRow>
-                      {/* Add more rows as needed */}
                     </TableBody>
                   </Table>
                 </div>
@@ -1065,7 +1203,7 @@ const NewOrderPage = () => {
               </div>
 
               {/* Text Under the Table */}
-              <div className="w-[504px]  flex flex-col bg-background rounded-lg gap-4 ">
+              <div className="w-full md:w-[504px]  flex flex-col bg-background rounded-lg gap-4 ">
                 <p className="font-poppins font-semibold text-[16px]">
                   Payment Method
                 </p>
@@ -1074,7 +1212,7 @@ const NewOrderPage = () => {
                   <div className="flex flex-col">
                     <Label
                       htmlFor="discount"
-                      className="mb-1 font-semibold text-[14px] font-poppins"
+                      className="mb-1 font-semibold text-[14px] font-poppins !text-foreground !dark:text-foreground"
                     >
                       Discount
                     </Label>
@@ -1086,13 +1224,13 @@ const NewOrderPage = () => {
                     >
                       <option
                         value="WELCOME10"
-                        className="font-normal text-[14px] font-poppins"
+                        className="font-normal text-[14px] font-poppins !text-foreground !dark:text-foreground"
                       >
                         WELCOME10
                       </option>
                       <option
                         value="SAVE15"
-                        className="font-normal text-[14px] font-poppins"
+                        className="font-normal text-[14px] font-poppins !text-foreground !dark:text-foreground"
                       >
                         SAVE15
                       </option>
@@ -1103,7 +1241,7 @@ const NewOrderPage = () => {
                   <div className="flex flex-col">
                     <Label
                       htmlFor="promo"
-                      className="mb-1 font-semibold text-[14px] font-poppins"
+                      className="mb-1 font-semibold text-[14px] font-poppins !text-foreground !dark:text-foreground"
                     >
                       Promo
                     </Label>
@@ -1122,7 +1260,7 @@ const NewOrderPage = () => {
                   <div className="flex flex-col">
                     <Label
                       htmlFor="payment"
-                      className="mb-1 font-semibold text-[14px] font-poppins"
+                      className="mb-1 font-semibold text-[14px] font-poppins !text-foreground !dark:text-foreground"
                     >
                       Payment
                     </Label>
@@ -1134,19 +1272,19 @@ const NewOrderPage = () => {
                     >
                       <option
                         value="Visa"
-                        className="font-normal text-[14px] font-poppins"
+                        className="font-normal text-[14px] font-poppins !text-foreground !dark:text-foreground"
                       >
                         Visa
                       </option>
                       <option
                         value="Mastercard"
-                        className="font-normal text-[14px] font-poppins"
+                        className="font-normal text-[14px] font-poppins !text-foreground !dark:text-foreground"
                       >
                         Mastercard
                       </option>
                       <option
                         value="Paypal"
-                        className="font-normal text-[14px] font-poppins"
+                        className="font-normal text-[14px] font-poppins !text-foreground !dark:text-foreground"
                       >
                         Paypal
                       </option>
@@ -1157,7 +1295,7 @@ const NewOrderPage = () => {
                   <div className="flex flex-col">
                     <Label
                       htmlFor="orderStatus"
-                      className="mb-1 font-semibold text-[14px] font-poppins"
+                      className="mb-1 font-semibold text-[14px] font-poppins !text-foreground !dark:text-foreground"
                     >
                       Order Status
                     </Label>
@@ -1191,13 +1329,13 @@ const NewOrderPage = () => {
                 </div>
                 {/* OrderSummery */}
                 <div>
-                  <p className="font-poppins font-semibold text-[16px]">
+                  <p className="font-poppins font-semibold text-[16px] !text-foreground !dark:text-foreground">
                     Order Summary
                   </p>
-                  <div className="w-[504px] bg-background rounded-lg p-2 ">
+                  <div className="w-full md:w-[504px] bg-background rounded-lg p-2 ">
                     {/* Subtotal */}
                     <div className="flex justify-between mb-2">
-                      <p className="text-[12px] font-semibold font-poppins">
+                      <p className="text-[12px] font-semibold font-poppins !text-foreground !dark:text-foreground">
                         Subtotal :
                       </p>
                       <p className="text-[12px] font-normal font-poppins">
@@ -1207,7 +1345,7 @@ const NewOrderPage = () => {
 
                     {/* Discount */}
                     <div className="flex justify-between mb-2">
-                      <p className="text-[12px] font-semibold font-poppins">
+                      <p className="text-[12px] font-semibold font-poppins !text-foreground !dark:text-foreground">
                         Discount (10%):
                       </p>
                       <p className="text-[12px] font-normal font-poppins ">
@@ -1217,7 +1355,7 @@ const NewOrderPage = () => {
 
                     {/* VAT */}
                     <div className="flex justify-between mb-4">
-                      <p className="text-[12px] font-semibold font-poppins">
+                      <p className="text-[12px] font-semibold font-poppins !text-foreground !dark:text-foreground">
                         VAT (14%):
                       </p>
                       <p className="text-[12px] font-normal font-poppins">
@@ -1240,13 +1378,13 @@ const NewOrderPage = () => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col rounded-lg gap-6 p-4 bg-background">
+            <div className="w-[340px] md:w-full flex flex-col rounded-lg gap-6 p-4 bg-background">
               <div className=" bg-background">
                 <div className="max-w-md">
                   <div className="mb-2 block">
                     <Label
                       htmlFor="comment"
-                      className="font-poppins text-[16px] font-semibold text-[#244937]"
+                      className="font-poppins text-[16px] font-semibold !text-foreground !dark:text-foreground"
                     >
                       Order Notes
                     </Label>
@@ -1258,17 +1396,18 @@ const NewOrderPage = () => {
                     placeholder="Write text here ..."
                     required
                     rows={4}
-                    className="w-[504px]"
+                    className="w-full md:w-[504px]"
                   />
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="flex items-end justify-end mb-2 gap-6">
+        {/* buttons save and cancel */}
+        <div className="flex sm:flex-row md:flex-row md:justify-end gap-6 mt-4 md:mt-0 md:mb-2">
           <button
             type="button"
-            className="border border-arrowcolor text-arrowcolor px-6 py-2 rounded-md text-sm font-medium w-[168px]"
+            className="border border-arrowcolor text-arrowcolor px-6 py-2 rounded-md text-sm font-medium  w-[168px]"
           >
             Cancel
           </button>
@@ -1276,7 +1415,7 @@ const NewOrderPage = () => {
             type="submit"
             className="bg-custombtn2 text-white px-6 py-2 rounded-md text-sm font-medium w-[168px]"
           >
-            Create Order
+            Save Changes
           </button>
         </div>
       </div>
