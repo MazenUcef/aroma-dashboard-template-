@@ -37,6 +37,7 @@
   --custombackground: #999999;
   --usersicon: #244937;
   --textinput: #666666;
+  --backgroundNeutral: #ffffff;
 }
 
 @theme inline {
@@ -73,6 +74,7 @@
   --color-custombackground: var(--custombackground);
   --color-usersicon: var(--usersicon);
   --color-textinput: var(--textinput);
+  --color-backgroundNeutral: var(--backgroundNeutral);
 }
 
 .dark {
@@ -109,6 +111,7 @@
   --custombackground: #999999;
   --usersicon: #8e9aa4;
   --textinput: #e3e6e8;
+  --backgroundNeutral: #333333;
 }
 
 @layer base {
@@ -161,3 +164,4 @@ foreignObject {
   font-weight: 400;
   font-family: Inter, sans-serif;
 }
+
