@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import React, { useRef } from "react";
 import Cards from "./Cards";
 import {
@@ -166,33 +166,116 @@ const ReportsAnalytics = () => {
     Days: [5, 8, 6, 10, 4, 7, 9],
   };
 
-  const getCustomerAnalysisOptions = (): ApexCharts.ApexOptions => {
+  // Line chart options
+  const getLineChartOptions = (isDark: boolean): ApexCharts.ApexOptions => {
     return {
       chart: {
         type: "line",
         toolbar: { show: false },
         zoom: { enabled: false },
+        background: "transparent",
       },
       stroke: {
         curve: "smooth",
         width: 3,
       },
-      colors: ["#14532d", "#F97316"], // Dark green, Orange
+      // Green and orange in light mode, green and #E3E6E8 in dark mode
+      colors: isDark ? ["#14532d", "#E3E6E8"] : ["#14532d", "#ff8a42"],
       grid: {
-        borderColor: "#e5e7eb",
+        borderColor: isDark ? "#333843" : "#e5e7eb",
         strokeDashArray: 4,
       },
       xaxis: {
         categories: [],
-        labels: { style: { colors: "#9ca3af" } },
+        labels: { style: { colors: isDark ? "#d1d5db" : "#9ca3af" } },
+        axisBorder: { show: false },
+        axisTicks: { show: false },
       },
       yaxis: {
-        labels: { style: { colors: "#9ca3af" } },
+        labels: {
+          style: { colors: isDark ? "#d1d5db" : "#9ca3af" },
+          show: false,
+        },
       },
       legend: { show: false },
     };
   };
 
+  // Area chart options
+  const getAreaChartOptions = (isDark: boolean): ApexCharts.ApexOptions => {
+    // 🎨 Define theme colors
+    const lineColor = isDark ? "#F1F2F4" : "#244937"; // lighter green on dark, dark green on light
+    const bgColor = isDark ? "#244937" : "#ffffff"; // slate-900 vs white
+
+    return {
+      chart: {
+        type: "area",
+        toolbar: { show: false },
+        zoom: { enabled: false },
+      },
+      stroke: {
+        curve: "smooth",
+        width: 4,
+        colors: [lineColor],
+      },
+      fill: {
+        type: "gradient",
+        gradient: {
+          shadeIntensity: 1,
+          opacityFrom: 0.4,
+          opacityTo: 0,
+          stops: [0, 100],
+          colorStops: [
+            {
+              offset: 0,
+              color: lineColor,
+              opacity: 0.3,
+            },
+            {
+              offset: 100,
+              color: bgColor,
+              opacity: 0,
+            },
+          ],
+        },
+      },
+      colors: [lineColor],
+      grid: {
+        borderColor: "transparent",
+      },
+      xaxis: {
+        categories: [],
+        axisBorder: { show: false },
+        axisTicks: { show: false },
+        labels: { show: false },
+      },
+      yaxis: {
+        labels: { show: false },
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      legend: { show: false },
+      tooltip: {
+        enabled: true,
+        theme: isDark ? "dark" : "light",
+      },
+    };
+  };
+  const [isDark, setIsDark] = useState(
+    document.documentElement.classList.contains("dark")
+  );
+
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setIsDark(document.documentElement.classList.contains("dark"));
+    });
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+    return () => observer.disconnect();
+  }, []);
   // Function to return chart series based on filter
   const getCustomerAnalysisSeries = (view: "Years" | "Months" | "Days") => {
     switch (view) {
@@ -294,8 +377,8 @@ const ReportsAnalytics = () => {
         onClick={() => setRange(label)}
         className={
           active
-            ? "bg-[#DEF7EC] hover:bg-[#DEF7EC] text-gray-700 text-sm rounded-lg"
-            : "bg-white hover:bg-gray-50 text-gray-700 border border-gray-200 text-sm rounded-lg"
+            ? "bg-tabhover dark:bg-tabhover text-arrowcolor dark:text-arrowcolor hover:bg-backgroundtertiary dark:hover:bg-backgroundtertiary focus-visible:outline-none focus:ring-0 focus:ring-offset-0 dark:focus:ring-offset-0 dark:focus:ring-0"
+            : "bg-forminputs dark:bg-forminputs  hover:bg-backgroundtertiary dark:hover:bg-backgroundtertiary focus-visible:outline-none focus:ring-0 focus:ring-offset-0 dark:focus:ring-offset-0 dark:focus:ring-0"
         }
       >
         {label}
@@ -362,17 +445,19 @@ const ReportsAnalytics = () => {
     dataLabels: { enabled: false },
     legend: { show: false },
     grid: {
-      borderColor: "#f3f4f6",
-      strokeDashArray: 4,
+      show: false, // ⬅️ removes white lines
     },
     xaxis: {
       categories: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-      labels: { style: { fontSize: "14px", colors: "#374151" } },
+      labels: { style: { fontSize: "14px", colors: "#999999" } },
       axisBorder: { show: false },
       axisTicks: { show: false },
     },
     yaxis: {
       labels: { style: { fontSize: "14px", colors: "#6b7280" } },
+      axisBorder: { show: false },
+      axisTicks: { show: false },
+      show: false, // ⬅️ removes white lines
     },
   };
 
@@ -381,25 +466,166 @@ const ReportsAnalytics = () => {
   const [activeView, setActiveView] = useState<"Years" | "Months" | "Days">(
     "Months"
   );
-  const chartOptions = {
-    ...getCustomerAnalysisOptions(),
+  const lineChartOptions = {
+    ...getLineChartOptions(isDark),
     xaxis: {
       categories: getCustomerAnalysisCategories(activeView),
       labels: { style: { colors: "#9ca3af" } },
     },
   };
+
+  const areaChartOptions = {
+    ...getAreaChartOptions(isDark),
+    xaxis: {
+      categories: getCustomerAnalysisCategories(activeView),
+      labels: { style: { colors: "#9ca3af" } },
+    },
+  };
+
+  const selectTheme = {
+    base: "flex ",
+    addon:
+      "inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-200 px-3 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-600 dark:text-gray-400 ",
+    field: {
+      base: "relative w-full  ",
+      icon: {
+        base: "pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3",
+        svg: "h-5 w-5 text-gray-500 dark:text-gray-400",
+      },
+      select: {
+        base: "block w-full appearance-none border pr-10 focus:outline-none focus:ring-0 disabled:cursor-not-allowed disabled:opacity-50 ",
+        withIcon: {
+          on: "pl-10",
+          off: "",
+        },
+        withAddon: {
+          on: "rounded-r-lg",
+          off: "rounded-lg",
+        },
+        withShadow: {
+          on: "shadow-sm dark:shadow-sm-light",
+          off: "",
+        },
+        sizes: {
+          sm: "p-2 sm:text-xs",
+          md: "p-2.5 text-sm",
+          lg: "p-4 sm:text-base",
+        },
+        colors: {
+          gray: "border border-inputborder focus:border-inputborder dark:focus:border-inputborder dark:border-inputborder bg-forminputs dark:bg-forminputs text-foreground dark:text-foreground bg-[length:0.75em_0.75em] bg-[position:right_12px_center] bg-no-repeat bg-arrow-down-icon ",
+          info: " border-cyan-500 bg-cyan-50 text-cyan-900 placeholder-cyan-700 focus:border-cyan-500 focus:ring-cyan-500 dark:border-cyan-400 dark:bg-cyan-100 dark:focus:border-cyan-500 dark:focus:ring-cyan-500 bg-[length:0.75em_0.75em] bg-[position:right_12px_center] bg-no-repeat bg-arrow-down-icon",
+          failure:
+            " border-red-500 bg-red-50 text-red-900 placeholder-red-700 focus:border-red-500 focus:ring-red-500 dark:border-red-400 dark:bg-red-100 dark:focus:border-red-500 dark:focus:ring-red-500 bg-[length:0.75em_0.75em] bg-[position:right_12px_center] bg-no-repeat bg-arrow-down-icon",
+          warning:
+            " border-yellow-500 bg-yellow-50 text-yellow-900 placeholder-yellow-700 focus:border-yellow-500 focus:ring-yellow-500 dark:border-yellow-400 dark:bg-yellow-100 dark:focus:border-yellow-500 dark:focus:ring-yellow-500 bg-[length:0.75em_0.75em] bg-[position:right_12px_center] bg-no-repeat bg-arrow-down-icon",
+          success:
+            " border-green-500 bg-green-50 text-green-900 placeholder-green-700 focus:border-green-500 focus:ring-green-500 dark:border-green-400 dark:bg-green-100 dark:focus:border-green-500 dark:focus:ring-green-500 bg-[length:0.75em_0.75em] bg-[position:right_12px_center] bg-no-repeat bg-arrow-down-icon",
+        },
+      },
+    },
+  };
+  const datepickertheme = {
+    root: {
+      base: "relative w-full ", // Ensure it takes full width
+    },
+    input: {
+      base: "w-full rounded-lg !bg-forminputs dark:!bg-forminputs text-foreground dark:text-foreground placeholder-foreground dark:placeholder-foreground border border-gray-600 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 ",
+      field: "px-4 py-2 flex items-center justify-between ",
+      icon: "text-gray-400", // Calendar icon color
+    },
+    popup: {
+      root: {
+        base: "absolute top-12 z-50 block pt-2 ",
+        inline: "relative top-0 z-auto",
+        inner:
+          "inline-block rounded-lg bg-forminputs dark:bg-forminputs p-4 shadow-lg",
+      },
+      header: {
+        title: "px-2 py-3 text-center font-semibold text-white ",
+        selectors: {
+          base: "mb-2 flex justify-between",
+          button: {
+            base: "rounded-lg !bg-forminputs dark:!bg-forminputs  px-3 py-2 text-sm font-semibold text-foreground dark:text-foreground focus:outline-none focus:ring-2 focus:ring-primary-500 hover:bg-forminputs dark:hover:bg-forminputs ",
+          },
+        },
+      },
+      view: {
+        base: "p-1",
+      },
+      footer: {
+        base: "mt-2 flex space-x-2",
+        button: {
+          base: "w-full rounded-lg px-5 py-2 text-center text-sm font-medium focus:ring-4 focus:ring-primary-300",
+          today:
+            "bg-forminputs dark:bg-forminputs text-foreground dark:text-foreground  hover:bg-backgroundtertiary dark:hover:bg-backgroundtertiary ",
+          clear:
+            "border border-gray-500 bg-forminputs dark:bg-forminputs text-foreground dark:text-foreground  hover:bg-backgroundtertiary dark:hover:bg-backgroundtertiary ",
+        },
+      },
+    },
+    views: {
+      days: {
+        header: {
+          base: "mb-1 grid grid-cols-7",
+          title: "h-6 text-center text-sm font-medium leading-6 text-gray-400",
+        },
+        items: {
+          base: "grid w-64 grid-cols-7",
+          item: {
+            base: "block flex-1 cursor-pointer rounded-lg border-0 text-center text-sm font-semibold leading-9 bg-forminputs dark:bg-forminputs text-foreground dark:text-foreground hover:bg-backgroundtertiary dark:hover:bg-backgroundtertiary",
+            selected:
+              "bg-tabhover dark:bg-tabhover text-foreground dark:text-foreground hover:bg-backgroundtertiary dark:hover:bg-backgroundtertiary",
+            disabled: "text-gray-500",
+          },
+        },
+      },
+      months: {
+        items: {
+          base: "grid w-64 grid-cols-4",
+          item: {
+            base: "block flex-1 cursor-pointer rounded-lg border-0 text-center text-sm font-semibold leading-9 bg-forminputs dark:bg-forminputs text-foreground dark:text-foreground hover:bg-backgroundtertiary dark:hover:bg-backgroundtertiary",
+            selected:
+              "bg-tabhover dark:bg-tabhover text-foreground dark:text-foreground hover:bg-backgroundtertiary dark:hover:bg-backgroundtertiary",
+            disabled: "text-gray-500",
+          },
+        },
+      },
+      years: {
+        items: {
+          base: "grid w-64 grid-cols-4",
+          item: {
+            base: "block flex-1 cursor-pointer rounded-lg border-0 text-center text-sm font-semibold leading-9 bg-forminputs dark:bg-forminputs text-foreground dark:text-foreground  hover:bg-backgroundtertiary dark:hover:bg-backgroundtertiary",
+            selected:
+              "bg-tabhover dark:bg-tabhover text-foreground dark:text-foreground  hover:bg-backgroundtertiary dark:hover:bg-backgroundtertiary",
+            disabled: "text-gray-500",
+          },
+        },
+      },
+      decades: {
+        items: {
+          base: "grid w-64 grid-cols-4",
+          item: {
+            base: "block flex-1 cursor-pointer rounded-lg border-0 text-center text-sm font-semibold leading-9 bg-forminputs dark:bg-forminputs text-foreground dark:text-foreground hover:bg-backgroundtertiary dark:hover:bg-backgroundtertiary",
+            selected:
+              "bg-tabhover dark:bg-tabhover text-foreground dark:text-foreground  hover:bg-backgroundtertiary dark:hover:bg-backgroundtertiary",
+            disabled: "text-gray-500",
+          },
+        },
+      },
+    },
+  };
   return (
     <div className="m-4 ">
       <div
-        className="flex items-center justify-between bg-white p-4 rounded-lg shadow-sm mb-6 
+        className="flex items-center justify-between bg-backgroundNeutral dark:bg-backgroundNeutral p-4 rounded-lg shadow-sm mb-6 
       w-full md:w-[1128px]"
       >
         {/* Left Section */}
         <div>
-          <h2 className="text-lg font-semibold text-gray-900 mb-1">
+          <h2 className="text-lg font-semibold text-foreground dark:text-foreground mb-1">
             Analytics & Reports
           </h2>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-foreground dark:text-foreground">
             Subheading: "Business performance insights and metrics"
           </p>
         </div>
@@ -409,18 +635,47 @@ const ReportsAnalytics = () => {
           inline
           label=""
           renderTrigger={() => (
-            <button className="p-2 border border-gray-300 rounded-md hover:bg-gray-100 focus:outline-none">
+            <button
+              type="button"
+              className="p-2 border border-gray-300 
+                 rounded-md focus:outline-none
+                 bg-background dark:bg-background text-foreground dark:text-foreground
+                 hover:bg-backgroundaccent dark:hover:bg-backgroundaccent
+                 focus:bg-backgroundaccent dark:focus:bg-backgroundaccent
+                 dark:hover:text-white dark:focus:text-white"
+            >
               <NewUploadIcon />
             </button>
           )}
+          className="bg-backgroundNeutral dark:bg-backgroundNeutral border border-gray-300 dark:border-gray-600 rounded-md"
         >
-          <DropdownItem onClick={() => alert("Export as CSV")}>
+          <DropdownItem
+            className="bg-background dark:bg-background text-foreground dark:text-foreground 
+               hover:bg-backgroundaccent dark:hover:bg-backgroundaccent
+               focus:bg-backgroundaccent dark:focus:bg-backgroundaccent 
+               dark:hover:text-white dark:focus:text-white"
+            onClick={() => alert("Export as CSV")}
+          >
             Export as CSV
           </DropdownItem>
-          <DropdownItem onClick={() => alert("Export as Excel")}>
+
+          <DropdownItem
+            className="bg-background dark:bg-background text-foreground dark:text-foreground 
+               hover:bg-backgroundaccent dark:hover:bg-backgroundaccent
+               focus:bg-backgroundaccent dark:focus:bg-backgroundaccent 
+               dark:hover:text-white dark:focus:text-white"
+            onClick={() => alert("Export as Excel")}
+          >
             Export as Excel
           </DropdownItem>
-          <DropdownItem onClick={() => fileInputRef.current?.click()}>
+
+          <DropdownItem
+            className="bg-background dark:bg-background text-foreground dark:text-foreground 
+               hover:bg-backgroundaccent dark:hover:bg-backgroundaccent
+               focus:bg-backgroundaccent dark:focus:bg-backgroundaccent 
+               dark:hover:text-white dark:focus:text-white"
+            onClick={() => fileInputRef.current?.click()}
+          >
             Upload File
           </DropdownItem>
         </Dropdown>
@@ -433,29 +688,32 @@ const ReportsAnalytics = () => {
           className="hidden"
         />
       </div>
-      <div
-        className="flex flex-wrap bg-white p-4 gap-6 rounded-lg shadow-sm mb-6 w-full md:w-[1128px]"
-      >
+      <div className="flex flex-wrap bg-background dark:bg-background p-4 gap-6 rounded-lg shadow-sm mb-6 w-full md:w-[1128px]">
         {/* Date Range */}
-        <div className="flex flex-col w-full md:w-[245px]">
-          <label className="mb-1 text-base font-poppins font-semibold">
+        <div className="flex flex-col w-full md:w-[245px] ">
+          <label className="mb-1 text-base font-poppins font-semibold text-foreground dark:text-foreground">
             Date Range
           </label>
           <Datepicker
+            theme={datepickertheme}
+            placeholder="Select date"
             defaultValue={today}
             value={dateRange}
             onChange={(date: Date | null) => setDateRange(date)}
-            className="w-full"
+            className="w-full bg-forminputs dark:bg-forminputs text-foreground dark:text-foreground"
           />
         </div>
 
         {/* Categories */}
         <div className="flex flex-col w-full md:w-[245px]">
-          <label className="mb-1 text-sm font-semibold">Categories</label>
+          <label className="mb-1 text-base font-semibold text-foreground dark:text-foreground">
+            Categories
+          </label>
           <Select
+            theme={selectTheme}
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-            className="w-full"
+            className="w-full bg-background dark:bg-background text-foreground dark:text-foreground"
           >
             <option>All Categories</option>
             <option>Category 1</option>
@@ -465,10 +723,11 @@ const ReportsAnalytics = () => {
 
         {/* Branches */}
         <div className="flex flex-col  w-full md:w-[245px]">
-          <label className="mb-1 text-base font-poppins font-semibold">
+          <label className="mb-1 text-base font-poppins font-semibold text-foreground dark:text-foreground">
             Branches
           </label>
           <Select
+            theme={selectTheme}
             value={branch}
             onChange={(e) => setBranch(e.target.value)}
             className="w-full"
@@ -481,10 +740,11 @@ const ReportsAnalytics = () => {
 
         {/* Comparison */}
         <div className="flex flex-col w-full md:w-[245px]">
-          <label className="mb-1 text-base font-poppins font-semibold">
+          <label className="mb-1 text-base font-poppins font-semibold text-foreground dark:text-foreground">
             Comparison
           </label>
           <Select
+            theme={selectTheme}
             value={comparison}
             onChange={(e) => setComparison(e.target.value)}
             className="w-full"
@@ -499,20 +759,22 @@ const ReportsAnalytics = () => {
         <Cards />
       </div>
       <div className="flex flex-col md:flex-row gap-6 w-full ">
-        <div className="w-full max-w-[552px] rounded-xl bg-white p-4 sm:p-5 shadow-sm border border-gray-100 ">
+        <div className="w-full max-w-[552px] rounded-xl bg-background dark:bg-background p-4 sm:p-5 shadow-sm ">
           {/* Header */}
           <div className="flex justify-between items-center mb-3">
-            <h5 className="text-sm font-medium text-gray-500">Sales Trend</h5>
+            <h5 className="text-sm font-medium text-foreground dark:text-foreground">
+              Sales Trend
+            </h5>
             <div className="flex gap-1">
               {(["Years", "Months", "Days"] as const).map((tab) => (
                 <Button
                   key={tab}
                   size="xs"
                   color="light"
-                  className={`rounded-lg px-3 py-1 text-xs ${
+                  className={`rounded-lg px-3 py-1 text-xs focus-visible:outline-none focus:ring-0 focus:ring-offset-0 dark:focus:ring-offset-0 dark:focus:ring-0 ${
                     activeTab === tab
-                      ? "bg-green-100 text-green-700"
-                      : "bg-gray-100 text-gray-600"
+                      ? "bg-tabhover dark:bg-tabhover text-arrowcolor dark:text-arrowcolor hover:bg-backgroundtertiary dark:hover:bg-backgroundtertiary focus-visible:outline-none focus:ring-0 focus:ring-offset-0 dark:focus:ring-offset-0 dark:focus:ring-0"
+                      : "bg-forminputs dark:bg-forminputs text-foreground dark:text-foreground  hover:bg-backgroundtertiary dark:hover:bg-backgroundtertiary focus-visible:outline-none focus:ring-0 focus:ring-offset-0 dark:focus:ring-offset-0 dark:focus:ring-0s"
                   }`}
                   onClick={() => setActiveTab(tab)}
                 >
@@ -525,16 +787,22 @@ const ReportsAnalytics = () => {
           {/* Users count */}
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="text-2xl font-bold">32.4k</h3>
-              <p className="text-sm text-gray-500">Users this week</p>
+              <h3 className="text-2xl font-bold text-foreground dark:text-foreground">
+                32.4k
+              </h3>
+              <p className="text-sm text-foreground dark:text-foreground">
+                Users this week
+              </p>
             </div>
-            <span className="text-green-500 text-sm font-medium">12% ↑</span>
+            <span className="text-tabtext dark:text-tabtext text-sm font-medium">
+              12% ↑
+            </span>
           </div>
 
           {/* Chart */}
           <div className="mt-4">
             <Chart
-              options={chartOptions}
+              options={areaChartOptions}
               series={chartSeries}
               type="area"
               height={250}
@@ -543,16 +811,20 @@ const ReportsAnalytics = () => {
 
           {/* Footer */}
           <div className="flex justify-between items-center  mt-3 text-sm">
-            <span className="text-gray-500 cursor-pointer">Last 7 days ▼</span>
-            <span className="text-green-700 font-medium cursor-pointer">
+            <span className="text-foreground dark:text-foreground cursor-pointer">
+              Last 7 days ▼
+            </span>
+            <span className="text-tabtext dark:text-tabtext font-medium cursor-pointer">
               USERS REPORT →
             </span>
           </div>
         </div>
-        <div className="w-full max-w-[552px] rounded-xl bg-white p-4 sm:p-5 shadow-sm border border-gray-100">
+        <div className="w-full max-w-[552px] rounded-xl bg-background dark:bg-background p-4 sm:p-5 shadow-sm ">
           {/* Header */}
           <div className="flex items-center justify-between">
-            <h3 className="text-gray-900 font-semibold">Sales by Category</h3>
+            <h3 className="text-foreground dark:text-foreground font-semibold">
+              Sales by Category
+            </h3>
             <div className="flex gap-2 ">
               <FilterButton label="Years" />
               <FilterButton label="Months" />
@@ -563,7 +835,7 @@ const ReportsAnalytics = () => {
           {/* Subtitle + device filters */}
           <div className="mt-3 flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <span className="text-gray-900 font-semibold">
+              <span className="text-foreground dark:text-foreground font-semibold">
                 Website traffic
               </span>
             </div>
@@ -571,12 +843,12 @@ const ReportsAnalytics = () => {
               {DEVICES.map((d) => (
                 <label
                   key={d}
-                  className="flex items-center gap-2 text-sm text-gray-700 select-none"
+                  className="flex items-center gap-2 text-sm text-foreground dark:text-foreground select-none accent-switch dark:accent-switch checked:border-transparent focus:ring-0 "
                 >
                   <Checkbox
                     checked={selectedDevices.includes(d)}
                     onChange={() => toggleDevice(d)}
-                    className="rounded border-gray-300"
+                    className="rounded accent-switch dark:accent-switch checked:border-transparent focus:ring-0 "
                   />
                   {d}
                 </label>
@@ -593,8 +865,12 @@ const ReportsAnalytics = () => {
               height={260}
             />
             <div className="absolute flex flex-col items-center">
-              <span className="text-2xl font-bold">{compactNumber(total)}</span>
-              <span className="text-xs text-gray-500">Unique visitors</span>
+              <span className="text-2xl font-bold text-foreground dark:text-foreground">
+                {compactNumber(total)}
+              </span>
+              <span className="text-xs text-foreground dark:text-foreground">
+                Unique visitors
+              </span>
             </div>
           </div>
 
@@ -603,7 +879,7 @@ const ReportsAnalytics = () => {
             {CHANNELS.map((ch, i) => (
               <div
                 key={ch}
-                className="flex items-center gap-1 text-sm text-gray-700"
+                className="flex items-center gap-1 text-sm text-foreground dark:text-foreground cursor-pointer select-none"
               >
                 <span
                   className="inline-block w-2.5 h-2.5 rounded-full"
@@ -615,22 +891,22 @@ const ReportsAnalytics = () => {
           </div>
         </div>
       </div>
-      <div className="bg-white rounded-xl shadow-sm p-4 w-full md:w-[1128px] mt-6">
+      <div className="bg-background dark:bg-background rounded-xl shadow-sm p-4 w-full md:w-[1128px] mt-6">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-4 gap-3">
-          <h2 className="font-semibold text-gray-900 text-lg">
+          <h2 className="font-semibold text-foreground dark:text-foreground text-lg">
             Operational Metrics
           </h2>
-          <div className="flex space-x-1 bg-gray-100 rounded-lg p-1 self-start md:self-auto">
+          <div className="flex space-x-1  rounded-lg p-1 self-start md:self-auto">
             {periods.map((period) => (
               <Button
                 key={period}
                 size="xs"
                 color="light"
-                className={`rounded-md px-3 py-1 text-sm font-medium ${
+                className={`rounded-lg px-3 py-1 text-xs focus-visible:outline-none focus:ring-0 focus:ring-offset-0 dark:focus:ring-offset-0 dark:focus:ring-0 ${
                   selectedPeriod === period
-                    ? "bg-green-100 text-gray-900"
-                    : "bg-transparent text-gray-700"
+                    ? "bg-tabhover dark:bg-tabhover text-arrowcolor dark:text-arrowcolor hover:bg-backgroundtertiary dark:hover:bg-backgroundtertiary focus-visible:outline-none focus:ring-0 focus:ring-offset-0 dark:focus:ring-offset-0 dark:focus:ring-0"
+                    : "bg-forminputs dark:bg-forminputs text-foreground dark:text-foreground hover:bg-backgroundtertiary dark:hover:bg-backgroundtertiary focus-visible:outline-none focus:ring-0 focus:ring-offset-0 dark:focus:ring-offset-0 dark:focus:ring-0"
                 }`}
                 onClick={() => setSelectedPeriod(period)}
               >
@@ -645,7 +921,7 @@ const ReportsAnalytics = () => {
           {metrics.map((metric) => (
             <div
               key={metric.label}
-              className="bg-gray-50 rounded-xl p-4 flex flex-col justify-between"
+              className="bg-forminputs dark:bg-forminputs rounded-xl p-4 flex flex-col justify-between"
             >
               <div className="flex items-baseline justify-between">
                 <span className="text-[#FF8A42] font-semibold text-lg">
@@ -655,16 +931,18 @@ const ReportsAnalytics = () => {
                   {metric.change}
                 </span>
               </div>
-              <p className="mt-2 text-gray-800 font-medium">{metric.label}</p>
+              <p className="mt-2 text-foreground dark:text-foreground font-medium">
+                {metric.label}
+              </p>
             </div>
           ))}
         </div>
       </div>
 
-      <div className="p-6 bg-white rounded-lg shadow-sm border border-gray-200 w-full md:w-[1128px] mt-6">
+      <div className="p-6 bg-background dark:bg-background rounded-lg shadow-sm w-full md:w-[1128px] mt-6">
         {/* Header */}
         <div className="mb-4">
-          <h2 className="text-lg font-semibold text-gray-800 mb-6">
+          <h2 className="text-lg font-semibold text-foreground dark:text-foreground mb-6">
             Financial Summary
           </h2>
           <VectorLine width="1070" height="2" color="#CECECE" />
@@ -674,7 +952,7 @@ const ReportsAnalytics = () => {
         <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
           {/* Left Section */}
           <div>
-            <h3 className="text-base font-semibold text-gray-800">
+            <h3 className="text-base font-semibold text-foreground dark:text-foreground">
               Revenue & Orders
             </h3>
             <div className="flex flex-col sm:flex-row sm:items-center mt-4 gap-3 sm:space-x-4">
@@ -683,17 +961,17 @@ const ReportsAnalytics = () => {
                 <div className="p-2 bg-gray-100 rounded-lg flex items-center justify-center">
                   {/* Your SVG Icon */}
                   <svg
-                    width="48"
-                    height="49"
+                    width={48}
+                    height={49}
                     viewBox="0 0 48 49"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <rect
                       y="0.0512695"
-                      width="48"
-                      height="48"
-                      rx="8"
+                      width={48}
+                      height={48}
+                      rx={8}
                       fill="#F3F4F6"
                     />
                     <path
@@ -727,22 +1005,28 @@ const ReportsAnalytics = () => {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-xl font-bold">3.4k</p>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-xl font-bold text-foreground dark:text-foreground">
+                    3.4k
+                  </p>
+                  <p className="text-sm text-foreground dark:text-foreground">
                     Leads generated per week
                   </p>
                 </div>
               </div>
-              <span className="bg-green-100 text-green-600 text-xs font-medium px-2 py-1 rounded-full self-start sm:self-center">
+              <span className="bg-sidebarhover dark:bg-sidebarhover text-foreground dark:text-foreground text-xs font-medium px-2 py-1 rounded-full self-start sm:self-center">
                 ↑ 24%
               </span>
             </div>
 
-            <p className="mt-2 text-sm text-gray-600">
+            <p className="mt-2 text-sm text-foreground dark:text-foreground">
               Money spent:{" "}
-              <span className="font-semibold text-gray-800">3,232 L.E</span>{" "}
+              <span className="font-semibold text-foreground dark:text-foreground">
+                3,232 L.E
+              </span>{" "}
               Conversion rate:{" "}
-              <span className="font-semibold text-gray-800">1.2%</span>
+              <span className="font-semibold text-foreground dark:text-foreground">
+                1.2%
+              </span>
             </p>
           </div>
 
@@ -756,8 +1040,8 @@ const ReportsAnalytics = () => {
                 }
                 className={`px-3 py-1 text-sm rounded-md border ${
                   selectedRange === range
-                    ? "bg-green-100 text-green-700 border-green-300"
-                    : "bg-white text-gray-700 border-gray-300"
+                    ? "bg-tabhover dark:bg-tabhover text-arrowcolor dark:text-arrowcolor hover:bg-backgroundtertiary dark:hover:bg-backgroundtertiary focus-visible:outline-none focus:ring-0 focus:ring-offset-0 dark:focus:ring-offset-0 dark:focus:ring-0"
+                    : "bg-forminputs dark:bg-forminputs text-foreground dark:text-foreground hover:bg-backgroundtertiary dark:hover:bg-backgroundtertiary focus-visible:outline-none focus:ring-0 focus:ring-offset-0 dark:focus:ring-offset-0 dark:focus:ring-0"
                 }`}
               >
                 {range.charAt(0).toUpperCase() + range.slice(1)}
@@ -777,27 +1061,29 @@ const ReportsAnalytics = () => {
         </div>
 
         {/* Footer */}
-        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mt-4 text-sm text-gray-500 gap-2">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mt-4 text-sm text-foreground dark:text-foreground gap-2">
           <span>Last 7 days</span>
-          <a href="#" className="text-green-700 font-medium">
+          <a href="#" className="text-tabtext font-medium">
             USERS REPORT &gt;
           </a>
         </div>
       </div>
 
       <div className="flex flex-col md:flex-row gap-6 w-full mt-6">
-        <div className=" p-5 bg-white rounded-xl border border-gray-200 shadow-sm w-full max-w-[552px]">
+        <div className=" p-5 bg-background dark:bg-background rounded-xl  shadow-sm w-full max-w-[552px]">
           {/* Header */}
           <div className="flex justify-between items-center">
-            <h5 className="text-lg font-semibold">Payment Methods</h5>
-            <div className="flex items-center bg-gray-100 rounded-lg overflow-hidden text-sm font-medium">
-              <button className="px-3 py-1 text-gray-700 hover:bg-gray-200">
+            <h5 className="text-lg font-semibold text-foreground">
+              Payment Methods
+            </h5>
+            <div className="flex items-center bg-forminputs dark:bg-forminputss rounded-lg overflow-hidden text-sm font-medium">
+              <button className="px-3 py-1 text-foreground dark:text-foreground ">
                 Years
               </button>
-              <button className="px-3 py-1 bg-green-100 text-green-800">
+              <button className="px-3 py-1 bg-tabhover dark:bg-tabhover text-arrowcolor dark:text-arrowcolor ">
                 Months
               </button>
-              <button className="px-3 py-1 text-gray-700 hover:bg-gray-200">
+              <button className="px-3 py-1 text-foreground dark:text-foreground ">
                 Days
               </button>
             </div>
@@ -806,12 +1092,17 @@ const ReportsAnalytics = () => {
           {/* Title & Date */}
           <div className="flex justify-between items-center mt-4">
             <div>
-              <h6 className="text-base font-bold">Traffic</h6>
-              <div className="flex items-center text-gray-500 text-sm">
+              <h6 className="text-base font-bold text-foreground dark:text-foreground">
+                Traffic
+              </h6>
+              <div className="flex items-center text-foreground dark:text-foreground text-sm">
                 31 Nov - 31 Dec <ChevronDown size={16} className="ml-1" />
               </div>
             </div>
-            <MoreHorizontal size={20} className="text-gray-500" />
+            <MoreHorizontal
+              size={20}
+              className="text-foreground dark:text-foreground"
+            />
           </div>
 
           {/* Chart */}
@@ -826,40 +1117,46 @@ const ReportsAnalytics = () => {
 
           {/* Legend */}
           <div className="flex justify-center space-x-6 mt-2 text-sm">
-            <span className="flex items-center">
-              <span className="w-3 h-3 rounded-full bg-[#244937] mr-1"></span>
+            <span className="flex items-center text-foreground dark:text-foreground">
+              <span className="w-3 h-3 rounded-full bg-[#244937]  mr-1"></span>
               Direct
             </span>
-            <span className="flex items-center">
-              <span className="w-3 h-3 rounded-full bg-[#FF8A42] mr-1"></span>{" "}
+            <span className="flex items-center text-foreground dark:text-foreground">
+              <span className="w-3 h-3 rounded-full bg-[#FF8A42]  mr-1"></span>{" "}
               Search
             </span>
-            <span className="flex items-center">
-              <span className="w-3 h-3 rounded-full bg-gray-200 mr-1"></span>{" "}
+            <span className="flex items-center text-foreground dark:text-foreground">
+              <span className="w-3 h-3 rounded-full bg-gray-200  mr-1"></span>{" "}
               Referrals
             </span>
           </div>
 
           {/* Footer */}
           <div className="flex justify-between items-center text-sm mt-4">
-            <span className="text-gray-500">Last 7 days</span>
-            <span className="text-green-800 font-medium cursor-pointer">
+            <span className="text-foreground dark:text-foreground">
+              Last 7 days
+            </span>
+            <span className="text-tabtext dark:text-tabtext font-medium cursor-pointer">
               TRAFFIC ANALYSIS
             </span>
           </div>
         </div>
-        <div className="bg-white rounded-xl shadow-sm p-5  w-full max-w-[552px]">
+        <div className="bg-background dark:bg-background rounded-xl shadow-sm p-5  w-full max-w-[552px]">
           {/* Top bar */}
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-lg font-semibold">Customer Analysis</h2>
-            <div className="flex bg-gray-100 rounded-lg p-1">
+            <h2 className="text-lg font-semibold text-foreground dark:text-foreground">
+              Customer Analysis
+            </h2>
+            <div className="flex  rounded-lg p-1">
               {(["Years", "Months", "Days"] as const).map((tab) => (
                 <Button
                   key={tab}
                   size="xs"
                   color="light"
                   className={`rounded-md px-3 ${
-                    activeView === tab ? "bg-green-100 text-green-800" : ""
+                    activeView === tab
+                      ? "bg-tabhover dark:bg-tabhover text-arrowcolor dark:text-arrowcolor hover:bg-backgroundtertiary dark:hover:bg-backgroundtertiary focus-visible:outline-none focus:ring-0 focus:ring-offset-0 dark:focus:ring-offset-0 dark:focus:ring-0"
+                      : "bg-forminputs dark:bg-forminputs text-foreground dark:text-foreground hover:bg-backgroundtertiary dark:hover:bg-backgroundtertiary focus-visible:outline-none focus:ring-0 focus:ring-offset-0 dark:focus:ring-offset-0 dark:focus:ring-0"
                   }`}
                   onClick={() => setActiveView(tab)}
                 >
@@ -873,15 +1170,81 @@ const ReportsAnalytics = () => {
           <div className="flex justify-between items-center mb-4">
             <div className="flex space-x-6">
               <div>
-                <span className="text-gray-500 text-sm">Clicks</span>
-                <p className="font-bold text-lg">234,5K</p>
+                <span className="text-foreground dark:text-foreground text-sm">
+                  Clicks
+                </span>
+                <p className="font-bold text-lg text-foreground dark:text-foreground">
+                  234,5K
+                </p>
               </div>
               <div>
-                <span className="text-gray-500 text-sm">CPC</span>
-                <p className="font-bold text-lg">300 L.E</p>
+                <span className="text-foreground dark:text-foreground text-sm">
+                  CPC
+                </span>
+                <p className="font-bold text-lg text-foreground dark:text-foreground">
+                  300 L.E
+                </p>
               </div>
             </div>
-            <Dropdown label="Last week" inline={true} size="sm">
+            <Dropdown
+              label={
+                <span className="text-foreground dark:text-foreground flex items-center gap-1">
+                  Last week
+                  {/* Custom arrow using an inline SVG that matches the foreground color */}
+                  <svg
+                    className="w-4 h-4 text-foreground dark:text-foreground"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </span>
+              }
+              inline={true}
+              size="sm"
+              className="bg-backgroundNeutral dark:bg-backgroundNeutral border border-gray-300 dark:border-gray-600 rounded-md"
+              theme={{
+                floating: {
+                  base: "z-10 w-fit rounded divide-y divide-gray-100 shadow bg-background dark:bg-background",
+                  content: "",
+                  item: {
+                    base:
+                      "block w-full px-4 py-2 text-sm text-foreground dark:text-foreground " +
+                      "bg-background dark:bg-background " +
+                      "hover:bg-backgroundaccent dark:hover:bg-backgroundaccent " +
+                      "focus:bg-backgroundaccent dark:focus:bg-backgroundaccent " +
+                      "dark:hover:text-white dark:focus:text-white",
+                  },
+                },
+              }}
+              renderTrigger={() => (
+                <button
+                  type="button"
+                  className="flex items-center gap-1 text-foreground dark:text-foreground"
+                >
+                  Last week
+                  <svg
+                    className="w-4 h-4 text-foreground dark:text-foreground"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
+              )}
+            >
               <DropdownItem>Last week</DropdownItem>
               <DropdownItem>Last month</DropdownItem>
               <DropdownItem>Last year</DropdownItem>
@@ -890,7 +1253,7 @@ const ReportsAnalytics = () => {
 
           {/* Chart */}
           <ReactApexChart
-            options={chartOptions}
+            options={lineChartOptions}
             series={getCustomerAnalysisSeries(activeView)}
             type="line"
             height={220}
