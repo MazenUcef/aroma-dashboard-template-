@@ -41,7 +41,7 @@ export const DropdownCheckbox = ({
       <button
         id="dropdownCheckboxButton"
         onClick={toggleDropdown}
-        className="text-arrowcolor border-1 border-inputborder bg-background font-semibold rounded-lg h-[48px] text-[16px] px-5 py-2.5 flex justify-between items-center w-full"
+        className="text-arrowcolor border-1 border-inputborder bg-forminputs font-semibold rounded-lg h-[48px] text-[16px] px-5 py-2.5 flex justify-between items-center w-full"
         type="button"
       >
         <span>{buttonText}</span>
@@ -65,7 +65,7 @@ export const DropdownCheckbox = ({
       {isOpen && (
         <div
           id="dropdownDefaultCheckbox"
-          className="z-10 absolute mt-1 w-48 bg-white divide-y divide-gray-100 rounded-lg shadow-sm dark:bg-gray-700 dark:divide-gray-600"
+          className="z-10 absolute mt-1 w-48 bg-background dark:bg-background divide-y divide-foreground rounded-lg shadow-sm  dark:divide-foreground"
         >
           <ul
             className="p-3 space-y-3 text-sm text-foreground dark:text-foreground"
@@ -79,11 +79,11 @@ export const DropdownCheckbox = ({
                     type="checkbox"
                     checked={selectedOptions.includes(option.id)}
                     onChange={() => handleCheckboxChange(option.id)}
-                    className="w-4 h-4 text-blue-600 bg-forminputs border-inputborder rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-forminputs dark:border-inputborder"
+                    className="w-4 h-4 text-foreground bg-forminputs border-inputborder rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-forminputs dark:border-inputborder"
                   />
                   <label
                     htmlFor={`checkbox-item-${option.id}`}
-                    className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                    className="ms-2 text-sm font-medium text-foreground dark:text-foreground"
                   >
                     {option.label}
                   </label>

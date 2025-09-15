@@ -78,6 +78,7 @@ const SecuritySettings = () => {
             <ToggleSwitch
               isOn={!require2FA}
               onToggle={() => setRequire2FA((prev) => !prev)}
+              
             />
           </div>
         </div>

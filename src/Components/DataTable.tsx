@@ -83,7 +83,7 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({
       <button
         id="dropdownMenuIconButton"
         onClick={toggleDropdown}
-        className={`inline-flex items-center p-2 text-sm font-medium text-center text-foreground bg-background rounded-lg hover:bg-background focus:ring-4 focus:outline-none dark:text-foreground focus:ring-gray-50 dark:bg-background dark:hover:bg-background dark:focus:ring-gray-600 ${buttonClassName}`}
+        className={`inline-flex items-center p-2 text-sm font-medium text-center text-foreground bg-background rounded-lg hover:bg-background focus:ring-2 focus:outline-none dark:text-foreground focus:ring-gray-50 dark:bg-background dark:hover:bg-background dark:focus:ring-gray-600 ${buttonClassName}`}
         type="button"
       >
         {icon}
@@ -206,7 +206,10 @@ export const DataTable: React.FC<DataTableProps> = ({
                     onChange={handleSelectAll}
                     className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                   />
-                  <label htmlFor="checkbox-all-search" className="sr-only">
+                  <label
+                    htmlFor="checkbox-all-search"
+                    className="sr-only text-foreground dark:text-foreground"
+                  >
                     Select all
                   </label>
                 </div>
@@ -218,13 +221,16 @@ export const DataTable: React.FC<DataTableProps> = ({
                 scope="col"
                 className={`px-6 py-3 ${column.width ? column.width : ""} ${
                   index > 2 ? "hidden md:table-cell" : ""
-                }`}
+                } font-poppins font-semibold text-sm text-foreground dark:text-foreground`}
               >
                 {column.header}
               </th>
             ))}
             {(onEdit || onDelete) && (
-              <th scope="col" className="px-6 py-3">
+              <th
+                scope="col"
+                className="px-6 py-3 font-poppins font-semibold text-sm text-foreground dark:text-foreground"
+              >
                 Action
               </th>
             )}
@@ -289,7 +295,7 @@ export const DataTable: React.FC<DataTableProps> = ({
                 </td>
               ))}
               {(onEdit || onDelete) && (
-                <td className="px-6 py-4">
+                <td className="px-6 py-4 ">
                   <DropdownMenu
                     items={[
                       ...(onEdit
