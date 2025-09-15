@@ -467,8 +467,12 @@ const UserManagement = () => {
       <div className="flex items-center gap-3">
         <Avatar img={user.avatar} size="sm" />
         <div className="flex flex-col">
-          <span className="font-medium text-gray-900">{user.customer}</span>
-          <span className="text-sm text-gray-500">{user.email}</span>
+          <span className="font-semibold font-sm text-foreground dark:text-foreground">
+            {user.customer}
+          </span>
+          <span className="text-xs text-foreground dark:text-foreground">
+            {user.email}
+          </span>
         </div>
       </div>
     ),
@@ -478,7 +482,9 @@ const UserManagement = () => {
   const formattedUsersSmall = paginatedUsers.map((user) => ({
     ...user,
     customerInfo: (
-      <span className="font-medium text-gray-900">{user.customer}</span>
+      <span className="font-medium text-foreground dark:text-foreground">
+        {user.customer}
+      </span>
     ),
   }));
 
@@ -532,13 +538,43 @@ const UserManagement = () => {
     setOpenModal(true);
   };
 
+  const paginationTheme = {
+    base: "",
+    layout: {
+      table: {
+        base: "text-sm text-gray-700 dark:text-gray-400",
+        span: "font-semibold text-gray-900 dark:text-white",
+      },
+    },
+    pages: {
+      base: "xs:mt-0 mt-2 inline-flex items-center -space-x-px",
+      showIcon: "inline-flex",
+      previous: {
+        base: "ml-0 rounded-l-lg border border-gray-300 bg-background dark:bg-background px-3 py-2 leading-tight text-gray-500 enabled:hover:bg-gray-100 enabled:hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 enabled:dark:hover:bg-gray-700 enabled:dark:hover:text-white",
+        icon: "h-5 w-5",
+      },
+      next: {
+        base: "rounded-r-lg border border-gray-300 bg-background dark:bg-background px-3 py-2 leading-tight text-gray-500 enabled:hover:bg-gray-100 enabled:hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 enabled:dark:hover:bg-gray-700 enabled:dark:hover:text-white",
+        icon: "h-5 w-5",
+      },
+      selector: {
+        base: "w-12 border border-gray-300 bg-background dark:bg-background py-2 leading-tight text-gray-500 enabled:hover:bg-gray-100 enabled:hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 enabled:dark:hover:bg-gray-700 enabled:dark:hover:text-white",
+        active:
+          "bg-lightgreen dark:bg-lightgreen text-green dark:text-green hover:bg-cyan-100 hover:text-cyan-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white",
+        disabled: "cursor-not-allowed opacity-50",
+      },
+    },
+  };
+
   return (
     <div className="flex py-[15px] px-[24px] flex-col w-full lg:w-[70.5rem] min-h-screen text-foreground dark:text-foreground">
       {/* Header */}
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h1 className="text-xl font-semibold">User Management</h1>
-          <p className="text-sm text-gray-500">
+          <h1 className="text-xl font-semibold font-poppins text-foreground dark:text-foreground">
+            User Management
+          </h1>
+          <p className="text-sm text-foreground dark:text-foreground">
             Manage users, roles, and permissions
           </p>
         </div>
@@ -546,7 +582,7 @@ const UserManagement = () => {
           {/* Responsive Button */}
           <button
             onClick={handleAddUser}
-            className="flex items-center justify-center rounded-lg bg-custombtn2 px-4 py-2 text-sm font-medium text-white focus:outline-none focus:ring-4 transition-colors duration-200"
+            className="flex items-center justify-center rounded-lg bg-custombtn2 dark:bg-custombtn2 px-4 py-2 text-sm font-medium text-foreground dark:text-foreground focus:outline-none focus:ring-0 transition-colors duration-200"
           >
             {/* Small screen: + only */}
             <span className="sm:hidden">
@@ -578,6 +614,7 @@ const UserManagement = () => {
               buttonText="All"
               options={AllUsers}
               onSelectionChange={handleSelectionChange}
+              className="w-[160px]"
             />
             <button className="bg-[#FDE8E8] border border-[#EF4444] w-[48px] h-[48px] flex justify-center items-center rounded-md">
               <Trash />
@@ -586,12 +623,14 @@ const UserManagement = () => {
         </div>
 
         {/* md+ layout (unchanged) */}
-        <div className="hidden sm:flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div className="hidden sm:flex flex-col sm:flex-row justify-between items-center gap-4 ">
           <DropdownCheckbox
             buttonText="All"
             options={AllUsers}
             onSelectionChange={handleSelectionChange}
+            className="w-[160px]"
           />
+
           <div className="flex gap-4 items-center w-full sm:w-auto">
             <SearchInput
               value={searchTerm2}
@@ -635,6 +674,7 @@ const UserManagement = () => {
               totalPages={totalPages}
               onPageChange={onPageChange}
               showIcons
+              theme={paginationTheme}
               previousLabel=""
               nextLabel=""
             />
@@ -647,8 +687,11 @@ const UserManagement = () => {
               totalPages={totalPages}
               onPageChange={onPageChange}
               showIcons
-              previousLabel="Previous"
-              nextLabel="Next"
+              previousLabel=""
+              nextLabel=""
+              theme={paginationTheme}
+              // previousLabel="Previous"
+              // nextLabel="Next"
             />
           </div>
         </div>
