@@ -38,6 +38,9 @@
   --usersicon: #244937;
   --textinput: #666666;
   --backgroundNeutral: #ffffff;
+  --thirdaryinput: #f3f4f6;
+  --backgroundinputfield: #f9fafb;
+  --textinputnew: #666666;
 }
 
 @theme inline {
@@ -75,6 +78,9 @@
   --color-usersicon: var(--usersicon);
   --color-textinput: var(--textinput);
   --color-backgroundNeutral: var(--backgroundNeutral);
+  --color-thirdaryinput: var(--thirdaryinput);
+  --color-backgroundinputfield: var(--backgroundinputfield);
+  --color-textinputnew: var(--textinputnew);
 }
 
 .dark {
@@ -112,6 +118,9 @@
   --usersicon: #8e9aa4;
   --textinput: #e3e6e8;
   --backgroundNeutral: #333333;
+  --thirdaryinput: #444d55;
+  --backgroundinputfield: #5b6771;
+  --textinputnew: #f9fafb;
 }
 
 @layer base {

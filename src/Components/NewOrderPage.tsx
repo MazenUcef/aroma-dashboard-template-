@@ -112,7 +112,7 @@ const NewOrderPage = () => {
   const inputTheme = {
     base: "flex",
     addon:
-      "inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-200 px-3 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-600 dark:text-gray-400",
+      " inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-200 px-3 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-600 dark:text-gray-400",
     field: {
       base: "relative w-full",
       icon: {
@@ -163,7 +163,7 @@ const NewOrderPage = () => {
   const [countryCode, setCountryCode] = useState("+20");
   const [phoneNumber, setPhoneNumber] = useState("");
   const selectedItemStyle =
-    "mr-2 ml-1 flex items-center justify-center bg-backgroundaccent border border-inputborder rounded-lg  font-poppins text-[14px] font-semibold text-foreground cursor-pointer hover:bg-inputborder w-[113px] h-[24px]";
+    "mr-2 ml-1 flex items-center justify-center bg-backgroundtertiary dark:bg-backgroundtertiary border border-inputborder rounded-lg  font-poppins text-[14px] font-semibold text-foreground cursor-pointer hover:bg-inputborder w-[113px] h-[24px]";
   const TableTheme = {
     root: {
       base: "w-full text-left text-sm text-gray-500 dark:text-gray-400",
@@ -195,6 +195,82 @@ const NewOrderPage = () => {
   const [promo, setPromo] = useState("WEL10");
   const [payment, setPayment] = useState("Visa");
   const [orderStatus, setOrderStatus] = useState("Paid");
+  const DropDownTheme = {
+    arrowIcon: "ml-2 h-4 w-4",
+    content: "py-0 focus:outline-none",
+    floating: {
+      animation: "transition-opacity",
+      arrow: {
+        base: "absolute z-10 h-2 w-2 rotate-45",
+        style: {
+          dark: "bg-gray-900 dark:bg-gray-700",
+          light: "bg-white",
+          auto: "bg-white dark:bg-gray-700",
+        },
+        placement: "-4px",
+      },
+      base: "z-10 w-fit divide-y divide-gray-100 rounded shadow focus:outline-none hover:bg-backgroundaccent dark:hover:bg-backgroundaccent",
+      content:
+        "py-1 text-sm text-foreground dark:text-foreground hover:bg-backgroundaccent dark:hover:bg-backgroundaccent",
+      divider: "my-1 h-px bg-background dark:bg-background",
+      header: "block px-4 py-2 text-sm text-foreground dark:text-foreground",
+      hidden: "invisible opacity-0",
+      item: {
+        container: "",
+        base: "flex w-full cursor-pointer hover:bg-backgroundaccent dark:hover:bg-backgroundaccent bg-background dark:bg-background items-center justify-start px-4 text-sm text-foreground dark:text-foreground focus:bg-backgroundaccent dark:focus:bg-backgroundaccent",
+        icon: "mr-2 h-4 w-4",
+      },
+      style: {
+        dark: "bg-background text-foreground dark:bg-background",
+        light: "border border-inputborder dark:border-inputborder",
+        auto: "border border-inputborder dark:border-inputborder bg-white text-gray-900 dark:border-none dark:bg-background dark:text-white ",
+      },
+      target: "w-fit",
+    },
+    inlineWrapper: "flex items-center",
+  };
+  const selectTheme = {
+    base: "flex ",
+    addon:
+      "inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-200 px-3 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-600 dark:text-gray-400 ",
+    field: {
+      base: "relative w-full  ",
+      icon: {
+        base: "pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3",
+        svg: "h-5 w-5 text-gray-500 dark:text-gray-400",
+      },
+      select: {
+        base: "block w-full appearance-none border pr-10 focus:outline-none focus:ring-0 disabled:cursor-not-allowed disabled:opacity-50 ",
+        withIcon: {
+          on: "pl-10",
+          off: "",
+        },
+        withAddon: {
+          on: "rounded-r-lg",
+          off: "rounded-lg",
+        },
+        withShadow: {
+          on: "shadow-sm dark:shadow-sm-light",
+          off: "",
+        },
+        sizes: {
+          sm: "p-2 sm:text-xs",
+          md: "p-2.5 text-sm",
+          lg: "p-4 sm:text-base",
+        },
+        colors: {
+          gray: "border border-inputborder focus:border-inputborder dark:focus:border-inputborder dark:border-inputborder bg-forminputs dark:bg-forminputs text-foreground dark:text-foreground bg-[length:0.75em_0.75em] bg-[position:right_12px_center] bg-no-repeat bg-arrow-down-icon ",
+          info: " border-cyan-500 bg-cyan-50 text-cyan-900 placeholder-cyan-700 focus:border-cyan-500 focus:ring-cyan-500 dark:border-cyan-400 dark:bg-cyan-100 dark:focus:border-cyan-500 dark:focus:ring-cyan-500 bg-[length:0.75em_0.75em] bg-[position:right_12px_center] bg-no-repeat bg-arrow-down-icon",
+          failure:
+            " border-red-500 bg-red-50 text-red-900 placeholder-red-700 focus:border-red-500 focus:ring-red-500 dark:border-red-400 dark:bg-red-100 dark:focus:border-red-500 dark:focus:ring-red-500 bg-[length:0.75em_0.75em] bg-[position:right_12px_center] bg-no-repeat bg-arrow-down-icon",
+          warning:
+            " border-yellow-500 bg-yellow-50 text-yellow-900 placeholder-yellow-700 focus:border-yellow-500 focus:ring-yellow-500 dark:border-yellow-400 dark:bg-yellow-100 dark:focus:border-yellow-500 dark:focus:ring-yellow-500 bg-[length:0.75em_0.75em] bg-[position:right_12px_center] bg-no-repeat bg-arrow-down-icon",
+          success:
+            " border-green-500 bg-green-50 text-green-900 placeholder-green-700 focus:border-green-500 focus:ring-green-500 dark:border-green-400 dark:bg-green-100 dark:focus:border-green-500 dark:focus:ring-green-500 bg-[length:0.75em_0.75em] bg-[position:right_12px_center] bg-no-repeat bg-arrow-down-icon",
+        },
+      },
+    },
+  };
   return (
     <div className="!text-foreground !dark:text-foreground w-[375px] md:w-[1128px]">
       {/* Main header section */}
@@ -219,7 +295,7 @@ const NewOrderPage = () => {
         {/* Buttons */}
         <div className="flex items-center">
           {/* Small screen icon button */}
-          <button className="md:hidden w-9 h-9 flex items-center justify-center bg-white">
+          <button className="md:hidden w-9 h-9 flex items-center justify-center bg-background dark:bg-background ">
             {/* Inline your SVG here */}
             <svg
               width={36}
@@ -360,27 +436,30 @@ const NewOrderPage = () => {
                   icon={SearchIconN}
                   placeholder="Product name"
                   required
+                  theme={inputTheme}
+                  className="w-full md:w-[504px] h-[40px] bg-forminputs dark:bg-forminputs border border-inputborder dark:border-inputborder rounded-lg !text-foreground !dark:!text-foreground"
                 />
               </div>
-              <div className="flex flex-col space-y-6 !text-foreground !dark:text-foreground">
+              <div className="flex flex-col space-y-6 !text-textinput !dark:text-textinput">
                 {/* Row 1: Category + Status */}
                 <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8">
                   {/* Category */}
                   <div className="flex flex-col">
-                    <label className="text-lg font-poppins font-semibold text-[12px] mb-2">
+                    <label className="text-lg font-poppins font-semibold text-[12px] mb-2 text-textinput dark:text-textinput">
                       Category
                     </label>
                     <div className="relative w-full md:w-80">
                       <Dropdown
+                        theme={DropDownTheme}
                         label=""
                         dismissOnClick={false}
                         renderTrigger={() => (
-                          <div className="flex flex-wrap w-full md:w-[338px] h-[40px] items-center border border-gray-300 rounded-lg min-h-[42px] cursor-pointer">
+                          <div className="flex flex-wrap w-full md:w-[338px] h-[40px] items-center border border-inputborder dark:border-inputborder  rounded-lg min-h-[42px] cursor-pointer bg-forminputs dark:bg-forminputs ">
                             {selectedCategories.map((category) => (
                               <div key={category} className={selectedItemStyle}>
                                 <span>{category}</span>
                                 <CloseIcon
-                                  className="ml-1 flex-shrink-0 cursor-pointer text-gray-600 hover:text-gray-900"
+                                  className="ml-1 flex-shrink-0 cursor-pointer text-textinput dark:text-textinput hover:text-gray-900"
                                   onClick={(e) => {
                                     e.stopPropagation();
                                     handleRemoveCategory(category);
@@ -395,7 +474,7 @@ const NewOrderPage = () => {
                             )}
                             <div className="absolute right-3 top-1/2 -translate-y-1/2">
                               <svg
-                                className="w-4 h-4 text-gray-500"
+                                className="w-4 h-4 text-textinput dark:text-textinput"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
@@ -438,17 +517,18 @@ const NewOrderPage = () => {
                     </label>
                     <div className="relative w-full md:w-[150px] h-[40px]">
                       <Dropdown
+                        theme={DropDownTheme}
                         label=""
                         dismissOnClick={true}
                         renderTrigger={() => (
-                          <div className="flex flex-wrap w-full md:w-[150px] h-[40px] items-center border border-gray-300 rounded-lg min-h-[42px] cursor-pointer">
+                          <div className="flex flex-wrap w-full md:w-[150px] h-[40px] items-center rounded-lg min-h-[42px] cursor-pointer bg-forminputs dark:bg-forminputs border border-inputborder dark:border-inputborder">
                             {selectedStatus && (
                               <div className={selectedItemStyle}>
                                 <span className="truncate max-w-[calc(100%-16px)]">
                                   {selectedStatus}
                                 </span>
                                 <CloseIcon
-                                  className="ml-1 flex-shrink-0 cursor-pointer text-gray-600 hover:text-gray-900"
+                                  className="ml-1 flex-shrink-0 cursor-pointer text-textinput dark:text-textinput hover:text-gray-900"
                                   onClick={(e) => {
                                     e.stopPropagation();
                                     setSelectedStatus("");
@@ -463,7 +543,7 @@ const NewOrderPage = () => {
                             )}
                             <div className="absolute right-3 top-1/2 -translate-y-1/2">
                               <svg
-                                className="w-4 h-4 text-gray-500"
+                                className="w-4 h-4 text-textinput dark:text-textinput"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
@@ -497,25 +577,26 @@ const NewOrderPage = () => {
                 </div>
 
                 {/* Row 2: Product Name + Extras */}
-                <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {/* Product Name */}
-                  <div className="flex flex-col">
-                    <label className=" text-lg font-poppins font-semibold text-[12px] mb-2">
+                  <div className="flex flex-col w-[240px]">
+                    <label className="text-lg font-poppins font-semibold text-[12px] mb-2">
                       Product Name
                     </label>
-                    <div className="relative w-full md:w-80">
+                    <div className="relative w-full">
                       <Dropdown
+                        theme={DropDownTheme}
                         label=""
                         dismissOnClick={false}
                         renderTrigger={() => (
-                          <div className="flex flex-wrap w-full md:w-[338px] h-[40px] items-center border border-gray-300 rounded-lg min-h-[42px] cursor-pointer">
+                          <div className="flex flex-wrap w-full md:w-[240px] h-[40px] items-center bg-forminputs dark:bg-forminputs rounded-lg min-h-[42px] cursor-pointer border border-inputborder dark:border-inputborder">
                             {selectedProductName.map((product) => (
                               <div key={product} className={selectedItemStyle}>
                                 <span className="truncate max-w-[calc(100%-16px)]">
                                   {product}
                                 </span>
                                 <CloseIcon
-                                  className="ml-1 flex-shrink-0 cursor-pointer text-gray-600 hover:text-gray-900"
+                                  className="ml-1 flex-shrink-0 cursor-pointer text-textinput dark:text-textinput hover:text-gray-900"
                                   onClick={(e) => {
                                     e.stopPropagation();
                                     handleRemoveProductName(product);
@@ -524,17 +605,16 @@ const NewOrderPage = () => {
                               </div>
                             ))}
                             {selectedProductName.length === 0 && (
-                              <span className=" font-poppins text-[14px] font-semibold ml-2">
+                              <span className="font-poppins text-[14px] font-semibold ml-2">
                                 Select products...
                               </span>
                             )}
                             <div className="absolute right-3 top-1/2 -translate-y-1/2">
                               <svg
-                                className="w-4 h-4 text-gray-500"
+                                className="w-4 h-4 text-textinput dark:text-textinput"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg"
                               >
                                 <path
                                   strokeLinecap="round"
@@ -563,28 +643,28 @@ const NewOrderPage = () => {
                           </DropdownItem>
                         ))}
                       </Dropdown>
-                      {/* ...keep product name dropdown code here... */}
                     </div>
                   </div>
 
                   {/* Extras */}
-                  <div className="flex flex-col !text-foreground !dark:text-foreground">
-                    <label className=" text-lg font-poppins font-semibold text-[12px] mb-2">
+                  <div className="flex flex-col w-[240px]">
+                    <label className="text-lg font-poppins font-semibold text-[12px] mb-2">
                       Extras
                     </label>
-                    <div className="relative w-full md:w-[150px] h-[40px]">
+                    <div className="relative w-full h-[40px]">
                       <Dropdown
+                        theme={DropDownTheme}
                         label=""
                         dismissOnClick={true}
                         renderTrigger={() => (
-                          <div className="flex flex-wrap w-full md:w-[150px] h-[40px] items-center border border-gray-300 rounded-lg min-h-[42px] cursor-pointer">
+                          <div className="flex flex-wrap w-full md:w-[240px] h-[40px] items-center bg-forminputs dark:bg-forminputs rounded-lg min-h-[42px] cursor-pointer border border-inputborder dark:border-inputborder">
                             {selectedExtras && (
                               <div className={selectedItemStyle}>
                                 <span className="truncate max-w-[calc(100%-16px)]">
                                   {selectedExtras}
                                 </span>
                                 <CloseIcon
-                                  className="ml-1 flex-shrink-0 cursor-pointer text-gray-600 hover:text-gray-900"
+                                  className="ml-1 flex-shrink-0 cursor-pointer text-textinput dark:text-textinput hover:text-gray-900"
                                   onClick={(e) => {
                                     e.stopPropagation();
                                     setSelectedExtras("");
@@ -593,17 +673,16 @@ const NewOrderPage = () => {
                               </div>
                             )}
                             {!selectedExtras && (
-                              <span className=" font-poppins text-[14px] font-semibold ml-2">
+                              <span className="font-poppins text-[14px] font-semibold ml-2">
                                 Select extras...
                               </span>
                             )}
                             <div className="absolute right-3 top-1/2 -translate-y-1/2">
                               <svg
-                                className="w-4 h-4 text-gray-500"
+                                className="w-4 h-4 text-textinput dark:text-textinput"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg"
                               >
                                 <path
                                   strokeLinecap="round"
@@ -627,38 +706,37 @@ const NewOrderPage = () => {
                           )
                         )}
                       </Dropdown>
-                      {/* ...keep extras dropdown code here... */}
                     </div>
                   </div>
                 </div>
               </div>
 
               {/* Quantity Selector */}
-              <div className="flex items-center space-x-4 w-full md:w-[504px] h-[44px] ">
+              <div className="flex items-center gap-6 w-full md:w-[504px] h-[44px] ">
                 <label className="text-[16px] font-semibold">Quantity</label>
-                <div className="flex items-center justify-center border rounded-md overflow-hidden shadow-sm w-full md:w-[283px] h-[37px] border-[#D1D5DB]">
+                <div className="flex items-center justify-center border border-inputborder dark:border-inputborder rounded-md overflow-hidden shadow-sm w-full md:w-[283px] h-[37px] ">
                   <button
                     onClick={decrease}
-                    className=" pt-1 text-lg text-foreground bg-forminputs hover:bg-forminputs w-full md:w-[95px] h-[37px]"
+                    className=" pt-1 text-lg text-textinput dark:text-textinput bg-thirdaryinput dark:bg-thirdaryinput hover:bg-forminputs w-full md:w-[95px] h-[37px]"
                   >
                     −
                   </button>
-                  <div className="relative flex items-center px-3 py-1">
+                  <div className="relative flex items-center px-3 py-1 bg-backgroundinputfield dark:bg-backgroundinputfield ">
                     <input
                       type="text"
                       value={quantity}
                       readOnly
-                      className="text-center text-sm focus:outline-none w-full md:w-[95px] h-[37px]"
+                      className="text-center text-sm focus:outline-none w-full md:w-[95px] h-[37px]  text-textinput dark:text-textinput"
                     />
                   </div>
                   <button
                     onClick={increase}
-                    className=" pt-1 text-lg text-foreground bg-forminputs hover:bg-forminputs w-full md:w-[95px] h-[37px]"
+                    className=" pt-1 text-lg text-textinput dark:text-textinput bg-thirdaryinput dark:bg-thirdaryinput hover:bg-forminputs w-full md:w-[95px] h-[37px]"
                   >
                     +
                   </button>
                 </div>
-                <button className="bg-custombtn4 text-white px-6 py-2 rounded-md text-sm font-medium w-full md:w-[101px] border border-inputborder">
+                <button className="bg-checked dark:bg-checked text-white px-6 py-2 rounded-md text-sm font-medium w-full md:w-[101px] border border-inputborder">
                   Add
                 </button>
               </div>
@@ -735,9 +813,9 @@ const NewOrderPage = () => {
                 >
                   Phone Number
                 </label>
-                <div className="flex w-full overflow-hidden rounded-md border border-gray-300 focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500">
+                <div className="flex w-full overflow-hidden rounded-md focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500 bg-forminputs dark:bg-forminputs border border-inputborder dark:border-inputborder">
                   {/* Country Code Section */}
-                  <div className="flex items-center bg-forminputs px-3 w-[99px] h-[40px]">
+                  <div className="flex items-center bg-inputaccent dark:bg-inputaccent px-3 w-[99px] h-[40px]">
                     <div className="shrink-0 z-10 inline-flex items-center  text-sm font-medium text-center">
                       <svg
                         fill="none"
@@ -784,7 +862,7 @@ const NewOrderPage = () => {
                     </div>
                     <div className="relative ">
                       <select
-                        className="  bg-transparent text-sm focus:outline-none border-none font-poppins text-[14px] font-normal pr-6 appearance-none relative"
+                        className="  bg-inputaccent dark:bg-inputaccent text-sm focus:outline-none border-none font-poppins text-[14px] font-normal pr-6 appearance-none relative"
                         value={countryCode}
                         onChange={(e) => setCountryCode(e.target.value)}
                         required
@@ -836,9 +914,11 @@ const NewOrderPage = () => {
                 {/* Country Dropdown */}
                 <div className="relative w-full md:w-48">
                   <Dropdown
+                    theme={DropDownTheme}
+                    className="bg-background dark:bg-background text-textinput dark:text-textinput !hover:bg-background !dark:hover:bg-background border border-inputborder dark:border-inputborder"
                     label=""
                     renderTrigger={() => (
-                      <div className="flex items-center justify-between border border-gray-300 rounded-lg px-4 py-2 w-[295px] md:w-full cursor-pointer">
+                      <div className="flex items-center justify-between  rounded-lg px-4 py-2 w-[295px] md:w-full cursor-pointer bg-forminputs dark:bg-forminputs border border-inputborder dark:border-inputborder">
                         <div className="flex items-center space-x-2">
                           <div className="shrink-0 z-10 inline-flex items-center  text-sm font-medium text-center bg-background ">
                             <svg
@@ -888,11 +968,14 @@ const NewOrderPage = () => {
                             {selectedCountry}
                           </span>
                         </div>
-                        <ChevronDown className="h-4 w-4 text-gray-600" />
+                        <ChevronDown className="h-4 w-4 text-foreground dark:text-foreground" />
                       </div>
                     )}
                   >
-                    <DropdownItem onClick={() => setSelectedCountry("Egypt")}>
+                    <DropdownItem
+                      className="text-textinput dark:text-textinput hover:bg-backgroundaccent dark:hover:bg-backgroundaccent "
+                      onClick={() => setSelectedCountry("Egypt")}
+                    >
                       <div className="shrink-0 z-10 inline-flex items-center  text-sm font-medium text-center">
                         <svg
                           fill="none"
@@ -939,7 +1022,10 @@ const NewOrderPage = () => {
                       </div>{" "}
                       Egypt
                     </DropdownItem>
-                    <DropdownItem onClick={() => setSelectedCountry("USA")}>
+                    <DropdownItem
+                      className="text-textinput dark:text-textinput hover:bg-backgroundaccent dark:hover:bg-backgroundaccent"
+                      onClick={() => setSelectedCountry("USA")}
+                    >
                       <div className="shrink-0 z-10 inline-flex items-center  text-sm font-medium text-center">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -1005,7 +1091,10 @@ const NewOrderPage = () => {
                       </div>{" "}
                       USA
                     </DropdownItem>
-                    <DropdownItem onClick={() => setSelectedCountry("UK")}>
+                    <DropdownItem
+                      className="text-textinput dark:text-textinput hover:bg-backgroundaccent dark:hover:bg-backgroundaccent"
+                      onClick={() => setSelectedCountry("UK")}
+                    >
                       <div className="shrink-0 z-10 inline-flex items-center  text-sm font-medium text-center">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -1037,24 +1126,35 @@ const NewOrderPage = () => {
                 {/* City Dropdown */}
                 <div className="relative w-full md:w-48">
                   <Dropdown
+                    theme={DropDownTheme}
+                    className="bg-background dark:bg-background text-textinput dark:text-textinput hover:bg-backgroundaccent dark:hover:bg-backgroundaccent border border-inputborder dark:border-inputborder"
                     label=""
                     renderTrigger={() => (
                       <div
-                        className="flex items-center justify-between border border-gray-300 rounded-lg px-4 py-2 
-                      w-[295px] md:w-full cursor-pointer"
+                        className="flex items-center justify-between bg-forminputs dark:bg-forminputs  rounded-lg px-4 py-2 
+                      w-[295px] md:w-full cursor-pointer border border-inputborder dark:border-inputborder"
                       >
                         <span className=" font-medium">{selectedCity}</span>
-                        <ChevronDown className="h-4 w-4 text-gray-600" />
+                        <ChevronDown className="h-4 w-4 text-foreground dark:text-foreground" />
                       </div>
                     )}
                   >
-                    <DropdownItem onClick={() => setSelectedCity("Cairo")}>
+                    <DropdownItem
+                      className="text-textinput dark:text-textinput hover:bg-backgroundaccent dark:hover:bg-backgroundaccent"
+                      onClick={() => setSelectedCity("Cairo")}
+                    >
                       Cairo
                     </DropdownItem>
-                    <DropdownItem onClick={() => setSelectedCity("Alexandria")}>
+                    <DropdownItem
+                      className="text-textinput dark:text-textinput hover:bg-backgroundaccent dark:hover:bg-backgroundaccent"
+                      onClick={() => setSelectedCity("Alexandria")}
+                    >
                       Alexandria
                     </DropdownItem>
-                    <DropdownItem onClick={() => setSelectedCity("Giza")}>
+                    <DropdownItem
+                      className="text-textinput dark:text-textinput hover:bg-backgroundaccent dark:hover:bg-backgroundaccent"
+                      onClick={() => setSelectedCity("Giza")}
+                    >
                       Giza
                     </DropdownItem>
                   </Dropdown>
@@ -1096,36 +1196,36 @@ const NewOrderPage = () => {
                   <Table hoverable theme={TableTheme}>
                     <TableHead>
                       <TableRow className="w-full md:w-[97.75px] h-[49px]">
-                        <TableHeadCell className="font-poppins font-semibold text-[14px]">
+                        <TableHeadCell className="font-poppins font-semibold text-[14px] text-textinputnew dark:text-textinputnew">
                           Product
                         </TableHeadCell>
-                        <TableHeadCell className="font-poppins font-semibold text-[14px]">
+                        <TableHeadCell className="font-poppins font-semibold text-[14px] text-textinputnew dark:text-textinputnew">
                           Item
                         </TableHeadCell>
-                        <TableHeadCell className="font-poppins font-semibold text-[14px] hidden md:table-cell">
+                        <TableHeadCell className="font-poppins font-semibold text-[14px] hidden md:table-cell text-textinputnew dark:text-textinputnew">
                           Extras
                         </TableHeadCell>
-                        <TableHeadCell className="font-poppins font-semibold text-[14px] hidden md:table-cell">
+                        <TableHeadCell className="font-poppins font-semibold text-[14px] hidden md:table-cell text-textinputnew dark:text-textinputnew">
                           Price
                         </TableHeadCell>
-                        <TableHeadCell className="font-poppins font-semibold text-[14px]">
+                        <TableHeadCell className="font-poppins font-semibold text-[14px] text-textinputnew dark:text-textinputnew">
                           Total
                         </TableHeadCell>
-                        <TableHeadCell className="font-poppins font-semibold text-[14px]">
+                        <TableHeadCell className="font-poppins font-semibold text-[14px] text-textinputnew dark:text-textinputnew ">
                           Act
                         </TableHeadCell>
                       </TableRow>
                     </TableHead>
                     <TableBody className="divide-y">
                       <TableRow className="bg-background border-inputborder">
-                        <TableCell className="whitespace-nowrap font-poppins text-[12px]">
+                        <TableCell className="whitespace-nowrap font-poppins text-[12px] font-normal text-textinputnew dark:text-textinputnew">
                           Risstretto
                         </TableCell>
                         <TableCell>1</TableCell>
-                        <TableCell className="hidden md:table-cell">
+                        <TableCell className="hidden md:table-cell font-normal text-textinputnew dark:text-textinputnew">
                           Milk
                         </TableCell>
-                        <TableCell className="hidden md:table-cell">
+                        <TableCell className="hidden md:table-cell font-normal text-textinputnew dark:text-textinputnew">
                           65
                         </TableCell>
                         <TableCell>65</TableCell>
@@ -1134,14 +1234,14 @@ const NewOrderPage = () => {
                         </TableCell>
                       </TableRow>
                       <TableRow className="bg-background border-inputborder">
-                        <TableCell className="whitespace-nowrap font-poppins font-normal text-[12px]">
+                        <TableCell className="whitespace-nowrap font-poppins font-normal text-[12px]  text-textinputnew dark:text-textinputnew">
                           Mango(S)
                         </TableCell>
                         <TableCell>2</TableCell>
-                        <TableCell className="hidden md:table-cell">
+                        <TableCell className="hidden md:table-cell font-normal text-textinputnew dark:text-textinputnew">
                           No Extras
                         </TableCell>
-                        <TableCell className="hidden md:table-cell">
+                        <TableCell className="hidden md:table-cell font-normal text-textinputnew dark:text-textinputnew">
                           35
                         </TableCell>
                         <TableCell>70</TableCell>
@@ -1155,14 +1255,14 @@ const NewOrderPage = () => {
                         </TableCell>
                       </TableRow>
                       <TableRow className="bg-background border-inputborder">
-                        <TableCell className="whitespace-nowrap font-poppins font-normal text-[12px]">
+                        <TableCell className="whitespace-nowrap font-poppins font-normal text-[12px] text-textinputnew dark:text-textinputnew">
                           Cold Bre..
                         </TableCell>
                         <TableCell>1</TableCell>
-                        <TableCell className="hidden md:table-cell">
+                        <TableCell className="hidden md:table-cell font-normal text-textinputnew dark:text-textinputnew">
                           No Extras
                         </TableCell>
-                        <TableCell className="hidden md:table-cell">
+                        <TableCell className="hidden md:table-cell font-normal text-textinputnew dark:text-textinputnew">
                           55
                         </TableCell>
                         <TableCell>55</TableCell>
@@ -1176,14 +1276,14 @@ const NewOrderPage = () => {
                         </TableCell>
                       </TableRow>
                       <TableRow className="bg-background border-inputborder">
-                        <TableCell className="whitespace-nowrap font-poppins font-normal text-[12px]">
+                        <TableCell className="whitespace-nowrap font-poppins font-normal text-[12px] text-textinputnew dark:text-textinputnew">
                           Mojito
                         </TableCell>
                         <TableCell>1</TableCell>
-                        <TableCell className="hidden md:table-cell">
+                        <TableCell className="hidden md:table-cell font-normal text-textinputnew dark:text-textinputnew">
                           No Extras
                         </TableCell>
-                        <TableCell className="hidden md:table-cell">
+                        <TableCell className="hidden md:table-cell font-normal text-textinputnew dark:text-textinputnew">
                           60
                         </TableCell>
                         <TableCell>60</TableCell>
@@ -1217,20 +1317,21 @@ const NewOrderPage = () => {
                       Discount
                     </Label>
                     <Select
+                      theme={selectTheme}
                       id="discount"
                       value={discount}
                       onChange={(e) => setDiscount(e.target.value)}
-                      className="rounded-lg font-normal text-[14px] font-poppins"
+                      className="rounded-lg font-normal text-[14px] font-poppins bg-background dark:bg-background text-foreground dark:text-foreground "
                     >
                       <option
                         value="WELCOME10"
-                        className="font-normal text-[14px] font-poppins !text-foreground !dark:text-foreground"
+                        className="bg-background dark:bg-background text-foreground dark:text-foreground font-normal text-[14px] font-poppins focus:bg-backgroundaccent dark:focus:bg-backgroundaccent hover:bg-backgroundaccent dark:hover:bg-backgroundaccent"
                       >
                         WELCOME10
                       </option>
                       <option
                         value="SAVE15"
-                        className="font-normal text-[14px] font-poppins !text-foreground !dark:text-foreground"
+                        className="bg-background dark:bg-background text-foreground dark:text-foreground font-normal text-[14px] font-poppins"
                       >
                         SAVE15
                       </option>
@@ -1265,6 +1366,7 @@ const NewOrderPage = () => {
                       Payment
                     </Label>
                     <Select
+                      theme={selectTheme}
                       id="payment"
                       value={payment}
                       onChange={(e) => setPayment(e.target.value)}
@@ -1300,26 +1402,27 @@ const NewOrderPage = () => {
                       Order Status
                     </Label>
                     <Select
+                      theme={selectTheme}
                       id="orderStatus"
                       value={orderStatus}
                       onChange={(e) => setOrderStatus(e.target.value)}
-                      className="rounded-lg font-normal text-[14px] font-poppins"
+                      className="rounded-lg font-normal text-[14px] font-poppins  !text-textinput !dark:text-textinput"
                     >
                       <option
                         value="Paid"
-                        className="font-normal text-[14px] font-poppins"
+                        className="font-normal text-[14px] font-poppins !text-textinput !dark:text-textinput"
                       >
                         Paid
                       </option>
                       <option
                         value="Pending"
-                        className="font-normal text-[14px] font-poppins"
+                        className="font-normal text-[14px] font-poppins !text-textinput !dark:text-textinput"
                       >
                         Pending
                       </option>
                       <option
                         value="Failed"
-                        className="font-normal text-[14px] font-poppins"
+                        className="font-normal text-[14px] font-poppins !text-textinput !dark:text-textinput"
                       >
                         Failed
                       </option>
@@ -1329,36 +1432,36 @@ const NewOrderPage = () => {
                 </div>
                 {/* OrderSummery */}
                 <div>
-                  <p className="font-poppins font-semibold text-[16px] !text-foreground !dark:text-foreground">
+                  <p className="font-poppins font-semibold text-[16px] !text-textinput !dark:text-textinput">
                     Order Summary
                   </p>
                   <div className="w-full md:w-[504px] bg-background rounded-lg p-2 ">
                     {/* Subtotal */}
                     <div className="flex justify-between mb-2">
-                      <p className="text-[12px] font-semibold font-poppins !text-foreground !dark:text-foreground">
+                      <p className="text-[12px] font-semibold font-poppins !text-textinput !dark:text-textinput">
                         Subtotal :
                       </p>
-                      <p className="text-[12px] font-normal font-poppins">
+                      <p className="text-[12px] font-normal font-poppins !text-textinput !dark:text-textinput">
                         EGP 250.00
                       </p>
                     </div>
 
                     {/* Discount */}
                     <div className="flex justify-between mb-2">
-                      <p className="text-[12px] font-semibold font-poppins !text-foreground !dark:text-foreground">
+                      <p className="text-[12px] font-semibold font-poppins !text-textinput !dark:text-textinput">
                         Discount (10%):
                       </p>
-                      <p className="text-[12px] font-normal font-poppins ">
+                      <p className="text-[12px] font-normal font-poppins !text-textinput !dark:text-textinput">
                         - EGP 25.00
                       </p>
                     </div>
 
                     {/* VAT */}
                     <div className="flex justify-between mb-4">
-                      <p className="text-[12px] font-semibold font-poppins !text-foreground !dark:text-foreground">
+                      <p className="text-[12px] font-semibold font-poppins !text-textinput !dark:text-textinput">
                         VAT (14%):
                       </p>
-                      <p className="text-[12px] font-normal font-poppins">
+                      <p className="text-[12px] font-normal font-poppins !text-textinput !dark:text-textinput">
                         + EGP 31.50
                       </p>
                     </div>
@@ -1367,10 +1470,10 @@ const NewOrderPage = () => {
 
                     {/* Total */}
                     <div className="flex justify-between items-center  mt-4 rounded">
-                      <p className="text-[16px] font-semibold font-poppins">
+                      <p className="text-[16px] font-semibold font-poppins !text-textinput !dark:text-textinput">
                         Total Amount:
                       </p>
-                      <p className="text-[16px] font-semibold font-poppins">
+                      <p className="text-[16px] font-semibold font-poppins !text-textinput !dark:text-textinput">
                         256.50 EGP
                       </p>
                     </div>
@@ -1384,7 +1487,7 @@ const NewOrderPage = () => {
                   <div className="mb-2 block">
                     <Label
                       htmlFor="comment"
-                      className="font-poppins text-[16px] font-semibold !text-foreground !dark:text-foreground"
+                      className="font-poppins text-[16px] font-semibold !text-textinput !dark:text-textinput"
                     >
                       Order Notes
                     </Label>
@@ -1396,7 +1499,7 @@ const NewOrderPage = () => {
                     placeholder="Write text here ..."
                     required
                     rows={4}
-                    className="w-full md:w-[504px]"
+                    className="w-full md:w-[504px] bg-forminputs dark:bg-forminputs  !text-textinput !dark:text-textinput rounded-lg border border-inputborder dark:border-inputborder"
                   />
                 </div>
               </div>
@@ -1415,7 +1518,7 @@ const NewOrderPage = () => {
             type="submit"
             className="bg-custombtn2 text-white px-6 py-2 rounded-md text-sm font-medium w-[168px]"
           >
-            Save Changes
+            Create Order
           </button>
         </div>
       </div>
