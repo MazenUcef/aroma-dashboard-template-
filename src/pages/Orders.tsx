@@ -544,7 +544,33 @@ const Orders = () => {
   const onPageChange = (page: number) => {
     setCurrentPage(page);
   };
-
+  const paginationTheme = {
+    base: "",
+    layout: {
+      table: {
+        base: "text-sm text-gray-700 dark:text-gray-400",
+        span: "font-semibold text-gray-900 dark:text-white",
+      },
+    },
+    pages: {
+      base: "xs:mt-0 mt-2 inline-flex items-center -space-x-px",
+      showIcon: "inline-flex",
+      previous: {
+        base: "ml-0 rounded-l-lg border border-gray-300 bg-background dark:bg-background px-3 py-2 leading-tight text-gray-500 enabled:hover:bg-gray-100 enabled:hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 enabled:dark:hover:bg-gray-700 enabled:dark:hover:text-white",
+        icon: "h-5 w-5",
+      },
+      next: {
+        base: "rounded-r-lg border border-gray-300 bg-background dark:bg-background px-3 py-2 leading-tight text-gray-500 enabled:hover:bg-gray-100 enabled:hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 enabled:dark:hover:bg-gray-700 enabled:dark:hover:text-white",
+        icon: "h-5 w-5",
+      },
+      selector: {
+        base: "w-12 border border-gray-300 bg-background dark:bg-background py-2 leading-tight text-gray-500 enabled:hover:bg-gray-100 enabled:hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 enabled:dark:hover:bg-gray-700 enabled:dark:hover:text-white",
+        active:
+          "bg-lightgreen dark:bg-lightgreen text-green dark:text-green hover:bg-cyan-100 hover:text-cyan-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white",
+        disabled: "cursor-not-allowed opacity-50",
+      },
+    },
+  };
   return (
     <div className="flex py-[15px] px-[24px] flex-col w-full md:w-[70.5rem] min-h-screen text-foreground dark:text-foreground">
       <div className="flex justify-between items-center w-full mb-[30px]">
@@ -558,7 +584,7 @@ const Orders = () => {
           <div className="flex gap-[24px] item-center">
             <button
               onClick={() => navigate("/new-order")}
-              className="bg-custombtn2 dark:bg-custombtn2 w-[48px]  md:w-[168px] flex justify-center items-center gap-2 cursor-pointer text-background dark:text-background h-[48px] rounded-md"
+              className="bg-custombtn2 dark:bg-custombtn2 w-[48px] text-white md:w-[168px] flex justify-center items-center gap-2 cursor-pointer h-[48px] rounded-md"
             >
               {" "}
               {/* Small screen: + only */}
@@ -655,6 +681,7 @@ const Orders = () => {
               showIcons
               previousLabel=""
               nextLabel=""
+              theme={paginationTheme}
             />
           </div>
 
@@ -665,8 +692,12 @@ const Orders = () => {
               totalPages={totalPages}
               onPageChange={onPageChange}
               showIcons
-              previousLabel="Previous"
-              nextLabel="Next"
+              previousLabel=""
+              nextLabel=""
+              theme={paginationTheme}
+              // change from words to arrows
+              // previousLabel="Previous"
+              // nextLabel="Next"
             />
           </div>
         </div>
