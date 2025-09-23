@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Dropdown, DropdownItem } from "flowbite-react";
 import { EllipsisVertical, CalendarDays } from "lucide-react";
+import DeleteModal from "./DeleteComponents";
 import CreateNewDiscountModal from "./CreateNewDiscountModal";
 
 interface Coupon {
@@ -49,15 +50,6 @@ const DropDownTheme = {
 };
 
 const DiscountCodes = () => {
-    const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false);
-  const [isEditingCategory, setIsEditingCategory] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState<any>(null);
-  // Product modal state
-  const handleAddCategory = () => {
-    setSelectedCategory(null);
-    setIsEditingCategory(false);
-    setIsCategoryModalOpen(true);
-  };
   const [coupons, setCoupons] = useState<Coupon[]>([
     {
       code: "SUMMER25",
@@ -92,7 +84,21 @@ const DiscountCodes = () => {
       )
     );
   };
+  // Edit modal state
+  const [isDiscountModalOpen, setIsDiscountModalOpen] = useState(false);
 
+  // Delete modal state
+  const [deleteTargetId, setDeleteTargetId] = useState<string | null>(null);
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  const handleDeleteCategory = (id: string | number) => {
+    setDeleteTargetId(String(id));
+    setOpenDeleteModal(true);
+  };
+
+  // Edit modal handler
+  const handleEditCategory = () => {
+    setIsDiscountModalOpen(true);
+  };
   return (
     <div className="sm:p-4 md:p-0">
       <div className="flex flex-row items-center justify-between mb-4">
@@ -129,7 +135,9 @@ const DiscountCodes = () => {
                 theme={DropDownTheme}
               >
                 <DropdownItem>Edit</DropdownItem>
-                <DropdownItem>Delete</DropdownItem>
+                <DropdownItem onClick={() => handleDeleteCategory(coupon.code)}>
+                  Delete
+                </DropdownItem>
               </Dropdown>
             </div>
           </div>
@@ -175,22 +183,36 @@ const DiscountCodes = () => {
                 arrowIcon={false}
                 theme={DropDownTheme}
               >
-                <DropdownItem>Edit</DropdownItem>
-                <DropdownItem>Delete</DropdownItem>
+                <DropdownItem onClick={handleEditCategory}>Edit</DropdownItem>
+                <DropdownItem onClick={() => handleDeleteCategory(coupon.code)}>
+                  Delete
+                </DropdownItem>
               </Dropdown>
             </div>
           </div>
         </div>
       ))}
+      {/* Edit Confirmation Modal */}
       <CreateNewDiscountModal
-        isOpen={isCategoryModalOpen}
-        onClose={() => setIsCategoryModalOpen(false)}
-        onSubmit={(data) => {
+        isOpen={isDiscountModalOpen}
+        onClose={() => setIsDiscountModalOpen(false)}
+        onSubmit={(data: any) => {
           console.log("Submitted Category:", data);
-          setIsCategoryModalOpen(false);
+          setIsDiscountModalOpen(false);
         }}
-        isEditMode={isEditingCategory}
-        initialData={isEditingCategory ? selectedCategory : undefined}
+      />
+      {/* Delete Confirmation Modal */}
+      <DeleteModal
+        isOpen={openDeleteModal}
+        onClose={() => setOpenDeleteModal(false)}
+        onConfirm={() => {
+          if (deleteTargetId) {
+            handleDeleteCategory(deleteTargetId);
+          }
+          setOpenDeleteModal(false);
+        }}
+        title="Delete Row"
+        message="Are you sure you want to delete this row? This action cannot be undone."
       />
     </div>
   );

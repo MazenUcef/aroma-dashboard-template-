@@ -2,11 +2,17 @@ import { useState } from "react";
 import DiscountCodes from "../components/DiscountCodes";
 import LoyaltyProgram from "../components/LoyaltyProgram";
 import { Plus } from "lucide-react";
+import CreateNewDiscountModal from "../components/CreateNewDiscountModal";
 
 const Marketing = () => {
   const [activeTab, setActiveTab] = useState<string>("Discount Codes");
   const [showAddButton, setShowAddButton] = useState<boolean>(true);
+  const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false);
 
+  // Product modal state
+  const handleAddCategory = () => {
+    setIsCategoryModalOpen(true);
+  };
   const tabs = [
     {
       id: "Discount Codes",
@@ -42,6 +48,7 @@ const Marketing = () => {
           <button
             className="bg-checked dark:bg-checked text-white rounded-lg 
                      w-[32px] h-[32px] md:w-[101px] md:h-[44px] flex items-center justify-center"
+            onClick={handleAddCategory}
           >
             <Plus className="w-4 h-4 block md:hidden" />
             <span className="hidden md:block">Add</span>
@@ -83,6 +90,15 @@ const Marketing = () => {
           ))}
         </div>
       </div>
+
+      <CreateNewDiscountModal
+        isOpen={isCategoryModalOpen}
+        onClose={() => setIsCategoryModalOpen(false)}
+        onSubmit={(data: any) => {
+          console.log("Submitted Category:", data);
+          setIsCategoryModalOpen(false);
+        }}
+      />
     </div>
   );
 };
