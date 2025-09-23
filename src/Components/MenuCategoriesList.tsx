@@ -106,20 +106,20 @@ const MenuCategoriesList = () => {
         },
         placement: "-4px",
       },
-      base: "z-10 w-fit divide-y divide-gray-100 rounded shadow focus:outline-none",
+      base: "z-10 w-fit divide-y divide-gray-100 rounded shadow focus:outline-none focus:outline-none hover:bg-backgroundaccent dark:hover:bg-backgroundaccent",
       content: "py-1 text-sm  text-foreground dark:text-foreground",
       divider: "my-1 h-px bg-gray-100 dark:bg-gray-600",
       header: "block px-4 py-2 text-sm text-gray-700 dark:text-gray-200",
       hidden: "invisible opacity-0",
       item: {
         container: "",
-        base: "flex w-full cursor-pointer items-center justify-start px-4 py-2 text-sm  text-foreground dark:text-foreground hover:bg-gray-100 focus:bg-gray-100 focus:outline-none  dark:hover:bg-gray-600 dark:hover:text-white dark:focus:bg-gray-600 dark:focus:text-white",
+        base: "flex w-full cursor-pointer items-center justify-start px-4 py-2 text-sm  hover:bg-backgroundaccent dark:hover:bg-backgroundaccent bg-background dark:bg-background items-center justify-start px-4 text-sm text-foreground dark:text-foreground focus:bg-backgroundaccent dark:focus:bg-backgroundaccent",
         icon: "mr-2 h-4 w-4",
       },
       style: {
-        dark: "bg-gray-900 text-white dark:bg-gray-700",
-        light: "border border-gray-200 bg-white text-gray-900",
-        auto: "border border-gray-200 bg-white text-gray-900 dark:border-none dark:bg-gray-700 dark:text-white",
+        dark: "bg-background text-foreground dark:bg-background",
+        light: "border border-inputborder dark:border-inputborder",
+        auto: "border border-inputborder dark:border-inputborder bg-white text-gray-900 dark:border-none dark:bg-background dark:text-white ",
       },
       target: "w-fit",
     },
@@ -215,6 +215,40 @@ const MenuCategoriesList = () => {
       image: "/src/assets/images/Rectangle 98 (4).png",
     },
   ];
+  const DropDownTheme = {
+    arrowIcon: "ml-2 h-4 w-4",
+    content: "py-0 focus:outline-none",
+    floating: {
+      animation: "transition-opacity",
+      arrow: {
+        base: "absolute z-10 h-2 w-2 rotate-45",
+        style: {
+          dark: "bg-gray-900 dark:bg-gray-700",
+          light: "bg-white",
+          auto: "bg-white dark:bg-gray-700",
+        },
+        placement: "-4px",
+      },
+      base: "z-10 w-fit divide-y divide-gray-100 rounded shadow focus:outline-none hover:bg-backgroundaccent dark:hover:bg-backgroundaccent",
+      content:
+        "py-1 text-sm text-foreground dark:text-foreground hover:bg-backgroundaccent dark:hover:bg-backgroundaccent",
+      divider: "my-1 h-px bg-background dark:bg-background",
+      header: "block px-4 py-2 text-sm text-foreground dark:text-foreground",
+      hidden: "invisible opacity-0",
+      item: {
+        container: "",
+        base: "flex w-full cursor-pointer hover:bg-backgroundaccent dark:hover:bg-backgroundaccent bg-background dark:bg-background items-center justify-start px-4 text-sm text-foreground dark:text-foreground focus:bg-backgroundaccent dark:focus:bg-backgroundaccent",
+        icon: "mr-2 h-4 w-4",
+      },
+      style: {
+        dark: "bg-background text-foreground dark:bg-background",
+        light: "border border-inputborder dark:border-inputborder",
+        auto: "border border-inputborder dark:border-inputborder bg-white text-gray-900 dark:border-none dark:bg-background dark:text-white ",
+      },
+      target: "w-fit",
+    },
+    inlineWrapper: "flex items-center",
+  };
 
   return (
     <div className="sm:w-[375px] md:w-full p-4 bg-backgroundaccent text-foreground">
@@ -232,7 +266,7 @@ const MenuCategoriesList = () => {
         <button
           type="button"
           onClick={handleAddProduct}
-          className="flex items-center justify-center gap-2 rounded-lg bg-custombtn2 px-3 md:px-4 py-2 text-sm font-medium text-white focus:outline-none focus:ring-4 transition-colors duration-200"
+          className="flex items-center justify-center gap-2 rounded-lg bg-custombtn2 px-3 md:px-4 py-2 text-sm font-medium text-white focus:outline-none focus:ring-none transition-colors duration-200"
         >
           <PluseIcon />
           {/* hide label on small, show from md */}
@@ -256,7 +290,7 @@ const MenuCategoriesList = () => {
           <div className="relative w-full md:w-1/2 h-[40px]">
             <div className="flex items-center min-h-[40px] border bg-forminputs border-inputborder rounded-md px-2 py-1">
               {selectedTag && (
-                <span className="flex items-center text-sm bg-backgroundaccent border border-inputborder text-foreground px-2 py-0.5 rounded mr-2">
+                <span className="flex items-center text-sm bg-backgroundinputfield dark:bg-backgroundinputfield border border-inputborder text-foreground px-2 py-0.5 rounded mr-2">
                   {selectedTag}
                   <button onClick={handleRemove} className="ml-1">
                     <CloseX />
@@ -264,10 +298,11 @@ const MenuCategoriesList = () => {
                 </span>
               )}
               <Dropdown
+                theme={DropDownTheme}
                 label=""
                 placement="bottom"
                 renderTrigger={() => (
-                  <button className="ml-auto text-gray-400 hover:text-gray-600">
+                  <button className="ml-auto text-foreground dark:text-foreground hover:text-gray-600">
                     <DownArrow />
                   </button>
                 )}
@@ -289,7 +324,7 @@ const MenuCategoriesList = () => {
         {/* Main Content */}
         <div className="flex flex-row gap-6 items-start justify-start flex-wrap h-[664px] w-full md:w-[1080px]">
           {/* Category List */}
-          {/* ✅ نسخة الـ md و lg (زي الصورة الأولى) */}
+
           <Card
             className="hidden md:block max-w-sm rounded-xl w-[335px] h-[640px]"
             theme={componenttheme}
@@ -340,13 +375,13 @@ const MenuCategoriesList = () => {
                           inline
                         >
                           <DropdownItem
-                            className="bg-backgroundaccent hover:bg-background dark:hover:bg-background  dark:border-inputborder"
+                            className="bg-background  dark:border-inputborder hover:text-foreground dark:hover:text-foreground"
                             onClick={() => handleEditCategory(category)}
                           >
                             Edit
                           </DropdownItem>
                           <DropdownItem
-                            className="bg-backgroundaccent hover:bg-background dark:hover:bg-background  dark:border-inputborder"
+                            className="bg-background dark:border-inputborder hover:text-foreground dark:hover:text-foreground"
                             onClick={() => handleDeleteCategory(category.id)}
                           >
                             Delete
@@ -361,7 +396,7 @@ const MenuCategoriesList = () => {
             </div>
           </Card>
 
-          {/* ✅ نسخة الموبايل (Top Bar بس) */}
+          {/* ✅Mobile Version */}
           <div className="block md:hidden w-full p-3">
             <div className="flex items-center justify-between">
               {/* Dropdown */}
