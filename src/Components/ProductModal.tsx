@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
-import { createTheme, Modal, ModalBody, ModalHeader, Select } from "flowbite-react";
+import {
+  createTheme,
+  Modal,
+  ModalBody,
+  ModalHeader,
+  Select,
+} from "flowbite-react";
 import { Controller, useForm } from "react-hook-form";
 import UploadIcon from "../assets/icons/UploadIcon";
 import CloseIcon from "../assets/icons/CloseIcon";
@@ -11,8 +17,8 @@ interface CategoryFormData {
   categoriesName: string;
   description: string;
   image: File | null;
-  productActivity: boolean
-};
+  productActivity: boolean;
+}
 
 interface CategoryModalProps {
   isOpen: boolean;
@@ -56,7 +62,7 @@ const ModalTheme = createTheme({
   content: {
     base: "relative h-full w-full p-4 md:h-auto",
     inner:
-      "relative flex xl:w-[40rem] flex-col rounded-lg bg-backgroundaccent shadow dark:bg-backgroundaccent",
+      "relative flex xl:w-[40rem] flex-col rounded-lg bg-background shadow dark:bg-background",
   },
   body: {
     base: "flex-1 overflow-auto p-6",
@@ -72,9 +78,22 @@ const ModalTheme = createTheme({
     },
   },
 });
- 
-const ProductModal: React.FC<CategoryModalProps> = ({ isOpen, onClose, onSubmit, initialData, isEditMode = false }) => {
-  const { control, handleSubmit, reset, setValue, watch, formState: { errors } } = useForm<CategoryFormData>({
+
+const ProductModal: React.FC<CategoryModalProps> = ({
+  isOpen,
+  onClose,
+  onSubmit,
+  initialData,
+  isEditMode = false,
+}) => {
+  const {
+    control,
+    handleSubmit,
+    reset,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useForm<CategoryFormData>({
     defaultValues: {
       name: "",
       price: 0,
@@ -110,7 +129,48 @@ const ProductModal: React.FC<CategoryModalProps> = ({ isOpen, onClose, onSubmit,
     setValue("image", null);
     setPreviewUrl(null);
   };
-
+  const selectTheme = {
+    base: "flex ",
+    addon:
+      "inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-200 px-3 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-600 dark:text-gray-400 ",
+    field: {
+      base: "relative w-full  ",
+      icon: {
+        base: "pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3",
+        svg: "h-5 w-5 text-gray-500 dark:text-gray-400",
+      },
+      select: {
+        base: "block w-full appearance-none border pr-10 focus:outline-none focus:ring-0 disabled:cursor-not-allowed disabled:opacity-50 ",
+        withIcon: {
+          on: "pl-10",
+          off: "",
+        },
+        withAddon: {
+          on: "rounded-r-lg",
+          off: "rounded-lg",
+        },
+        withShadow: {
+          on: "shadow-sm dark:shadow-sm-light",
+          off: "",
+        },
+        sizes: {
+          sm: "p-2 sm:text-xs",
+          md: "p-2.5 text-sm",
+          lg: "p-4 sm:text-base",
+        },
+        colors: {
+          gray: "border border-inputborder focus:border-inputborder dark:focus:border-inputborder dark:border-inputborder bg-forminputs dark:bg-forminputs text-foreground dark:text-foreground bg-[length:0.75em_0.75em] bg-[position:right_12px_center] bg-no-repeat bg-arrow-down-icon ",
+          info: " border-cyan-500 bg-cyan-50 text-cyan-900 placeholder-cyan-700 focus:border-cyan-500 focus:ring-cyan-500 dark:border-cyan-400 dark:bg-cyan-100 dark:focus:border-cyan-500 dark:focus:ring-cyan-500 bg-[length:0.75em_0.75em] bg-[position:right_12px_center] bg-no-repeat bg-arrow-down-icon",
+          failure:
+            " border-red-500 bg-red-50 text-red-900 placeholder-red-700 focus:border-red-500 focus:ring-red-500 dark:border-red-400 dark:bg-red-100 dark:focus:border-red-500 dark:focus:ring-red-500 bg-[length:0.75em_0.75em] bg-[position:right_12px_center] bg-no-repeat bg-arrow-down-icon",
+          warning:
+            " border-yellow-500 bg-yellow-50 text-yellow-900 placeholder-yellow-700 focus:border-yellow-500 focus:ring-yellow-500 dark:border-yellow-400 dark:bg-yellow-100 dark:focus:border-yellow-500 dark:focus:ring-yellow-500 bg-[length:0.75em_0.75em] bg-[position:right_12px_center] bg-no-repeat bg-arrow-down-icon",
+          success:
+            " border-green-500 bg-green-50 text-green-900 placeholder-green-700 focus:border-green-500 focus:ring-green-500 dark:border-green-400 dark:bg-green-100 dark:focus:border-green-500 dark:focus:ring-green-500 bg-[length:0.75em_0.75em] bg-[position:right_12px_center] bg-no-repeat bg-arrow-down-icon",
+        },
+      },
+    },
+  };
   return (
     <Modal theme={ModalTheme} show={isOpen} onClose={onClose} size="lg" popup>
       <ModalHeader />
@@ -122,7 +182,7 @@ const ProductModal: React.FC<CategoryModalProps> = ({ isOpen, onClose, onSubmit,
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block mb-1 text-xs text-green font-semibold">
+              <label className="block mb-1 text-xs text-foreground dark:text-foreground font-semibold ">
                 Product Name
               </label>
               <Controller
@@ -133,7 +193,7 @@ const ProductModal: React.FC<CategoryModalProps> = ({ isOpen, onClose, onSubmit,
                   <input
                     {...field}
                     type="text"
-                    className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm placeholder:text-[#666666] placeholder:font-normal"
+                    className="w-full border border-inputborder dark:border-inputborder bg-secondaryinput dark:bg-secondaryinput rounded-md px-3 py-2 text-sm placeholder:text-textinput placeholder:font-normal"
                     placeholder="White Mocha"
                   />
                 )}
@@ -143,7 +203,7 @@ const ProductModal: React.FC<CategoryModalProps> = ({ isOpen, onClose, onSubmit,
               )}
             </div>
             <div>
-              <label className="block mb-1 text-xs text-green font-semibold">
+              <label className="block mb-1 text-xs text-foreground dark:text-foreground font-semibold">
                 Price
               </label>
               <Controller
@@ -152,17 +212,47 @@ const ProductModal: React.FC<CategoryModalProps> = ({ isOpen, onClose, onSubmit,
                 rules={{ required: "Price is required" }}
                 render={({ field }) => (
                   <div className="max-w-[18rem] flex">
-                    <div className="shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg dark:bg-gray-700 dark:text-white dark:border-gray-600">
-                      <svg fill="none" aria-hidden="true" className="h-4 w-4 me-2" viewBox="0 0 20 15">
-                        <rect width="19.6" height="14" y=".5" fill="#fff" rx="2" />
-                        <mask id="a" style={{ maskType: "luminance" }} width="20" height="15" x="0" y="0" maskUnits="userSpaceOnUse">
-                          <rect width="19.6" height="14" y=".5" fill="#fff" rx="2" />
+                    <div className="shrink-0 z-10 inline-flex bg-secondaryinput dark:bg-secondaryinput items-center py-2.5 px-4 text-sm font-medium text-center text-foreground  border border-inputborder dark:border-inputborder rounded-s-lg  dark:text-foreground">
+                      <svg
+                        fill="none"
+                        aria-hidden="true"
+                        className="h-4 w-4 me-2"
+                        viewBox="0 0 20 15"
+                      >
+                        <rect
+                          width="19.6"
+                          height="14"
+                          y=".5"
+                          fill="#fff"
+                          rx="2"
+                        />
+                        <mask
+                          id="a"
+                          style={{ maskType: "luminance" }}
+                          width="20"
+                          height="15"
+                          x="0"
+                          y="0"
+                          maskUnits="userSpaceOnUse"
+                        >
+                          <rect
+                            width="19.6"
+                            height="14"
+                            y=".5"
+                            fill="#fff"
+                            rx="2"
+                          />
                         </mask>
                         <g mask="url(#a)">
                           <path fill="#C83126" d="M0 .5h19.6v4.667H0z" />
                           <path fill="#fff" d="M0 5.167h19.6v4.666H0z" />
                           <path fill="#000" d="M0 9.833h19.6V14.5H0z" />
-                          <path fill="#FFC107" fill-rule="evenodd" d="M6.533 5.167L8.4 7.033l1.867-1.866h-3.734zm0 0L8.4 7.033l1.867-1.866h-3.734zm2.334 2.333a.778.778 0 100-1.555.778.778 0 000 1.555z" clip-rule="evenodd" />
+                          <path
+                            fill="#FFC107"
+                            fill-rule="evenodd"
+                            d="M6.533 5.167L8.4 7.033l1.867-1.866h-3.734zm0 0L8.4 7.033l1.867-1.866h-3.734zm2.334 2.333a.778.778 0 100-1.555.778.778 0 000 1.555z"
+                            clip-rule="evenodd"
+                          />
                         </g>
                       </svg>
                       EGP
@@ -171,7 +261,7 @@ const ProductModal: React.FC<CategoryModalProps> = ({ isOpen, onClose, onSubmit,
                       <input
                         type="number"
                         {...field}
-                        className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg  border-e-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-e-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
+                        className="block p-2.5 w-full z-20 text-sm text-foreground bg-secondaryinput dark:bg-secondaryinput rounded-e-lg  border-e-2 border border-inputborder dark:border-inputborder focus:ring-blue-500 focus:border-inputborder dark:placeholder-textinput dark:text-foreground dark:focus:border-inputborder"
                         placeholder="Enter amount"
                         required
                         min={0}
@@ -187,7 +277,7 @@ const ProductModal: React.FC<CategoryModalProps> = ({ isOpen, onClose, onSubmit,
           </div>
 
           <div>
-            <label className="block mb-1 text-xs text-green font-semibold">
+            <label className="block mb-1 text-xs text-foreground dark:text-foregroundfont-semibold">
               Categories Name
             </label>
             <Controller
@@ -195,9 +285,9 @@ const ProductModal: React.FC<CategoryModalProps> = ({ isOpen, onClose, onSubmit,
               name="categoriesName"
               rules={{ required: "Product Activity is required" }}
               render={({ field }) => (
-                <Select {...field} id="categories" required>
-                  <option>Hot Coffe</option>
-                  <option>Ice Coffe</option>
+                <Select theme={selectTheme} {...field} id="categories" required>
+                  <option>Hot Coffee</option>
+                  <option>Ice Coffee</option>
                   <option>Brezzers</option>
                   <option>Smothies</option>
                 </Select>
@@ -205,7 +295,7 @@ const ProductModal: React.FC<CategoryModalProps> = ({ isOpen, onClose, onSubmit,
             />
           </div>
           <div>
-            <label className="block mb-1 text-xs text-green font-semibold">
+            <label className="block mb-1 text-xs text-foreground dark:text-foreground font-semibold">
               Description
             </label>
             <Controller
@@ -216,24 +306,24 @@ const ProductModal: React.FC<CategoryModalProps> = ({ isOpen, onClose, onSubmit,
                   rows={3}
                   {...field}
                   placeholder="Write text here ..."
-                  className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm placeholder:text-[#B3B3B3] placeholder:font-normal"
+                  className="w-full border border-inputborder rounded-md px-3 py-2 text-sm placeholder:text-textinput dark:placeholder:text-textinput placeholder:font-normal bg-secondaryinput dark:bg-secondaryinput focus:border-borderinput dark:focus:border-borderinput focus:outline-none"
                 />
               )}
             />
           </div>
 
           <div>
-            <label className="block mb-1 text-xs text-green font-semibold">
+            <label className="block mb-1 text-xs text-foreground dark:text-foreground font-semibold">
               Product Image
             </label>
 
             {!previewUrl ? (
               <label
                 htmlFor="image-upload"
-                className="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-md cursor-pointer py-8 text-center text-sm text-gray-500 hover:border-green"
+                className="flex flex-col items-center justify-center border-2 border-dashed border-inputborder dark:border-inputborder bg-secondaryinput dark:bg-secondaryinput focus:border-borderinput dark:focus:border-borderinput focus:outline-none rounded-md cursor-pointer py-8 text-center text-sm text-textinput dark:text-textinput hover:border-green"
               >
                 <UploadIcon />
-                <span className="text-[#666666] text-sm font-normal mt-2.5">
+                <span className="text-textinput dark:text-textinput text-sm font-normal mt-2.5">
                   Click to upload or drag and drop <br />
                   <span>PNG, JPG up to 5MB</span>
                 </span>
@@ -277,8 +367,12 @@ const ProductModal: React.FC<CategoryModalProps> = ({ isOpen, onClose, onSubmit,
           </div>
           <div className="w-full items-center flex justify-between">
             <div className="flex flex-col gap-2">
-              <h1 className="text-[16px] font-bold">Product Availability</h1>
-              <h1 className="text-[16px]">Make this product available for purchase</h1>
+              <h1 className="text-[16px] font-semibold">
+                Product Availability
+              </h1>
+              <h1 className="text-[16px] font-normal">
+                Make this product available for purchase
+              </h1>
             </div>
             <div>
               <Controller
@@ -302,13 +396,13 @@ const ProductModal: React.FC<CategoryModalProps> = ({ isOpen, onClose, onSubmit,
                 setPreviewUrl(null);
                 onClose();
               }}
-              className="border border-green text-green px-6 py-2 rounded-md text-sm font-medium"
+              className="border border-tabtext dark:border-tabtext text-tabtext dark:text-tabtext px-6 py-2 rounded-md text-sm font-medium"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="bg-green text-white px-6 py-2 rounded-md text-sm font-medium"
+              className="bg-custombtn2 dark:bg-custombtn2 text-white px-6 py-2 rounded-md text-sm font-medium"
             >
               Save Changes
             </button>

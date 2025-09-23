@@ -132,13 +132,13 @@ const CategoryModal: React.FC<CategoryModalProps> = ({
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block mb-1 text-xs text-green font-semibold">
+              <label className="block mb-1 text-xs text-tabtext dark:text-tabtext font-semibold">
                 Categories Name
               </label>
               <input
                 type="text"
                 {...register("name", { required: "Name is required" })}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm placeholder:text-[#666666] placeholder:font-normal"
+                className="w-full border border-inputborder dark:border-inputborder rounded-md px-3 py-2 text-sm placeholder:text-textinput dark:placeholder:text-textinput placeholder:font-normal bg-secondaryinput dark:bg-secondaryinput focus:border-borderinput dark:focus:border-borderinput focus:outline-none"
                 placeholder="Aroma Drips Coffee"
               />
               {errors.name && (
@@ -146,7 +146,7 @@ const CategoryModal: React.FC<CategoryModalProps> = ({
               )}
             </div>
             <div>
-              <label className="block mb-1 text-xs text-green font-semibold">
+              <label className="block mb-1 text-xs text-tabtext dark:text-tabtext font-semibold">
                 Max Items
               </label>
               <input
@@ -155,7 +155,7 @@ const CategoryModal: React.FC<CategoryModalProps> = ({
                   required: "Max items is required",
                   valueAsNumber: true,
                 })}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm placeholder:text-[#666666] placeholder:font-normal"
+                className="w-full border border-inputborder dark:border-inputborder rounded-md px-3 py-2 text-sm placeholder:text-textinput dark:placeholder:text-textinput placeholder:font-normal bg-secondaryinput dark:bg-secondaryinput focus:border-borderinput dark:focus:border-borderinput focus:outline-none "
                 placeholder="25"
               />
               {errors.maxItems && (
@@ -167,29 +167,29 @@ const CategoryModal: React.FC<CategoryModalProps> = ({
           </div>
 
           <div>
-            <label className="block mb-1 text-xs text-green font-semibold">
+            <label className="block mb-1 text-xs font-semibold text-tabtext dark:text-tabtext">
               Description
             </label>
             <textarea
               rows={3}
               {...register("description")}
               placeholder="Write text here ..."
-              className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm placeholder:text-[#B3B3B3] placeholder:font-normal"
+              className="w-full border border-inputborder dark:border-inputborder rounded-md px-3 py-2 text-sm placeholder:text-textinput dark:placeholder:text-textinput placeholder:font-normal bg-secondaryinput dark:bg-secondaryinput focus:border-borderinput dark:focus:border-borderinput focus:outline-none"
             />
           </div>
 
           <div>
-            <label className="block mb-1 text-xs text-green font-semibold">
+            <label className="block mb-1 text-xs font-semibold text-tabtext dark:text-tabtext">
               Category Image
             </label>
 
             {!previewUrl ? (
               <label
                 htmlFor="image-upload"
-                className="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-md cursor-pointer py-8 text-center text-sm text-gray-500 hover:border-green"
+                className="flex flex-col items-center justify-center border-2 border-dashed border-inputborder dark:border-inputborder bg-secondaryinput dark:bg-secondaryinput focus:border-borderinput dark:focus:border-borderinput focus:outline-none rounded-md cursor-pointer py-8 text-center text-sm text-textinput dark:text-textinput hover:border-green "
               >
                 <UploadIcon />
-                <span className="text-[#666666] text-sm font-normal mt-2.5">
+                <span className="text-textinput dark:text-textinput text-sm font-normal mt-2.5 ">
                   Click to upload or drag and drop <br />
                   <span>PNG, JPG up to 5MB</span>
                 </span>
@@ -197,7 +197,7 @@ const CategoryModal: React.FC<CategoryModalProps> = ({
                   id="image-upload"
                   type="file"
                   accept="image/png, image/jpeg"
-                  className="hidden"
+                  className="hidden "
                   {...register("image")}
                   onChange={(e) => {
                     const file = e.target.files?.[0] ?? null;
@@ -232,15 +232,15 @@ const CategoryModal: React.FC<CategoryModalProps> = ({
                 setPreviewUrl(null);
                 onClose();
               }}
-              className="border border-green text-green px-6 py-2 rounded-md text-sm font-medium"
+              className="border border-tabtext dark:border-tabtext text-tabtext dark:text-tabtext px-6 py-2 rounded-md text-sm font-medium"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="bg-green text-white px-6 py-2 rounded-md text-sm font-medium"
+              className="bg-custombtn2 dark:bg-custombtn2 text-white px-6 py-2 rounded-md text-sm font-medium"
             >
-              Save
+              Save Changes
             </button>
           </div>
         </form>
