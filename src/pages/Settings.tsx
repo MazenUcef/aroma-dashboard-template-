@@ -41,12 +41,17 @@ const Settings = () => {
           {/* Mobile: Dropdown with custom arrow */}
           <div className="md:hidden relative">
             <select
+              id="mobile-tabs"
               value={activeTab}
               onChange={(e) => setActiveTab(e.target.value)}
-              className="w-full p-2 border rounded appearance-none pr-10 cursor-pointer"
+              className="w-full p-2 border rounded appearance-none pr-10 cursor-pointer bg-forminputs border-inputborder text-foreground focus:outline-none focus:ring-0 focus:border-inputborder dark:bg-forminputs dark:border-inputborder dark:focus:border-inputborder dark:text-foreground bg-[length:0.75em_0.75em] bg-[position:right_12px_center] bg-no-repeat bg-arrow-down-icon"
             >
               {tabs.map((tab) => (
-                <option key={tab.id} value={tab.id}>
+                <option
+                  key={tab.id}
+                  value={tab.id}
+                  className="bg-forminputs text-foreground"
+                >
                   {tab.title}
                 </option>
               ))}

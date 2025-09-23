@@ -63,7 +63,7 @@ const Marketing = () => {
             <button
               key={tab.id}
               onClick={() => handleTabClick(tab.id)}
-              className={`py-2 px-2 rounded-sm mx-2 w-[144px] h-[40px] text-sm font-semibold cursor-pointer transition-colors ${
+              className={`py-2 px-2 rounded-sm mx-2 w-[140px] h-[40px] text-sm font-semibold cursor-pointer transition-colors ${
                 activeTab === tab.id
                   ? "bg-tabhover text-tabtext"
                   : "bg-forminputs text-foreground hover:bg-tabhover hover:text-tabtext"
