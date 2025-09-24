@@ -526,12 +526,20 @@ const ReportsAnalytics = () => {
   };
   const datepickertheme = {
     root: {
-      base: "relative w-full ", // Ensure it takes full width
-    },
-    input: {
-      base: "w-full rounded-lg !bg-forminputs dark:!bg-forminputs text-foreground dark:text-foreground placeholder-foreground dark:placeholder-foreground border border-gray-600 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 ",
-      field: "px-4 py-2 flex items-center justify-between ",
-      icon: "text-gray-400", // Calendar icon color
+      base: "relative w-full",
+      input: {
+        base: "w-full",
+        field: {
+          base: " flex items-center justify-between",
+          input: {
+            base: "w-full rounded-lg !bg-forminputs dark:!bg-forminputs !text-textinput dark:!text-textinput !placeholder-textinput dark:!placeholder-textinput !border !border-inputborder dark:!border-inputborder focus:ring-2 focus:ring-primary-500 focus:border-primary-500",
+          },
+          icon: {
+            base: "text-textinput dark:text-textinput pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3",
+            svg: "w-5 h-5",
+          },
+        },
+      },
     },
     popup: {
       root: {

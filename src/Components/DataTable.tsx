@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import DeleteModal from "./DeleteComponents";
+import AddUserManagement from "./AddUserMangement";
 
 interface Column {
   key: string;
@@ -37,6 +38,7 @@ interface DataTableProps {
   onEdit?: (id: string) => void;
   onDelete?: (id: string) => void;
   className?: string;
+  editMode?: "navigate" | "inline";
 }
 
 const DropdownMenu: React.FC<DropdownMenuProps> = ({
@@ -138,11 +140,14 @@ export const DataTable: React.FC<DataTableProps> = ({
   onEdit,
   onDelete,
   className = "",
+  editMode = "navigate",
 }) => {
   const [selectedRows, setSelectedRows] = useState<string[]>([]);
   const [selectAll, setSelectAll] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [deleteTargetId, setDeleteTargetId] = useState<string | null>(null);
+  const [openEditModal, setOpenEditModal] = useState(false);
+  const [editTargetId, setEditTargetId] = useState<string | null>(null);
   const navigate = useNavigate();
 
   const getStatusStyles = (status: string) => {
@@ -298,17 +303,18 @@ export const DataTable: React.FC<DataTableProps> = ({
                 <td className="px-6 py-4 ">
                   <DropdownMenu
                     items={[
-                      ...(onEdit
-                        ? [
-                            {
-                              label: "Edit",
-                              onClick: () => {
-                                navigate("/edit-order");
-                                onEdit?.(row.id);
-                              },
-                            },
-                          ]
-                        : []),
+                      {
+                        label: "Edit",
+                        onClick: () => {
+                          if (editMode === "navigate") {
+                            navigate("/edit-order");
+                            onEdit?.(row.id);
+                          } else {
+                            setEditTargetId(row.id);
+                            setOpenEditModal(true);
+                          }
+                        },
+                      },
                       ...(onDelete
                         ? [
                             {
@@ -340,6 +346,14 @@ export const DataTable: React.FC<DataTableProps> = ({
         }}
         title="Delete Row"
         message="Are you sure you want to delete this row? This action cannot be undone."
+      />
+      <AddUserManagement
+        isOpen={openEditModal}
+        onClose={() => setOpenEditModal(false)}
+        onSubmit={() => {
+          // handle submit logic here, e.g., call onEdit or update state
+          setOpenEditModal(false);
+        }}
       />
     </div>
   );
