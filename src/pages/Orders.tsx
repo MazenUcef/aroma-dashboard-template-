@@ -658,6 +658,7 @@ const Orders = () => {
             onSelect={handleSelect}
             onEdit={handleEdit}
             onDelete={handleDelete}
+            editMode="navigate"
             className="w-full mx-auto"
           />
         </div>

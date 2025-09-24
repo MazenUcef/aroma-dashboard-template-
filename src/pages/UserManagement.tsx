@@ -6,7 +6,7 @@ import { SearchInput } from "../components/SearchInput";
 import Trash from "../assets/icons/Trash";
 import { DataTable } from "../components/DataTable";
 import AddUserManagement from "../components/AddUserMangement";
-
+import DeleteModal from "../components/DeleteComponents";
 const footertheme = {
   divider: {
     base: "my-4 w-full border-inputborder sm:mx-auto lg:my-6 dark:border-inputborder",
@@ -17,6 +17,8 @@ const UserManagement = () => {
   const [searchTerm2, setSearchTerm2] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [openModal, setOpenModal] = useState(false);
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  const [deleteTargetId, setDeleteTargetId] = useState<string | null>(null);
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 640);
 
   useEffect(() => {
@@ -527,6 +529,8 @@ const UserManagement = () => {
   };
 
   const handleDelete = (id: string) => {
+    setDeleteTargetId(id);
+    setOpenDeleteModal(true);
     console.log("Delete:", id);
   };
 
@@ -582,7 +586,7 @@ const UserManagement = () => {
           {/* Responsive Button */}
           <button
             onClick={handleAddUser}
-            className="flex items-center justify-center rounded-lg bg-custombtn2 dark:bg-custombtn2 px-4 py-2 text-sm font-medium text-foreground dark:text-foreground focus:outline-none focus:ring-0 transition-colors duration-200"
+            className="flex items-center justify-center rounded-lg bg-custombtn2 dark:bg-custombtn2 px-4 py-2 text-sm font-medium text-white dark:text-white focus:outline-none focus:ring-0 transition-colors duration-200"
           >
             {/* Small screen: + only */}
             <span className="sm:hidden">
@@ -616,7 +620,10 @@ const UserManagement = () => {
               onSelectionChange={handleSelectionChange}
               className="w-[160px]"
             />
-            <button className="bg-[#FDE8E8] border border-[#EF4444] w-[48px] h-[48px] flex justify-center items-center rounded-md">
+            <button
+              className="bg-[#FDE8E8] border border-[#EF4444] w-[48px] h-[48px] flex justify-center items-center rounded-md"
+              onClick={() => setOpenDeleteModal(true)}
+            >
               <Trash />
             </button>
           </div>
@@ -638,7 +645,10 @@ const UserManagement = () => {
               onChange={(e) => setSearchTerm2(e.target.value)}
               placeholder="Search Customer"
             />
-            <button className="bg-[#FDE8E8] border border-[#EF4444] w-[48px] h-[48px] flex justify-center items-center rounded-md">
+            <button
+              className="bg-[#FDE8E8] border border-[#EF4444] w-[48px] h-[48px] flex justify-center items-center rounded-md"
+              onClick={() => setOpenDeleteModal(true)}
+            >
               <Trash />
             </button>
           </div>
@@ -655,6 +665,7 @@ const UserManagement = () => {
             onSelect={handleSelect}
             onEdit={handleEdit}
             onDelete={handleDelete}
+            editMode="inline"
             className="w-full"
           />
         </div>
@@ -703,6 +714,15 @@ const UserManagement = () => {
         onSubmit={(data: any) => {
           console.log("Submitted User:", data);
           setOpenModal(false);
+        }}
+      />
+      <DeleteModal
+        isOpen={openDeleteModal}
+        onClose={() => setOpenDeleteModal(false)}
+        onConfirm={() => {
+          // Add your delete logic here, e.g., remove user by deleteTargetId
+          setOpenDeleteModal(false);
+          setDeleteTargetId(null);
         }}
       />
     </div>
