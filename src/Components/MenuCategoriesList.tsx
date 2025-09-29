@@ -62,16 +62,16 @@ const MenuCategoriesList = () => {
     setIsProductModalOpen(true);
   };
 
-  const handleEditProduct = (product: any) => {
-    setSelectedProduct(product);
-    setIsEditingProduct(true);
-    setIsProductModalOpen(true);
-  };
+  // const handleEditProduct = (product: any) => {
+  //   setSelectedProduct(product);
+  //   setIsEditingProduct(true);
+  //   setIsProductModalOpen(true);
+  // };
 
-  const handleDeleteProduct = (productId: string | number) => {
-    console.log("Deleting product with ID:", productId);
-    // You can add delete modal confirmation here if needed
-  };
+  // const handleDeleteProduct = (productId: string | number) => {
+  //   console.log("Deleting product with ID:", productId);
+  //   // You can add delete modal confirmation here if needed
+  // };
 
   const componenttheme = {
     root: {
@@ -535,9 +535,8 @@ const MenuCategoriesList = () => {
           {/* Product Grid */}
           <div className="flex flex-row gap-6 w-[721px] h-[640px]">
             <MenuProducts
-              products={[]} // Replace with real product list
-              onEdit={handleEditProduct}
-              onDelete={handleDeleteProduct}
+            // onEdit={handleEditProduct}
+            // onDelete={handleDeleteProduct}
             />
           </div>
         </div>
