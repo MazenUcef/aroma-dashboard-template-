@@ -20,7 +20,7 @@ const UserManagement = () => {
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [deleteTargetId, setDeleteTargetId] = useState<string | null>(null);
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 640);
-
+  console.log("isSmallScreen:", deleteTargetId); // Debugging line added here and when you need to use the deleteTargetId
   useEffect(() => {
     const handleResize = () => setIsSmallScreen(window.innerWidth < 640);
     window.addEventListener("resize", handleResize);

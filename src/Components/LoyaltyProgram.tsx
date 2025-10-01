@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { ToggleSwitch } from "flowbite-react";
 import { EllipsisVertical } from "lucide-react";
 

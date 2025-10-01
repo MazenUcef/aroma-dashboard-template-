@@ -148,8 +148,9 @@ export const DataTable: React.FC<DataTableProps> = ({
   const [deleteTargetId, setDeleteTargetId] = useState<string | null>(null);
   const [openEditModal, setOpenEditModal] = useState(false);
   const [editTargetId, setEditTargetId] = useState<string | null>(null);
-  const navigate = useNavigate();
+  console.log("Editing row:", editTargetId); // Debugging line added here and when you need to use the editTargetId
 
+  const navigate = useNavigate();
   const getStatusStyles = (status: string) => {
     switch (status.toLowerCase()) {
       case "completed":
@@ -311,6 +312,7 @@ export const DataTable: React.FC<DataTableProps> = ({
                             onEdit?.(row.id);
                           } else {
                             setEditTargetId(row.id);
+
                             setOpenEditModal(true);
                           }
                         },
