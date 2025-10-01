@@ -29,20 +29,22 @@ const SidebarComponent = () => {
   const { theme } = themeContext;
   const darkMode = theme === "dark";
 
-
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (sidebarRef.current && !sidebarRef.current.contains(event.target as Node)) {
+      if (
+        sidebarRef.current &&
+        !sidebarRef.current.contains(event.target as Node)
+      ) {
         setIsMenuOpen(false);
       }
     };
 
     if (isMenuOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isMenuOpen]);
 
@@ -221,10 +223,11 @@ const SidebarComponent = () => {
                 key={index}
                 href={link.href}
                 icon={link.icon}
-                className={`font-semibold ${isActive(link.href)
+                className={`font-semibold ${
+                  isActive(link.href)
                     ? " bg-sidebarhover  dark:bg-sidebarhover text-primary"
                     : "hover:bg-sidebarhover dark:hover:bg-sidebarhover "
-                  }`}
+                }`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {link.name}
@@ -238,10 +241,11 @@ const SidebarComponent = () => {
                 key={index}
                 href={link.href}
                 icon={link.icon}
-                className={`font-semibold ${isActive(link.href)
+                className={`font-semibold ${
+                  isActive(link.href)
                     ? "bg-sidebarhover dark:bg-sidebarhover  text-primary"
                     : " hover:bg-sidebarhover dark:hover:bg-sidebarhover"
-                  }`}
+                }`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {link.name}
@@ -257,7 +261,9 @@ const SidebarComponent = () => {
             </div>
             <div>
               <p className="font-medium text-sm">John Doe</p>
-              <p className="text-xs text-gray-500 dark:text-gray-400">admin@example.com</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">
+                admin@example.com
+              </p>
             </div>
           </div>
         </div>
